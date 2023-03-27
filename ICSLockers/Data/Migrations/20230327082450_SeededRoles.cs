@@ -7,7 +7,7 @@
 namespace ICSLockers.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class RolesSeeded : Migration
+    public partial class SeededRoles : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,10 +17,9 @@ namespace ICSLockers.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "7ba218b8-a5da-4e76-b9e8-399861861db6", "1", "SuperAdmin", "SuperAdmin" },
-                    { "9b8b9c4a-1469-4315-8214-2cc13fd11505", "4", "User", "User" },
-                    { "a749d49c-7e70-4ef6-bfb8-efd01388dcfd", "2", "Admin", "Admin" },
-                    { "b007299a-1ec0-4630-9f80-cbe4e6d279aa", "3", "Employee", "Employee" }
+                    { "56f268c4-a571-44fd-ab0d-e9423b5db174", "2", "Staff", "Staff" },
+                    { "81eb9446-1392-4f6c-be83-03b1d4175c04", "3", "User", "User" },
+                    { "aa317cb1-95fb-45aa-8a82-699779abed25", "1", "Admin", "Admin" }
                 });
         }
 
@@ -30,22 +29,17 @@ namespace ICSLockers.Data.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "7ba218b8-a5da-4e76-b9e8-399861861db6");
+                keyValue: "56f268c4-a571-44fd-ab0d-e9423b5db174");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "9b8b9c4a-1469-4315-8214-2cc13fd11505");
+                keyValue: "81eb9446-1392-4f6c-be83-03b1d4175c04");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "a749d49c-7e70-4ef6-bfb8-efd01388dcfd");
-
-            migrationBuilder.DeleteData(
-                table: "AspNetRoles",
-                keyColumn: "Id",
-                keyValue: "b007299a-1ec0-4630-9f80-cbe4e6d279aa");
+                keyValue: "aa317cb1-95fb-45aa-8a82-699779abed25");
         }
     }
 }

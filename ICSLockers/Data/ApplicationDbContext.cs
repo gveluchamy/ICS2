@@ -20,10 +20,9 @@ namespace ICSLockers.Data
         private static void SeedRoles(ModelBuilder builder)
         {
             builder.Entity<IdentityRole>().HasData(
-                new IdentityRole { Name = "SuperAdmin", ConcurrencyStamp = "1", NormalizedName = "SuperAdmin" },
-                new IdentityRole { Name = "Admin", ConcurrencyStamp = "2", NormalizedName = "Admin" },
-                new IdentityRole { Name = "Employee", ConcurrencyStamp = "3", NormalizedName = "Employee" },
-                new IdentityRole { Name = "User", ConcurrencyStamp = "4", NormalizedName = "User" }
+                new IdentityRole { Name = "Admin", ConcurrencyStamp = "1", NormalizedName = "Admin" },
+                new IdentityRole { Name = "Staff", ConcurrencyStamp = "2", NormalizedName = "Staff" },
+                new IdentityRole { Name = "User", ConcurrencyStamp = "3", NormalizedName = "User" }
             );
         }
     }

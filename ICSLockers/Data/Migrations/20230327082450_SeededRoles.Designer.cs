@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ICSLockers.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230325122654_RolesSeeded")]
-    partial class RolesSeeded
+    [Migration("20230327082450_SeededRoles")]
+    partial class SeededRoles
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,29 +54,22 @@ namespace ICSLockers.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7ba218b8-a5da-4e76-b9e8-399861861db6",
+                            Id = "aa317cb1-95fb-45aa-8a82-699779abed25",
                             ConcurrencyStamp = "1",
-                            Name = "SuperAdmin",
-                            NormalizedName = "SuperAdmin"
-                        },
-                        new
-                        {
-                            Id = "a749d49c-7e70-4ef6-bfb8-efd01388dcfd",
-                            ConcurrencyStamp = "2",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "b007299a-1ec0-4630-9f80-cbe4e6d279aa",
-                            ConcurrencyStamp = "3",
-                            Name = "Employee",
-                            NormalizedName = "Employee"
+                            Id = "56f268c4-a571-44fd-ab0d-e9423b5db174",
+                            ConcurrencyStamp = "2",
+                            Name = "Staff",
+                            NormalizedName = "Staff"
                         },
                         new
                         {
-                            Id = "9b8b9c4a-1469-4315-8214-2cc13fd11505",
-                            ConcurrencyStamp = "4",
+                            Id = "81eb9446-1392-4f6c-be83-03b1d4175c04",
+                            ConcurrencyStamp = "3",
                             Name = "User",
                             NormalizedName = "User"
                         });

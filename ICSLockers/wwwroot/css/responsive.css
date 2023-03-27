@@ -1,0 +1,84 @@
+﻿@media screen and (max-width: 1600px) {
+    .landing-page .content {
+        height: 600px;
+        padding-left: 135px;
+    }
+
+    .menu-landing {
+        background-position: inherit;
+    }
+
+    .heading-col h2 {
+        padding-left: 45px;
+        padding-bottom: 20px;
+    }
+
+    .menus .row {
+        justify-content: center;
+    }
+
+    .menus .menu-item img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .menu-item {
+        width: 190px;
+        height: 190px;
+    }
+
+    .menus .menu-items {
+        align-items: center;
+    }
+
+    .passcode .login-card .form-control.user-passcode {
+        height: 70px;
+    }
+
+    .passcode .login-card .login {
+        padding: 15px;
+    }
+
+    .user-menu .col-lg-2 .row, .user-menu .col-lg-3 .row {
+        padding: 15px 5px;
+    }
+
+    .content-wrapper {
+        padding: 15px;
+    }
+
+    .login-card {
+        max-width: 420px;
+        padding: 35px 30px;
+        margin-bottom: 20px;
+    }
+
+    .passcode .main-heading {
+        margin-bottom: 20px;
+    }
+
+    .profile h5 {
+        width: auto;
+        padding: 0;
+        font-size: 18px;
+    }
+
+    .profile > .row::after {
+        width: 13px;
+        height: 13px;
+        top: 24px;
+    }
+
+    .menu-landing .heading-col {
+        height: calc(100vh - 40px);
+    }
+
+    .user-profile img {
+        width: 30px;
+    }
+
+    .locker-unit .grid {
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+    }
+}

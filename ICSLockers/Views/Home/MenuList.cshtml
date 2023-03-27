@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Menu List";
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<div class="menu-landing">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6  heading-col text-center">
+                <h2 class="h2 text-center w-100">Locker user manuals</h2>
+            </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="menus">
+                    <div class="row">
+                        <div class="col-lg-5 menu-items">
+                            <a asp-controller="Locker" asp-action="LocateUserLocker">
+                                <div class="menu-item card">
+                                    <img src="../images/png/user-locker.png" alt="locate-user-locker">
+                                    <h5>Locate user locker</h5>
+                                </div>
+                            </a>
+
+                            <a asp-controller="Locker" asp-action="LockerUnits">
+                                <div class="menu-item card">
+                                    <img src="../images/png/locker-unit.png" alt="view-locker-unit">
+                                    <h5>
+                                        View Locker
+                                        Units
+                                    </h5>
+                                </div>
+                            </a>
+
+                        </div>
+                        <div class="col-lg-5 menu-items">
+                            <a asp-controller="Locker" asp-action="UserReports">
+                                <div class="menu-item card">
+                                    <img src="../images/png/user-report.png" alt="user
+                                    Reports">
+                                    <h5>
+                                        user
+                                        Reports
+                                    </h5>
+                                </div>
+                            </a>
+
+                            <a asp-controller="Locker" asp-action="UserLockerRecords">
+                                <div class="menu-item card">
+                                    <img src="../images/png/locker-record.png" alt="locker-record">
+                                    <h5>
+                                        Locker
+                                        Records
+                                    </h5>
+                                </div>
+                            </a>
+
+                            <a onclick="fnLogoutMethod()" style="cursor: pointer">
+                                <div class="menu-item card">
+                                    <img src="../images/png/exit.png" alt="exit">
+                                    <h5>
+                                        Exit
+                                        Application
+                                    </h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,129 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ICSWebApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/mystyle.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/responsive.css" asp-append-version="true">
+    <link href="~/lib/font-awesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="locker-bg">
+        <div class="container-fluid p-0">
+            <div class="header">
+                <div class="row">
+                    <div class="col-lg-1 logo">
+                        <img src="../images/png/logo.png" alt="logo">
+                    </div>
+                    <div class="col-lg-8 user-menu">
+                        <div class="row w-100">
+                            <a href="#" class="col-lg-2 @(ViewContext.RouteData.Values["Action"]?.ToString() == "LocateUserLocker" ? "active" : "")" id="menu-item">
+                                <div class="row h-100 align-items-center" onclick="location.href='@Url.Action("LocateUserLocker", "Locker")'">
+                                    <img src="../images/svg/user-locker-img.svg" alt="" class="svg col-lg-3">
+                                    <img src="../images/svg/user-locker-img-white.svg" alt="" class="svg col-lg-3 white">
+                                    <h5 class="col-lg-9">Locate user locker</h5>
+                                </div>
+                            </a>
+                            <a href="#" class="col-lg-3 @(ViewContext.RouteData.Values["Action"]?.ToString() == "LockerUnits" ? "active" : "")" id="menu-item">
+                                <div class="row h-100 align-items-center" onclick="location.href='@Url.Action("LockerUnits", "Locker")'">
+                                    <img src="../images/svg/locker-unit-color.svg" alt="" class="svg col-lg-3">
+                                    <img src="../images/svg/locker-unit-color-white.svg" alt="" class="svg col-lg-3 white">
+                                    <h5 class="col-lg-9">
+                                        View
+                                        Locker Units
+                                    </h5>
+                                </div>
+                            </a>
+                            <a href="#" class="col-lg-2 @(ViewContext.RouteData.Values["Action"]?.ToString() == "UserReports" ? "active" : "")" id="menu-item">
+                                <div class="row h-100 align-items-center" onclick="location.href='@Url.Action("UserReports", "Locker")'">
+                                    <img src="../images/svg/user-report-color.svg" alt="" class="svg col-lg-3">
+                                    <img src="../images/svg/user-report-color-white.svg" alt="" class="svg col-lg-3 white">
+                                    <h5 class="col-lg-7">User Reports</h5>
+                                </div>
+                            </a>
+                            <a href="#" class="col-lg-3 @(ViewContext.RouteData.Values["Action"]?.ToString() == "UserLockerRecords" ? "active" : "")" id="menu-item">
+                                <div class="row h-100 align-items-center" onclick="location.href='@Url.Action("UserLockerRecords", "Locker")'">
+                                    <img src="../images/svg/locker-record-color.svg" alt="" class="svg col-lg-3">
+                                    <img src="../images/svg/locker-record-color-white.svg" alt="" class="svg col-lg-3 white">
+                                    <h5 class="col-lg-9">
+                                        User
+                                        Locker Records
+                                    </h5>
+                                </div>
+                            </a>
+                            <a href="#" class="col-lg-2 @(ViewContext.RouteData.Values["Action"]?.ToString() == "ExitApp" ? "active" : "")" id="menu-item">
+                                <div class="row h-100 align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <img src="../images/svg/exit-color.svg" alt="" class="col-lg-3 svg ">
+                                    <img src="../images/svg/exit-color-white.svg" alt="" class="col-lg-3 svg white">
+                                    <h5 class="col-lg-9">
+                                        Exit
+                                        Application
+                                    </h5>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-1 d-flex align-items-center">
+                        <div class="row align-items-center justify-content-around w-100">
+                            <div class="circle">
+                                <img src="../images/png/search.png" alt="">
+                            </div>
+                            <div class="circle">
+                                <img src="../images/png/notification.png" alt="">
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-lg-2 profile  d-flex align-items-center">
+                        <div class="row align-items-center w-100">
+                            <div class="user-profile">
+                                <img src="../images/png/user.png" alt="">
+                            </div>
+                            <h5 class="m-0 pl-3">@(SignInManager.IsSignedIn(User) ? User.Identity?.Name : "login")</h5>
+                        </div>
+                        @*<partial name="_LoginPartial" />*@
+                    </div>
+                </div>
+            </div>
+            @RenderBody()
+        </div>
+    </div>
+
+    <div class="modal fade log-out" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                @*<div class="modal-header border-0">
+                    <h4>Logout</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>*@
+                <div class="modal-body text-center"> Are you sure you want to log-off?</div>
+                <div class="modal-footer d-flex justify-content-between p-2">
+                    <a class="btn btn-primary col-lg-5 btn-block" onclick="location.href='@Url.Action("Logout", "Account")'">Yes</a>
+                    <a class="btn btn-outline-danger col-lg-5" data-bs-dismiss="modal" aria-label="Close">No</a>
+@*                    @using (Html.BeginForm("ActionName", "ControllerName", FormMethod.Get))
+                    {
+                        <a class="btn btn-primary btn-block">
+                            Logout</a>
+                    }*@
+                    </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.slim.min.js" asp-append-version="true"></script>
+    <script src="~/lib/popperjs/dist/umd/popper.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/js/loginlogout.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -735,3 +735,21 @@ a {
      text-transform: uppercase;
      color: #FFFFFF;
  }
+
+
+/*Custom css*/
+
+.form-error #error {
+    display: block;
+    color: red;
+    text-align: left;
+    font-size: 12px;
+}
+
+#error {
+    display: none;
+}
+
+.form-error .form-control {
+    border: solid 2px red !important;
+}

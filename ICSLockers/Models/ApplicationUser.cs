@@ -9,8 +9,8 @@ namespace ICSLockers.Models
         public int SSN { get; set; }
         public string PasswordEnc { get; set; }
         public int LockerUnit { get; set; }
-        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedOn { get; set; }
         public string CreatedBy { get; set; }
-        public bool CheckOutStatus { get; set; } = false;
+        public bool CheckOutStatus { get; set; }
     }
 }

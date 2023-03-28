@@ -1,0 +1,38 @@
+﻿@using ICSLockers.Models;
+
+<div class="content-wrapper create-user">
+    <div class="passcode d-flex align-items-center text-center">
+        <div class="main-heading">
+            <h5>Create User</h5>
+        </div>
+        <form class="needs-validation" novalidate id="myForm">
+            <div class="login-card create-user-form create-user">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="col-lg-4 m-0 text-left">First Name</h5>
+                    <input type="text" id="firstName" class="form-control first-name" required>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="col-lg-4 m-0 text-left">Last Name</h5>
+                    <input type="text" id="lastName" class="form-control last-name" required>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="col-lg-4 m-0 text-left">SSN</h5>
+                    <input type="text" id="ssn" class="form-control ssn">
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="col-lg-4 m-0 text-left">Email-id</h5>
+                    <input type="text" id="emailId" class="form-control email-id" required>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="col-lg-4 m-0 text-left">Mobile No</h5>
+                    <input type="text" id="mobileNo" class="form-control mobile-no">
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="col-lg-4 m-0 text-left">Locker Unit</h5>
+                    <input type="text" id="lockerUnit" class="form-control locker-unit disabled" value='123' disabled>
+                </div>
+                <button type="submit" class="btn btn-danger submit" onclick="fnNewUserCreation()">continue</button>
+            </div>
+        </form>
+    </div>
+</div>

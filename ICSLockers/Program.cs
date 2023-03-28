@@ -1,5 +1,7 @@
 using ICSLockers.Data;
 using ICSLockers.Models;
+using ICSLockers.Repository.IRepository;
+using ICSLockers.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,10 +21,17 @@ namespace ICSLockers
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options => {
+                options.SignIn.RequireConfirmedAccount = false; 
+                options.Password.RequiredLength = 4;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+            })
                  .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            builder.Services.AddScoped<IAccountManager, AccountManager>();
 
             var app = builder.Build();
 

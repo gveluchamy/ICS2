@@ -12,8 +12,8 @@ function fnLoginMethod() {
     }
 
     var loginmodel = {};
-    loginmodel.Email = "elanchezhiyan.p@aitechindia.com";
-    loginmodel.Password = "Aitech$321";
+    loginmodel.Email = "";
+    loginmodel.Password = password;
     loginmodel.RememberMe = false;
 
     $.ajax({
@@ -48,7 +48,7 @@ function fnNewUserCreation() {
     debugger;
 
     var userCreationModel = {
-        UserName: $(".create-user-form .first-name").val().trim() + $(".create-user-form .last-name").val().trim(),
+        UserName: $(".create-user-form .first-name").val().trim() + "-" + $(".create-user-form .last-name").val().trim(),
         Email: $(".create-user-form .email-id").val(),
         FirstName: $(".create-user-form .first-name").val().trim(),
         LastName: $(".create-user-form .last-name").val().trim(),
@@ -58,7 +58,7 @@ function fnNewUserCreation() {
         CreatedOn: new Date(),
         CreatedBy: "Admin",
         CheckOutStatus: false,
-        PhoneNumber: parseInt($(".create-user-form .mobile-no").val())
+        PhoneNumber: $(".create-user-form .mobile-no").val()
     };
 
     var isValidated = ValidateUserCreation(JSON.stringify(userCreationModel));
@@ -102,7 +102,7 @@ function ValidateUserCreation(userCreationJSONModel) {
         $(".email-div #error").text("Enter the correct email!");
     }
 
-    if (typeof userCreationModel.PhoneNumber != "number" || userCreationModel.PhoneNumber.toString().length != 10) {
+    if (typeof userCreationModel.PhoneNumber != "string" || userCreationModel.PhoneNumber.length != 10) {
         $(".mobile-div").addClass("form-error");
         $(".mobile-div #error").text("Enter the correct Mobile number!");
     }

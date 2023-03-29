@@ -17,7 +17,7 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-between ssn-div">
                     <h5 class="col-lg-4 m-0 text-left">SSN</h5>
-                    <input type="number" id="ssn" class="form-control ssn" onkeydown="fnRemoveValidation(this)"><span id="error"></span>
+                    <input type="number" id="ssn" class="form-control ssn" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;" onkeydown="fnRemoveValidation(this)"><span id="error"></span>
                 </div>
                 <div class="d-flex align-items-center justify-content-between email-div">
                     <h5 class="col-lg-4 m-0 text-left">Email-id</h5>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-between mobile-div">
                     <h5 class="col-lg-4 m-0 text-left">Mobile No</h5>
-                    <input type="number" id="mobileNo" class="form-control mobile-no" onkeydown="fnRemoveValidation(this)"><span id="error"></span>
+                    <input type="number" id="mobileNo" class="form-control mobile-no" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" onkeydown="fnRemoveValidation(this)"><span id="error"></span>
                 </div>
                 <div class="d-flex align-items-center justify-content-between">
                     <h5 class="col-lg-4 m-0 text-left">Locker Unit</h5>

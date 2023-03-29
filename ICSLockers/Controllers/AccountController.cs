@@ -25,9 +25,9 @@ namespace ICSLockers.Controllers
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginViewModel model, string returnUrl)
         {
-            var user = _accountManager.FindUserByPassword(model.Password);
+            ApplicationUser? user = _accountManager.FindUserByPassword(model.Password);
 
-            if (user != null)
+            if (user != null) 
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
@@ -53,8 +53,16 @@ namespace ICSLockers.Controllers
         public async Task<IActionResult> CreateNewUser([FromBody] ApplicationUser model)
         {
 
-            await _accountManager.CreateNewUser(model);
+            IdentityResult userCreationStatus = await _accountManager.CreateNewUserAsync(model);
+            if (userCreationStatus.Succeeded)
+            {
+                _logger.LogDebug($"User {model.UserName} has been created successfully");
+            }
+            else
+            {
 
+                _logger.LogDebug($"User {model.UserName} has not been created.");
+            }
             return View();
         }
     }

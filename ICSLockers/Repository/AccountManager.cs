@@ -17,20 +17,20 @@ namespace ICSLockers.Repository
             _userManager = userManager;
         }
 
-        public async Task<Task> CreateNewUser(ApplicationUser applicationUser)
+        public async Task<IdentityResult> CreateNewUserAsync(ApplicationUser applicationUser)
         {
             string password = AccountHelper.CreatePassword(applicationUser);
             applicationUser.PasswordEnc = password;
 
             IdentityResult userResult = await _userManager.CreateAsync(applicationUser, password);
 
-            return Task.CompletedTask;
+            return userResult;
         }
 
-        public ApplicationUser FindUserByPassword(string password)
+        public ApplicationUser? FindUserByPassword(string password)
         {
             var encPassword = password;//AccountHelper.CreatePassword(applicationUser);
-            ApplicationUser user = (ApplicationUser)_userManager.Users.Where(x => x.PasswordEnc == encPassword);
+            ApplicationUser? user = _userManager.Users?.FirstOrDefault(x=> password.Equals(x.PasswordEnc));
 
             return user;
         }

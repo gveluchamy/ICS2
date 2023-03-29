@@ -446,6 +446,7 @@ a {
     padding: 13px 0;
     overflow: hidden;
     margin-bottom: 40px;
+    -webkit-inner-spin-button
 }
 
 .passcode .login-card .login {
@@ -698,21 +699,27 @@ a {
     text-align: left;
 }
 
-.create-user .create-user-form input {
-    background: #FFFFFF;
-    border: 2px solid rgba(0, 0, 0, 0.05);
-    box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 25px;
-    height: 50px;
-    max-width: 440px;
-    width: 100%;
-    padding-left: 25px;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 29px;
-    display: flex;
-    align-items: center;
-    color: rgba(0, 0, 0, 0.25) !important;
+    .create-user .create-user-form input {
+        background: #FFFFFF;
+        border: 2px solid rgba(0, 0, 0, 0.05);
+        box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 25px;
+        height: 50px;
+        max-width: 440px;
+        width: 100%;
+        padding-left: 25px;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        display: flex;
+        align-items: center;
+        color: rgba(0, 0, 0, 0.25) !important;
+        overflow:hidden;
+}
+ input::-webkit-outer-spin-button,
+ input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .create-user .create-user-form input.disabled {

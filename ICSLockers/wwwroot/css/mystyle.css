@@ -7,6 +7,24 @@ body {
     overflow: hidden;
 }
 
+table {
+    border-collapse: collapse;
+    width: 80%;
+}
+.buttons-excel {
+    left: 10%;
+    background-color: aqua;
+}
+.buttons-csv {
+    left: 10%;
+    background-color: aqua;
+}
+td,
+th {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+}
 .landing-page {
     background: url("../images/png/bg.jpg") no-repeat;
     width: 100%;

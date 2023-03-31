@@ -17,7 +17,7 @@ namespace ICSLockers.Controllers
         public AccountController(SignInManager<ApplicationUser> signInManager, ILogger<AccountController> logger, UserManager<ApplicationUser> userManager, IAccountManager accountManager)
         {
             _signInManager = signInManager;
-            _logger = logger;
+            _logger = logger;   
             _userManager = userManager;
             _accountManager = accountManager;
         }
@@ -29,15 +29,18 @@ namespace ICSLockers.Controllers
 
             if (user != null) 
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
                     _logger.LogDebug($"The user {model.Email} is about to signed in.");
                     return Redirect(returnUrl);
                 }
+                
+
             }
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             return View(model);
+            
         }
 
         [HttpPost]
@@ -65,5 +68,6 @@ namespace ICSLockers.Controllers
             }
             return View();
         }
+
     }
 }

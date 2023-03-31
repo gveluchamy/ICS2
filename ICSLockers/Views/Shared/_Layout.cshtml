@@ -14,6 +14,17 @@
     <link rel="stylesheet" href="~/css/responsive.css" asp-append-version="true">
     <link href="~/lib/font-awesome/css/fontawesome.css" rel="stylesheet" />
     <link href="~/lib/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+    <link href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css" rel="stylesheet" />
+    
+
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
 
 </head>
 <body>
@@ -92,7 +103,6 @@
                             </div>
                             <h5 class="m-0 pl-3">@(SignInManager.IsSignedIn(User) ? User.Identity?.Name : "login")</h5>
                         </div>
-                        @*<partial name="_LoginPartial" />*@
                     </div>
                 </div>
             </div>
@@ -103,25 +113,18 @@
     <div class="modal fade log-out" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
-                @*<div class="modal-header border-0">
-                    <h4>Logout</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>*@
                 <div class="modal-body text-center"> Are you sure you want to log-off?</div>
                 <div class="modal-footer d-flex justify-content-between p-2">
                     <a class="btn btn-primary col-lg-5 btn-block" onclick="location.href='@Url.Action("Logout", "Account")'">Yes</a>
                     <a class="btn btn-outline-danger col-lg-5" data-bs-dismiss="modal" aria-label="Close">No</a>
-@*                    @using (Html.BeginForm("ActionName", "ControllerName", FormMethod.Get))
-                    {
-                        <a class="btn btn-primary btn-block">
-                            Logout</a>
-                    }*@
                     </div>
             </div>
         </div>
     </div>
-    <script src="~/lib/popperjs/dist/umd/popper.min.js" asp-append-version="true"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+
+
+    <script src="~/lib/popperjs/dist/umd/popper.min.js" asp-append-version="true" defer></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true" defer></script>
     <script src="~/js/Account.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

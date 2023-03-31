@@ -73,7 +73,7 @@ function fnNewUserCreation() {
             contentType: "application/json",
             data: JSON.stringify(userCreationModel),
             success: function (data) {
-                window.location.href = "/";
+                window.location.href = "/Locker/LocateUserLocker";
             },
             error: function (xhr, status, error) {
                 console.log(error);

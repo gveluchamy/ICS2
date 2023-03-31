@@ -9,8 +9,8 @@ namespace ICSLockers.Repository
 {
     public class AccountManager : IAccountManager
     {
-        private ApplicationDbContext _context;
-        private UserManager<ApplicationUser> _userManager;
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
         public AccountManager(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;

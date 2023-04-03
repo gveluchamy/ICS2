@@ -33,14 +33,10 @@ namespace ICSLockers.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogDebug($"The user {model.Email} is about to signed in.");
-                    return Redirect(returnUrl);
-                }
-                
-
+                    return Json(new { success = true, redirectUrl = returnUrl });
+                }              
             }
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            return View(model);
-            
+            return Json(new { success = false, message = "Invalid Password!" });
         }
 
         [HttpPost]
@@ -52,7 +48,6 @@ namespace ICSLockers.Controllers
         }
 
         [HttpPost]
-        [Route("api/user")]
         public async Task<IActionResult> CreateNewUser([FromBody] ApplicationUser model)
         {
 
@@ -63,7 +58,6 @@ namespace ICSLockers.Controllers
             }
             else
             {
-
                 _logger.LogDebug($"User {model.UserName} has not been created.");
             }
             return View();

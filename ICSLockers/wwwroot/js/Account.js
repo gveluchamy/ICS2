@@ -22,11 +22,17 @@ function fnLoginMethod() {
         async: true,
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(loginmodel),
-        success: function (result) {
-            location.reload();
+        success: function (response) {
+            if (response.success) {
+                toastr.success('You have logged in successfully!', 'Success', { timeOut: 4000 })
+                window.location.href = response.redirectUrl;
+            } else {
+                toastr.error(response.message, 'Error', { timeOut: 4000 })
+            }
         },
-        error: function () {
-        },
+        error: function (xhr, status, error) {
+            toastr.error('Some error has occurred in logging in. Please try again!', 'Error', { timeOut: 4000 })
+        }
     });
 }
 
@@ -45,7 +51,6 @@ function fnLogoutMethod() {
 }
 
 function fnNewUserCreation() {
-    debugger;
 
     var userCreationModel = {
         UserName: $(".create-user-form .first-name").val().trim() + "-" + $(".create-user-form .last-name").val().trim(),
@@ -68,12 +73,16 @@ function fnNewUserCreation() {
 
         $.ajax({
             type: "POST",
-            url: "/api/user",
+            url: "/Account/CreateNewUser",
             headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
             contentType: "application/json",
             data: JSON.stringify(userCreationModel),
-            success: function (data) {
-                window.location.href = "/Locker/LocateUserLocker";
+            success: function (response) {
+                if (response.success) {
+                    window.location.href = response.redirectUrl;
+                } else {
+                    alert(response.message);
+                }
             },
             error: function (xhr, status, error) {
                 console.log(error);
@@ -106,8 +115,8 @@ function ValidateUserCreation(userCreationJSONModel) {
         $(".mobile-div").addClass("form-error");
         $(".mobile-div #error").text("Enter the correct Mobile number!");
     }
-    // Validate SSN format
 
+    // Validate SSN format
     if (typeof userCreationModel.SSN != "number" || userCreationModel.SSN.toString().length!=9) {
         $(".ssn-div").addClass("form-error");
         $(".ssn-div #error").text("Enter the ssn 9 digit number");
@@ -118,11 +127,8 @@ function ValidateUserCreation(userCreationJSONModel) {
 
 }
 
-function fnValidateEmail(ctrl) {
-    debugger;
-
+function fnValidateEmail (ctrl) {
     var currentValue = $(ctrl).val();
-
     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(currentValue)) {
         $(ctrl.parentElement).addClass("form-error");

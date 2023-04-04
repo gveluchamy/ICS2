@@ -449,7 +449,7 @@ a {
     margin-bottom: 34px;
 }
 
-.passcode .login-card .form-control.user-passcode {
+.passcode .login-card .form-control.user-passcode, .passcode .login-card .form-control.user-email {
     background: #FAFDFF;
     border: 2px solid rgba(0, 0, 0, 0.05);
     box-shadow: inset 0px 1px 10px rgba(0, 0, 0, 0.1);

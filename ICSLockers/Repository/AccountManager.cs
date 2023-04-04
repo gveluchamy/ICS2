@@ -29,9 +29,13 @@ namespace ICSLockers.Repository
 
         public ApplicationUser? FindUserByPassword(string password)
         {
-            var encPassword = password;//AccountHelper.CreatePassword(applicationUser);
             ApplicationUser? user = _userManager.Users?.FirstOrDefault(x=> password.Equals(x.PasswordEnc));
+            return user;
+        }
 
+        public ApplicationUser? FindUserByEmail(string email)
+        {
+            ApplicationUser? user = _userManager.Users?.FirstOrDefault(x => email.Equals(x.Email));
             return user;
         }
     }

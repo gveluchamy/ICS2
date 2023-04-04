@@ -20,7 +20,7 @@ namespace ICSLockers.Data
             SeedUserRoles(builder);
         }
 
-        private void SeedUsers(ModelBuilder builder)
+        private static void SeedUsers(ModelBuilder builder)
         {
             ApplicationUser user = new()
             {

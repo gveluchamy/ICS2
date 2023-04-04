@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Locker User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid main">
+    <div class="title-bar">
+        <h5>Locate User Locker</h5>
+    </div>
+    <div class="locker-admin-panel">
+    @if (!SignInManager.IsSignedIn(User))
+    {
+        <div class="content-wrapper">
+            <div class="passcode d-flex align-items-center text-center">
+                <div class="main-heading">
+                    <h5>Admin Login</h5>
+                    <p>ICS Login</p>
+                </div>
+                <div class="login-card">
+                    <h5>Enter User Email</h5>
+                    <input type="text" class="form-control user-email" minlength="50" maxlength="50">
+                    <button type="submit" class="btn btn-danger login" onclick="fnAdminLoginMethod('Email')">Next</button>
+                </div>
+                <div class="note">
+                    <p>* Enter User Email to Login</p>
+                </div>
+            </div>
+            </div>
+        }
+        else
+        {
+            <div style="margin: 100px; margin-top: 150px">
+                <div>
+                    You have been signed in successfully. Currently, <b>Development</b> is going on and we will let you know shortly...
+                </div>
+            </div>
+        }
+    </div>
+</div>

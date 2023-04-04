@@ -8,6 +8,7 @@ function fnLoginMethod() {
     var password = $(".user-passcode").val().trim();
 
     if (password == null || password == "") {
+        toastr.warning('Enter the password!', 'Warn', { timeOut: 4000 });
         return;
     }
 
@@ -24,9 +25,11 @@ function fnLoginMethod() {
         data: JSON.stringify(loginmodel),
         success: function (response) {
             if (response.success) {
-                toastr.success('You have logged in successfully!', 'Success', { timeOut: 4000 })
+                toastr.success(response.message, 'Success', { timeOut: 4000 });
                 window.location.href = response.redirectUrl;
             } else {
+                $(".user-passcode").val("");
+                $(".user-passcode").focus();
                 toastr.error(response.message, 'Error', { timeOut: 4000 })
             }
         },
@@ -139,4 +142,58 @@ function fnValidateEmail (ctrl) {
 function fnRemoveValidation(ctrl) {
     $(ctrl.parentElement).removeClass("form-error");
     $(ctrl.nextElementSibling).text("")
+}
+
+function fnAdminLoginMethod (page) {
+    var email = $(".user-email").val().trim();
+    var password = '';
+
+    if (email == null || email == "") {
+        toastr.warning('Enter the email address!', 'Warn', { timeOut: 4000 });
+        return;
+    }
+
+    if (page == "Password") {
+        password = $(".user-passcode").val().trim();
+        if (password == null || password == "") {
+            toastr.warning('Enter the password!', 'Warn', { timeOut: 4000 });
+            return;
+        }
+    }
+
+    var loginmodel = {};
+    loginmodel.Email = email;
+    loginmodel.Password = password;
+    loginmodel.RememberMe = false;
+
+    $.ajax({
+        type: 'POST',
+        url: '/Account/Login?returnUrl=' + encodeURIComponent(window.location.pathname) + '&page=' + page,
+        async: false,
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(loginmodel),
+        success: function (response) {
+            debugger;
+            if (response.success) {
+                if (page == "Email") {
+                    $(".locker-admin-panel").empty();
+                    $(".locker-admin-panel").html(response.passwordHtml);
+                }
+                toastr.success(response.message, 'Success', { timeOut: 4000 });
+            }
+            else {
+                if (page == "Email") {
+                    $(".user-email").val("");
+                    $(".user-email").focus();
+                } else {
+                    $(".user-passcode").val("");
+                    $(".user-passcode").focus();
+                }
+                toastr.error(response.message, 'Error', { timeOut: 4000 });
+            }
+        },
+        error: function (xhr, status, error) {
+            toastr.error('Some error has occurred in logging in. Please try again!', 'Error', { timeOut: 4000 })
+        }
+    });
 }

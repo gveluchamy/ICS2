@@ -778,3 +778,492 @@ a {
 .form-error .form-control {
     border: solid 2px red !important;
 }
+
+
+/* Confirmation */
+.confirmation .login-card {
+    max-width: 680px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.025);
+    border: 2px solid rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+    padding: 50px 60px;
+}
+
+.confirmation .login-card h6 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #555555;
+    margin-bottom: 20px;
+}
+
+.confirmation .login-card h5 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #2B4889;
+    margin-bottom: 60px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding-block-end: 30px;
+}
+
+.confirmation .login-card .continue {
+    margin-bottom: 40px;
+    max-width: 440px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 34px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.confirmation .login-card .not-continue {
+    max-width: 440px;
+    width: 100%;
+    height: 90px;
+    background: #757575;
+    border: 4px solid rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0px 1px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 45px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 34px;
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+}
+
+/* user-details */
+.user-details .detail-card {
+    max-width: 680px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.025);
+    border: 2px solid rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+    padding: 42px 60px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.user-details .detail-card:before {
+    content: "";
+    width: 50%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.025);
+    border-radius: 0px 25px 25px 0px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.user-details .detail-card .row {
+    margin-bottom: 40px;
+}
+
+.user-details .detail-card label {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: #555555;
+    margin-bottom: 19px;
+}
+
+.user-details .detail-card h6 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #2B4889;
+    margin-bottom: 19px;
+}
+
+.user-details .detail-card .items h6 {
+    margin-bottom: 10px;
+}
+
+.user-details .detail-card .details .row {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.user-details .detail-card .details .row:last-child {
+    border-bottom: none;
+    margin-bottom: 40px;
+}
+
+.user-details .detail-card .l-units {
+    display: flex;
+    justify-content: center;
+}
+
+.user-details .detail-card .l-units .btn {
+    max-width: 440px;
+    width: 100%;
+    height: 90px;
+    background: #F2302D;
+    border: 4px solid #D12B28;
+    box-shadow: inset 0px 1px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 45px;
+    padding: 28px 71px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 34px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+
+/* Admin page */
+.admin .title-bar {
+    padding: 18px 20px;
+}
+
+.add-locker,
+.update-locker:hover {
+    border: 2px solid #2B4889;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #2B4889;
+    padding: 15px 30px;
+    background-color: #fff;
+}
+
+.update-locker,
+.add-locker:hover {
+    border: 2px solid #2B4889;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    background: #2B4889;
+    padding: 15px 30px;
+}
+
+.update-locker {
+    margin-left: 25px;
+}
+
+.locker-add-modal {
+    max-width: 840px;
+}
+
+.locker-add-modal .modal-content {
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.025);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 30px;
+    height: fit-content;
+}
+
+.locker-add-modal .modal-header {
+    padding-bottom: 25px;
+    padding-top: 45px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+input.locker-unit {
+    background: #EFEFEF;
+    border: 2px solid rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.25);
+    opacity: 0.5 !important;
+    padding: 12px 30px 6px 30px;
+    margin-bottom: 30px;
+}
+
+.quantity-field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    margin: 0 auto;
+    position: relative;
+    background: #FFFFFF;
+    border: 2px solid rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+}
+
+.quantity-field .value-button {
+    border: none;
+    margin: 0px;
+    width: 40px;
+    height: 100%;
+    padding: 0;
+    background: #eee;
+    outline: none;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: 500;
+    color: #757575;
+    line-height: 52px;
+}
+
+.quantity-field .value-button:hover {
+    background: rgb(230, 230, 230);
+}
+
+.quantity-field .value-button:active {
+    background: rgb(210, 210, 210);
+}
+
+.quantity-field .decrease-button {
+    margin-right: -0;
+    border-radius: 8px 0 0 8px;
+    position: absolute;
+    left: 0;
+    background: rgba(230, 230, 230, 0.5);
+    border-radius: 25px 0px 0px 25px;
+}
+
+.quantity-field .increase-button {
+    margin-left: -4px;
+    border-radius: 0 8px 8px 0;
+    position: absolute;
+    right: 0;
+    background: rgba(230, 230, 230, 0.5);
+    border-radius: 0px 25px 25px 0px;
+}
+
+.quantity-field .number {
+    display: flex;
+    text-align: center;
+    border: none;
+    margin: 0px;
+    width: 40px;
+    height: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.25);
+    padding-top: 7px;
+}
+
+.admin-modal .note p {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: left;
+    color: #000000;
+    opacity: 0.5;
+    margin-top: 20px;
+}
+
+.quantity-field .number::selection {
+    background: none;
+}
+
+.admin-modal .modal-header h5 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #555555;
+}
+
+.admin-modal .btn {
+    max-width: 440px;
+    width: 100%;
+    height: 90px;
+    background: #F2302D;
+    border: 4px solid #D12B28;
+    box-shadow: inset 0px 1px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 45px;
+    padding: 28px 71px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 34px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.admin-modal label {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: left;
+    color: #2B4889;
+}
+
+.admin-modal .modal-body {
+    padding-top: 40px;
+}
+
+.admin-modal .modal-content {
+    padding-bottom: 40px;
+}
+
+.admin.title-bar {
+    padding: 10px 20px;
+}
+
+/* admin employee */
+.emp-table {
+    background: #FFFFFF;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+
+}
+.staff-create, .staff-create:hover{
+    padding: 12px 30px;
+    display: flex;
+    align-items: center;
+}
+.emp-table tr td:first-child {
+    padding-left: 15px !important;
+    max-width: 100px;
+}
+
+.emp-table th,
+.emp-table td {
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.emp-table th {
+    font-style: normal;
+    font-weight: 400 !important;
+    font-size: 20px;
+    line-height: 24px;
+    /* identical to box height */
+    color: #555555;
+    padding: 17px 18px !important;
+}
+
+.emp-table td {
+    font-weight: 400 !important;
+    font-size: 20px;
+    line-height: 60px;
+    color: #2B4889;
+    padding: 0 18px !important;
+}
+
+.emp-table th {
+    border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.table-striped.emp-table tbody tr:nth-of-type(2n+1) {
+    background-color: #fafafa;
+}
+
+.employee-table .dataTables_paginate .previous,
+.employee-table .dataTables_paginate .next,
+.employee-table .dataTables_paginate .paginate_button {
+    width: 40px;
+    height: 40px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
+    background: #FFFFFF !important;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 5px !important;
+}
+
+table.dataTable.no-footer {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+
+}
+
+.employee-table .dataTables_paginate,
+.employee-table .dataTables_paginate span {
+    display: flex;
+    grid-column-gap: 5px;
+}
+
+.employee-table .dataTables_paginate {
+    padding-top: 30px !important;
+}
+
+.employee-table .dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: #757575 !important;
+}
+
+.employee-table .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    border: 2px solid #005cf8;
+    color: #005cf8;
+}
+
+.employee-table .dataTables_paginate .paginate_button.current :hover {
+    color: #fff !important;
+}
+
+.employee-table .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background-color: #005cf8 !important;
+    color: #fff !important;
+    border-color: #005cf8 !important;
+    fill: #fff;
+}
+
+.employee-table .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+    opacity: 0.5;
+}
+
+.employee-table .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover {
+    opacity: 0.5;
+    color: #fff;
+}
+
+.employee-table .dataTables_wrapper .dataTables_scrollBody {
+    border: none !important;
+}
+
+.employee-table input.search {
+    border: 2px solid rgba(0, 0, 0, 0.05) !important;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.employee-table label {
+    font-size: 20px;
+    line-height: 24px;
+    color: #555555;
+}

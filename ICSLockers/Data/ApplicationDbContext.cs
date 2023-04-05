@@ -63,5 +63,6 @@ namespace ICSLockers.Data
                 new IdentityUserRole<string>() { RoleId = "b6011125-2b8d-442a-9717-b8cf5345b015", UserId = "b74ddd14-6340-4840-95c2-db12554843e5" }
                 );
         }
+        public DbSet<LockerUnits> LockerUnits { get; set; }
     }
 }

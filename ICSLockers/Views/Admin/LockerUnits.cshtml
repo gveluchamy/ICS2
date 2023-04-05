@@ -1,0 +1,89 @@
+﻿@model List<LockerUnits>
+@using ICSLockers.Models
+
+@{
+    ViewData["Title"] = "Locker User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid main locker-unit admin">
+    <div class="admin title-bar d-flex">
+        <div class="col-lg-6 p-0 d-flex align-items-center">
+            <h5>View Locker Units</h5>
+        </div>
+        <div class="col-lg-6 d-flex justify-content-end">
+            <buttton type="button" class="btn btn-outline-primary add-locker" data-toggle="modal"
+                     data-target="#exampleModalCenter">Add Locker Unit</buttton>
+
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="passcode d-flex align-items-center text-center">
+            <div class="main-heading">
+                <h5>Locker Units SELECTION</h5>
+            </div>
+            <div class="col-lg-12 p-0">
+                <div class="grid">
+                    @foreach(LockerUnits lockerUnits in Model){
+                    <div class="unit d-flex justify-content-between">
+                        <div class="unit-count">
+                            <h6>Locker Number</h6>
+                            <h3>@lockerUnits.LockerUnitNo</h3>                           
+                        </div>
+                        <button class="btn available">
+                            <h6>Available</h6>
+                                <div class="lockers">@lockerUnits.UsedLocker/@lockerUnits.TotalLocker</div>
+                        </button>
+                    </div>
+                    }                     
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal starts -->
+<div class="modal fade admin-modal" id="exampleModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered locker-add-modal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center w-100" id="exampleModalLongTitle">Add Locker unit</h5>
+            </div>
+            <div class="modal-body ">
+                <div class="col-lg-12 ">
+                    <div class="row justify-content-center d-flex">
+                        <div class="col-lg-4"><label for="Locker Unit Number">Locker Unit Number</label></div>
+                        <div class="col-lg-6">
+                            <input type="number" id="lokernumber" class="form-control locker-number" placeholder="000" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==3) return false;">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center d-flex">
+                        <div class="col-lg-4"><label for="Locker Unit Number">Locker Count</label></div>
+                        <div class="col-lg-6">
+                            <div class="quantity-field locker-unit ">
+                                <button class="value-button decrease-button " onclick="decreaseValue(this)"
+                                        title="Azalt">
+                                    -
+                                </button>
+                                <div id="count" class="number">1</div>
+                                <button class="value-button increase-button" onclick="increaseValue(this, 9)"
+                                        title="Arrtır">
+                                   
+                                </button>
+                            </div>
+                            <div class="note">
+                                <p>* Maximum 9 Lockers per Unit</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center border-0">
+                <button type="submit" class="btn btn-primary" onclick="fnNewLockerCreation()">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal ends-->
+
+<script src="~/js/Admin.js"></script>

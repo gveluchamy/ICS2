@@ -50,14 +50,15 @@ namespace ICSLockers.Controllers
             if (LockerCreationStatus)
             {  
                 _logger.LogDebug($"Locker {model.LockerUnitNo} has been created successfully");
-
+             
             }
             else
             {
                 _logger.LogDebug($"Locker {model.LockerUnitNo} has not been created.");
             }
-            return View(url);
-           }
+            string unitsHtml = await this.RenderViewAsync("~/Views/Admin/_Units.cshtml", model, true);
+            return Json(new { success = true, unitsHtml, Message = $"New locker unit {model.LockerUnitNo} with {model.TotalLocker} has been created!" });
+        }
 
     }
 }

@@ -25,7 +25,7 @@ function decreaseValue(button) {
     if (value < 1) return;
     numberInput.innerHTML = value - 1;
 }
-function fnNewLockerCreation() {    
+function fnNewLockerCreation() {
     var LockerCreationModel = {
         LockerUnitNo: parseInt($("#exampleModalCenter #lokernumber").val()),
         TotalLocker: parseInt($("#exampleModalCenter #count").text()),
@@ -35,27 +35,28 @@ function fnNewLockerCreation() {
         IsDelete: false,
         ModifiedOn: new Date(),
         //ModifiedBy: "Admin",
-        
-                
+
+
     };
     //var url = "@Url.Action("CreateNewLocker","Admin")";
 
-        $.ajax({    
-            type: "POST",
-            url: "/Admin/CreateNewLocker",
-            headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-            contentType: "application/json",
-            data: JSON.stringify(LockerCreationModel),
-            success: function (response) {
-                if (response.success) {
-                    window.location.href = response.redirectUrl;
-                } else {
-                    alert(response.message);
-                }
-            },
-            error: function (xhr, status, error) {
-                console.log(error);
+    $.ajax({
+        type: "POST",
+        url: "/Admin/CreateNewLocker",
+        headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+        contentType: "application/json",
+        data: JSON.stringify(LockerCreationModel),
+        success: function (response) {
+            if (response.success) {
+                $(".locker-unit-list").append(response.unitsHtml);
+                toastr.success(response.message, 'Success', { timeOut: 4000 });
+            } else {
+                alert(response.message);
             }
-        });
-    
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
+        }
+    });
+
 }

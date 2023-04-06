@@ -146,7 +146,7 @@
 </body>
 
 
-@if (!SignInManager.IsSignedIn(User))
+@if (SignInManager.IsSignedIn(User))
 {
     <script>
         var inactivityTimeout = null;

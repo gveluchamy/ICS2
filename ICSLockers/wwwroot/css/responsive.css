@@ -81,4 +81,18 @@
         display: grid;
         grid-template-columns: repeat(4, auto);
     }
+
+    .dashboard .content-wrapper {
+        padding: 60px 30px;
+    }
+
+    .dashboard .locker-unit {
+        padding: 10px 20px;
+    }
+    .donut-chart{
+        max-width: 600px;
+    }
+    .dashboard .user-table .add-user{
+        right: 40%;
+    }
 }

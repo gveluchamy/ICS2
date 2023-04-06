@@ -1267,3 +1267,243 @@ table.dataTable.no-footer {
     line-height: 24px;
     color: #555555;
 }
+
+/* admin dashboard  starts*/
+.dashboard-icon {
+    width: 80px;
+    height: 80px;
+}
+
+.dashboard .content-wrapper {
+    padding: 20px 40px;
+}
+
+.dashboard .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 50px;
+    margin-bottom: 20px;
+}
+
+.dashboard .locker-unit {
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.025);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 30px;
+    padding: 30px 25px;
+    padding-bottom: 15px;
+}
+
+.dashboard .locker-unit h5 {
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 25px;
+    color: #D12B28;
+    margin-bottom: 27px;
+    text-align: left;
+}
+
+.dashboard .locker-unit h1 {
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 60px;
+    color: #2B4889;
+    text-align: left;
+}
+
+/* chart */
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 150px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.target {
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0 50px;
+}
+
+#tierPointsValue {
+    line-height: 150;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.target-chart {
+    border-radius: 50%;
+    background-size: cover;
+    box-shadow: inset 0 0 0 35px white;
+    position: relative;
+    margin: auto;
+}
+
+.target-percentage {
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 77px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    color: #555555;
+}
+
+.points-random {
+    margin-top: -150px;
+    font-size: 14px;
+    font-weight: 200;
+}
+
+/* -chart- */
+.donut-chart {
+    max-width: 700px;
+    max-height: 516px;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.025);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 30px;
+    padding: 25px;
+    margin-right: 15px;
+}
+
+.donut-chart .chart {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.donut-chart .target-data span {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background: #D9D9D9;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.donut-chart .target-data h5 {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+    display: flex;
+    align-items: center;
+}
+
+.donut-chart .target-data h5:nth-child(2) span {
+    background: #2B4889;
+}
+
+.donut-chart .chart-title {
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 25px;
+    color: #2B4889;
+    text-align: left;
+}
+
+.user-table {
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.025);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 30px;
+    padding: 25px;
+    width: 100%;
+    margin-left: 15px;
+}
+
+.user-table .table-title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #2B4889;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.user-table .tab .nav-item .nav-link {
+    background-color: transparent;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+
+    color: #808080;
+}
+
+.user-table .tab .nav-item .nav-link.active {
+    color: #2B4889;
+}
+
+.user-table .tab .nav-pills {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    grid-column-gap: 50px;
+}
+
+.dashboard .emp-table {
+    box-shadow: none;
+}
+
+.dashboard .emp-table th {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    background: #2B4889;
+    padding: 10px 15px !important;
+}
+
+.dashboard .emp-table td {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 36px;
+    color: #2B4889;
+}
+
+.dashboard .dataTables_filter {
+    margin-bottom: 10px;
+}
+
+.dashboard .dataTables_filter .search {
+    font-size: 14px;
+    line-height: 10px;
+}
+
+.dashboard .dataTables_filter label {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.dashboard .employee-table {
+    position: relative;
+}
+
+.dashboard .user-table .add-user {
+    position: absolute;
+    right: 30%;
+    width: 130px;
+    height: 30px;
+    background: #2B4889;
+    border: 1px solid #2B4889;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #FFFFFF;
+    z-index: 999;
+}
+
+/* admin dashboard  ends*/

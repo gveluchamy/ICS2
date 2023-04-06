@@ -5,7 +5,7 @@
     ViewData["Title"] = "Locker User";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container-fluid main locker-unit admin">
+<div class="container-fluid main locker-unit admin p-0">
     <div class="admin title-bar d-flex">
         <div class="col-lg-6 p-0 d-flex align-items-center">
             <h5>View Locker Units</h5>
@@ -46,7 +46,7 @@
                     <div class="row justify-content-center d-flex">
                         <div class="col-lg-4"><label for="Locker Unit Number">Locker Unit Number</label></div>
                         <div class="col-lg-6">
-                            <input type="number" id="lokernumber" class="form-control locker-number" placeholder="000" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==3) return false;">
+                            <input type="number" id="lokernumber" class="form-control locker-unit" placeholder="000" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==3) return false;">
                         </div>
                     </div>
                     <div class="row justify-content-center d-flex">

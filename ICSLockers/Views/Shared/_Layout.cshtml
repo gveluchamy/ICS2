@@ -104,7 +104,7 @@
                             <div class="user-profile">
                                 <img src="../images/png/user.png" alt="">
                             </div>
-                            <h5 class="m-0 pl-3">@(SignInManager.IsSignedIn(User) ? User.Identity?.Name : "login")</h5>
+                            <h5 class="m-0 pl-3" title="@(SignInManager.IsSignedIn(User) ? User.Identity?.Name : "login")">@(SignInManager.IsSignedIn(User) ? User.Identity?.Name : "login")</h5>
                         </div>
                     </div>
                 </div>
@@ -118,8 +118,8 @@
             <div class="modal-content">
                 <div class="modal-body text-center"> Are you sure you want to log-off?</div>
                 <div class="modal-footer d-flex justify-content-between p-2">
-                    <a class="btn btn-primary col-lg-5 btn-block" onclick="fnLogoutMethod()">Yes</a>
-                    <a class="btn btn-outline-danger col-lg-5" data-bs-dismiss="modal" aria-label="Close">No</a>
+                    <a class="btn btn-primary col-lg-5 btn-block text-white" onclick="fnLogoutMethod()">Yes</a>
+                    <a class="btn btn-outline-danger text-danger col-lg-5" data-bs-dismiss="modal" aria-label="Close">No</a>
                 </div>
             </div>
         </div>

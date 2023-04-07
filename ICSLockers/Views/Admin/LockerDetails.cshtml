@@ -1,5 +1,5 @@
 ﻿@using ICSLockers.Models
-
+@model List<LockerDetailsModel>
 
 <div class="container-fluid main lockers p-0">
     <div class="admin title-bar d-flex">
@@ -16,8 +16,7 @@
             </nav>
         </div>
         <div class="col-lg-6 d-flex justify-content-end">
-            <buttton type="button" class="btn btn-outline-primary add-locker" data-toggle="modal"
-                     data-target="#exampleModalCenter">Update Lockers</buttton>
+            <buttton type="button" class="btn btn-outline-primary add-locker" onclick="fnAddNewLocker()">Update Lockers</buttton>
         </div>
     </div>
     <div class="content-wrapper">
@@ -25,94 +24,38 @@
 
             <div class="col-lg-12 p-0">
                 <div class="grid">
-                    <div class="locker available">
-                        <div class="d-flex align-items-center locker-detail">
-                            <div class="count">1</div>
-                            <div class="user-name">available</div>
-                        </div>
-                        <div class="locker-condition flex-column d-flex align-items-center">
-                            <img src="../images/png/available.png" alt="" class="success">
-                            <img src="../images/png/not-available.png" alt="" class="danger">
-                            <span>Locker Available</span>
-                        </div>
-                    </div>
-                    <div class="locker not-available">
-                        <div class="d-flex align-items-center locker-detail">
-                            <div class="count">2</div>
-                            <div class="user-name">Stephen Edwards</div>
-                        </div>
-                        <div class="locker-condition flex-column d-flex align-items-center">
-                            <img src="../images/png/available.png" alt="" class="success">
-                            <img src="../images/png/not-available.png" alt="" class="danger">
-                            <span>Locker in use</span>
-                        </div>
-                    </div>
-                    <div class="locker not-available">
-                        <div class="d-flex align-items-center locker-detail">
-                            <div class="count">3</div>
-                            <div class="user-name">Stephen Edwards</div>
-                        </div>
-                        <div class="locker-condition flex-column d-flex align-items-center">
-                            <img src="../images/png/available.png" alt="" class="success">
-                            <img src="../images/png/not-available.png" alt="" class="danger">
-                            <span>Locker in use</span>
-                        </div>
-                    </div>
-                    <div class="locker not-available">
-                        <div class="d-flex align-items-center locker-detail">
-                            <div class="count">4</div>
-                            <div class="user-name">Stephen Edwards</div>
-                        </div>
-                        <div class="locker-condition flex-column d-flex align-items-center">
-                            <img src="../images/png/available.png" alt="" class="success">
-                            <img src="../images/png/not-available.png" alt="" class="danger">
-                            <span>Locker in use</span>
-                        </div>
-                    </div>
-                    <div class="locker available">
-                        <div class="d-flex align-items-center locker-detail">
-                            <div class="count">5</div>
-                            <div class="user-name">Available</div>
-                        </div>
-                        <div class="locker-condition flex-column d-flex align-items-center">
-                            <img src="../images/png/available.png" alt="" class="success">
-                            <img src="../images/png/not-available.png" alt="" class="danger">
-                            <span>Locker Available</span>
-                        </div>
-                    </div>
-                    <div class="locker available">
-                        <div class="d-flex align-items-center locker-detail">
-                            <div class="count">6</div>
-                            <div class="user-name">Available</div>
-                        </div>
-                        <div class="locker-condition flex-column d-flex align-items-center">
-                            <img src="../images/png/available.png" alt="" class="success">
-                            <img src="../images/png/not-available.png" alt="" class="danger">
-                            <span>Locker Available</span>
-                        </div>
-                    </div>
-                    <div class="locker available">
-                        <div class="d-flex align-items-center locker-detail">
-                            <div class="count">7</div>
-                            <div class="user-name">Available</div>
-                        </div>
-                        <div class="locker-condition flex-column d-flex align-items-center">    
-                            <img src="../images/png/available.png" alt="" class="success">
-                            <img src="../images/png/not-available.png" alt="" class="danger">
-                            <span>Locker Available</span>
-                        </div>
-                    </div>
-                    <div class="locker available">
-                        <div class="d-flex align-items-center locker-detail">
-                            <div class="count">8</div>
-                            <div class="user-name">Available</div>
-                        </div>
-                        <div class="locker-condition flex-column d-flex align-items-center">
-                            <img src="../images/png/available.png" alt="" class="success">
-                            <img src="../images/png/not-available.png" alt="" class="danger">
-                            <span>Locker Available</span>
-                        </div>
-                    </div>
+
+                    @foreach (LockerDetailsModel lockerDetails in Model)
+                    {
+                        if (lockerDetails.IsLockerAvailable)
+                        {
+                            <div class="locker available">
+                                <div class="d-flex align-items-center locker-detail">
+                                    <div class="count">@lockerDetails.LockerId</div>
+                                    <div class="user-name">Available</div>
+                                </div>
+                                <div class="locker-condition flex-column d-flex align-items-center">
+                                    <img src="../images/png/available.png" alt="" class="success">
+                                    <img src="../images/png/not-available.png" alt="" class="danger">
+                                    <span>Locker Available</span>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="locker not-available">
+                                <div class="d-flex align-items-center locker-detail">
+                                    <div class="count">@lockerDetails.LockerId</div>
+                                    <div class="user-name">@lockerDetails.User.FullName</div>
+                                </div>
+                                <div class="locker-condition flex-column d-flex align-items-center">
+                                    <img src="../images/png/available.png" alt="" class="success">
+                                    <img src="../images/png/not-available.png" alt="" class="danger">
+                                    <span>Locker in use</span>
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
             </div>
         </div>
@@ -120,9 +63,8 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade admin-modal" id="exampleModalCenter" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered locker-add-modal" role="document">
+<div class="modal fade admin-modal" id="UpdateLockerModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered locker-add-modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title text-center w-100" id="exampleModalLongTitle">Add Locker unit</h5>
@@ -156,11 +98,11 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer d-flex justify-content-center border-0">
+            <div class="modal-footer">
                 <button type="button" class="btn btn-primary">Create</button>
             </div>
         </div>
     </div>
 </div>
 
- <script src="~/js/Admin.js"></script>
+<script src="~/js/Admin.js"></script>

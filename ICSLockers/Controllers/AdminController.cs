@@ -4,6 +4,7 @@ using ICSLockers.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Claims;
 
 namespace ICSLockers.Controllers
 {
@@ -12,12 +13,20 @@ namespace ICSLockers.Controllers
         private readonly ILogger<AccountController> _logger;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ILockerManager _lockerManager;
-
-        public AdminController(RoleManager<IdentityRole> roleManager, ILockerManager lockerManager, ILogger<AccountController> logger)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public AdminController(RoleManager<IdentityRole> roleManager, ILockerManager lockerManager, UserManager<ApplicationUser> userManager, ILogger<AccountController> logger)
         {
             _roleManager = roleManager;
             _lockerManager = lockerManager;
+            _userManager = userManager;
             _logger = logger;
+        }
+
+        private ApplicationUser? GetCurrentUser() {
+            ClaimsPrincipal? currentUser = HttpContext.User;
+            string? userId = currentUser.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            ApplicationUser? user = _userManager?.FindByIdAsync(userId).Result;
+            return user;
         }
 
         [HttpGet]
@@ -40,14 +49,17 @@ namespace ICSLockers.Controllers
 
         public IActionResult LockerUnits()
         {
+            if (GetCurrentUser() == null)
+            {
+                return RedirectToAction("AdminLogin", "Admin");
+            }
             List<LockerUnits> lockerUnits = _lockerManager.GetLockerUnits();
             return View(lockerUnits);
         }
 
         public async Task<IActionResult> CreateNewLocker([FromBody] LockerUnits model)
-        {
-            //model.CreatedBy = 
-            var (Status, Message) = _lockerManager.CreateNewLocker(model);
+        {           
+            var (Status, Message) = _lockerManager.CreateNewLockerUnit(model, GetCurrentUser());
             string unitHTML = string.Empty;
             if (Status)
             {
@@ -61,11 +73,14 @@ namespace ICSLockers.Controllers
             return Json(new { success = Status, unitHTML, message = Message });
         }
 
-        public IActionResult LockerDetails()
+        public IActionResult LockerDetails(int lockerUnitId)
         {
-            List<LockerUnits> lockerUnits = _lockerManager.GetLockerUnits();
-            return View(lockerUnits);
-                      
+            if(GetCurrentUser() == null)
+            {
+                return RedirectToAction("AdminLogin", "Admin");                
+            }
+            List<LockerDetailsModel> lockerDetailsList = _lockerManager.GetLockersByLockerUnit(lockerUnitId);
+            return View(lockerDetailsList);                      
         }
     }
 }

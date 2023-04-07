@@ -1,20 +1,13 @@
 ﻿@model LockerUnits
 @using ICSLockers.Models
 
-@*@{
-    ViewData["Title"] = "Locker User";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}*@
-
-   
-        <div class="unit d-flex justify-content-between">
-            <div class="unit-count">
-                <h6>Locker Number</h6>
-                <h3>@Model.LockerUnitNo</h3>
-            </div>
-            <button class="btn available">
-        <h6>Available</h6>@*<a href="@Url.Action("LockerDetails", "Admin", new { lockerUnitId = Model.LockerId })">*@
-            <div class="lockers" onclick="location.href='@Url.Action("LockerDetails", "Admin", new { lockerUnitId = Model.LockerId })'">@Model.UsedLocker/@Model.TotalLocker</div>
-            </button>
-        </div>
-        
+<div class="unit d-flex justify-content-between">
+    <div class="unit-count">
+        <h6>Locker Number</h6>
+        <h3>@Model.LockerUnitNo</h3>
+    </div>
+    <button class="btn available" onclick="location.href='@Url.Action("LockerDetails", "Admin", new { lockerUnitId = Model.LockerId })'">
+        <h6>Available</h6>
+        <div class="lockers">@Model.UsedLocker/@Model.TotalLocker</div>
+    </button>
+</div>

@@ -180,7 +180,9 @@ function fnAdminLoginMethod (page) {
                 }
                 toastr.success(response.message, 'Success', { timeOut: 4000 });
                 if (page == "Password") {
-                    window.location.href = response.redirectUrl;
+                    setTimeout(function () {
+                        window.location.href = response.redirectUrl;
+                    }, 1500);
                 }
             }
             else {

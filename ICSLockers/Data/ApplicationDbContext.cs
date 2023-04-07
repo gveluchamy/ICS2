@@ -12,6 +12,7 @@ namespace ICSLockers.Data
         {
         }
 
+        #region ModelCreation Region
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -19,7 +20,9 @@ namespace ICSLockers.Data
             SeedRoles(builder);
             SeedUserRoles(builder);
         }
+        #endregion
 
+        #region Seed Region
         private static void SeedUsers(ModelBuilder builder)
         {
             ApplicationUser user = new()
@@ -39,7 +42,8 @@ namespace ICSLockers.Data
                 SSN = 987654311,
                 CheckOutStatus = false,
                 PasswordEnc = "EP11",
-                LockerUnit = 0,                
+                LockerUnitId = 0,
+                LockerDetailId = 0,
             };
 
             PasswordHasher<ApplicationUser> passwordHasher = new PasswordHasher<ApplicationUser>();
@@ -63,6 +67,11 @@ namespace ICSLockers.Data
                 new IdentityUserRole<string>() { RoleId = "b6011125-2b8d-442a-9717-b8cf5345b015", UserId = "b74ddd14-6340-4840-95c2-db12554843e5" }
                 );
         }
+#endregion
+
+        #region DbSet Region
         public DbSet<LockerUnits> LockerUnits { get; set; }
+        public DbSet<LockerDetailsModel> LockerDetails { get; set; }
+        #endregion
     }
 }

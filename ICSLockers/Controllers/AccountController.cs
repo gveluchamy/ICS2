@@ -36,7 +36,7 @@ namespace ICSLockers.Controllers
                         UserName = user.UserName,
                     };
                     string passwordHtml = await this.RenderViewAsync("~/Views/Admin/_PasswordLogin.cshtml", userDetails, true);
-                    return Json(new { success = true, passwordHtml, Message = $"Welcome back {user.FirstName + " " + user.LastName}!"});
+                    return Json(new { success = true, passwordHtml, Message = $"Welcome back {user.FullName}!"});
                 }
                 else
                 {

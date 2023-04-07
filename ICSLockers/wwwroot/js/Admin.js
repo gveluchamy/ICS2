@@ -1,5 +1,4 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function () {
     $('.user-menu a').click(function () {
         $('.user-menu a.active').removeClass('active');
         $(this).toggleClass('active');
@@ -85,20 +84,21 @@ function increaseValue(button, limit) {
     numberInput.innerHTML = value + 1;
 }
 
+function fnAddLockerPopup () {
+    $("#AddLockerModal #count").val(1);
+    $("#AddLockerModal").modal("show");
+}
+
 function fnNewLockerCreation() {
     var LockerCreationModel = {
-        LockerUnitNo: parseInt($("#exampleModalCenter #lokernumber").val()),
-        TotalLocker: parseInt($("#exampleModalCenter #count").text()),
+        LockerUnitNo: parseInt($("#AddLockerModal #lokernumber").val()),
+        TotalLocker: parseInt($("#AddLockerModal #count").text()),
         UsedLocker: parseInt("0"),
-        CreatedOn: new Date(),  //.toISOString().split('T')
+        CreatedOn: new Date(),
         CreatedBy: null,
         IsDelete: false,
-        ModifiedOn: new Date(),
-        //ModifiedBy: "Admin",
-
-
+        ModifiedOn: new Date()
     };
-    //var url = "@Url.Action("CreateNewLocker","Admin")";
 
     $.ajax({
         type: "POST",
@@ -113,9 +113,11 @@ function fnNewLockerCreation() {
             } else {
                 toastr.error(response.message, 'Error', { timeOut: 4000 });
             }
+            $("#AddLockerModal").modal("hide");
         },
         error: function (xhr, status, error) {
             toastr.error(response.message, 'Error', { timeOut: 4000 });
+            $("#AddLockerModal").modal("hide");
         }
     });
 
@@ -128,6 +130,7 @@ function decreaseValue (button) {
     if (value < 1) return;
     numberInput.innerHTML = value - 1;
 }
+
 var totalPoints = document.getElementById('totalPoints').innerHTML;
 var differenceValue = '100';
 var calculatePointsPercentage = totalPoints / differenceValue * ('100');
@@ -180,10 +183,12 @@ $(document).ready(function () {
 
     });
 });
+
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
 })
-function increaseValue(button, limit) {
+
+function increaseValue (button, limit) {
     const numberInput = button.parentElement.querySelector('.number');
     var value = parseInt(numberInput.innerHTML, 10);
     if (isNaN(value)) value = 0;
@@ -191,11 +196,27 @@ function increaseValue(button, limit) {
     numberInput.innerHTML = value + 1;
 }
 
-
 function decreaseValue(button) {
     const numberInput = button.parentElement.querySelector('.number');
     var value = parseInt(numberInput.innerHTML, 10);
     if (isNaN(value)) value = 0;
     if (value < 1) return;
     numberInput.innerHTML = value - 1;
+}
+
+function fnGetParameterByName (name) {
+    url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[ 2 ]) return '';
+    return decodeURIComponent(results[ 2 ].replace(/\+/g, " "));
+}
+
+function fnAddNewLocker () {
+    let unitId = fnGetParameterByName("lockerUnitId");
+    console.log("Unit Id --> " + unitId)
+    $("#UpdateLockerModal .locker-unit").val(unitId);
+    $("#UpdateLockerModal").modal("show");
 }

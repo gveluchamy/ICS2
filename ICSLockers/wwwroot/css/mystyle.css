@@ -1136,6 +1136,7 @@ input.locker-unit {
     opacity: 0.5 !important;
     padding: 12px 30px 6px 30px;
     margin-bottom: 30px;
+    text-align: center;
 }
 
 .quantity-field {
@@ -1671,4 +1672,8 @@ canvas {
 .passcode .login-card .form-control.user-email {
     font-size: 40px !important;
     padding: 15px 20px;
+}
+.admin-modal .modal-footer{
+    justify-content: center ;
+    border: none;
 }

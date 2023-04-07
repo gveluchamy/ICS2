@@ -7,6 +7,7 @@ namespace ICSLockers.Repository.IRepository
     public interface ILockerManager
     {
         List<LockerUnits> GetLockerUnits();
-        Tuple<bool, string> CreateNewLocker(LockerUnits lockerUnits);
+        Tuple<bool, string> CreateNewLockerUnit(LockerUnits lockerUnits, ApplicationUser? user);
+        List<LockerDetailsModel> GetLockersByLockerUnit(int lockerUnitId);
     }
 }

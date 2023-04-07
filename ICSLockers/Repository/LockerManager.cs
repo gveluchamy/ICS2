@@ -55,15 +55,15 @@ namespace ICSLockers.Repository
             return new Tuple<bool, string>(IsSuccess, Result);
         }
 
-        public bool CreateNewLocker(int lockerUnitId, int totalLockers, ApplicationUser? user)
+        public bool CreateNewLocker(int lockerUnitId, int totalLockersToBeCreated, ApplicationUser? user)
         {
             LockerUnits? LockerUnitData = _context.LockerUnits.FirstOrDefault(x => x.LockerId == lockerUnitId);
             if (LockerUnitData != null)
             {
-                int LockerIdToStart = LockerUnitData.TotalLocker + 1;
-                int TotalLockersToBeCreated = LockerUnitData.TotalLocker + totalLockers;
+                //int LockerIdToStart = LockerUnitData.TotalLocker + 1;
+                //int TotalLockersToBeCreated = LockerUnitData.TotalLocker + totalLockers;
 
-                for (int LockerId = LockerIdToStart; LockerId <= TotalLockersToBeCreated; LockerId++)
+                for (int LockerId = 1; LockerId <= totalLockersToBeCreated; LockerId++)
                 {
                     LockerDetailsModel lockerDetails = new()
                     {

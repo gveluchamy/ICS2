@@ -214,9 +214,17 @@ function fnGetParameterByName (name) {
     return decodeURIComponent(results[ 2 ].replace(/\+/g, " "));
 }
 
-function fnAddNewLocker () {
+function fnAddNewLockerPopup () {
     let unitId = fnGetParameterByName("lockerUnitId");
-    console.log("Unit Id --> " + unitId)
+    console.log("Unit Id --> " + unitId);
     $("#UpdateLockerModal .locker-unit").val(unitId);
     $("#UpdateLockerModal").modal("show");
+}
+
+function fnCreateNewLocker () {
+    Console.log("update existing locker");
+    let unitId = fnGetParameterByName("lockerUnitId");
+    console.log("Unit Id --> " + unitId);
+
+    $("#UpdateLockerModal").modal("hide");
 }

@@ -13,8 +13,8 @@
                 <h3>@Model.LockerUnitNo</h3>
             </div>
             <button class="btn available">
-                <h6>Available</h6>
-                <div class="lockers">@Model.UsedLocker/@Model.TotalLocker</div>
+        <h6>Available</h6>@*<a href="@Url.Action("LockerDetails", "Admin", new { lockerUnitId = Model.LockerId })">*@
+            <div class="lockers" onclick="location.href='@Url.Action("LockerDetails", "Admin", new { lockerUnitId = Model.LockerId })'">@Model.UsedLocker/@Model.TotalLocker</div>
             </button>
         </div>
         

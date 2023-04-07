@@ -309,7 +309,9 @@ a {
     font-size: 20px;
     line-height: 24px;
     color: #555555;
-    width: auto;
+    width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .profile {
@@ -705,6 +707,125 @@ a {
     border-radius: 15px;
     padding: 12px 10px;
 }
+
+
+/* Lockers */
+.lockers .grid {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 20px;
+}
+
+.lockers .locker.not-available {
+    background: #FFFFFF;
+    border: 2px solid rgba(252, 124, 124, 0.5);
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+}
+
+.lockers .content-wrapper {
+    padding: 60px 50px;
+}
+
+.lockers .locker.not-available .count {
+    border: 2px solid #FC7C7C;
+    color: #FC7C7C;
+}
+
+.lockers .locker .user-name {
+    margin-left: 26px;
+    text-transform: capitalize;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.lockers .locker.not-available .user-name {
+    color: #FC7C7C;
+}
+
+.lockers .locker-detail {
+    padding: 30px;
+    border: 2px solid rgba(0, 0, 0, 0.025);
+}
+
+.lockers .locker-condition {
+    padding: 35px;
+}
+
+.lockers .locker.not-available .locker-condition img {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 15px;
+}
+
+.lockers .locker.not-available .locker-condition span {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.lockers .locker.not-available .locker-condition span {
+    color: #D12B28;
+}
+
+
+/*  */
+.lockers .locker.available {
+    background: #FFFFFF;
+    border: 2px solid #68D270;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+}
+
+.lockers .locker .count {
+    border-radius: 20px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 43px;
+    background: #FFFFFF;
+    padding: 15px 22px;
+    padding-bottom: 2px;
+}
+
+.lockers .locker.available .count {
+    border: 2px solid #68D270;
+    color: #69E772;
+}
+
+.lockers .locker.available .user-name {
+    color: #69E772;
+}
+
+.lockers .locker-condition {
+    padding: 35px;
+}
+
+.lockers .locker.available .locker-condition img {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 15px;
+}
+
+.lockers .locker .locker-condition img {
+    display: none;
+}
+
+.lockers .locker.not-available .locker-condition img.danger {
+    display: block;
+}
+
+.lockers .locker.available .locker-condition img.success {
+    display: block;
+}
+
+.lockers .locker.available .locker-condition span {
+    color: #79D680;
+}
+
+
 
 /*  Create User */
 

@@ -93,8 +93,9 @@
         display: grid;
         grid-template-columns: repeat(4, auto);
     }
-    .passcode .login-card .form-control.user-passcode, .passcode .login-card .form-control.user-email{
-        height:64px;
+
+    .passcode .login-card .form-control.user-passcode, .passcode .login-card .form-control.user-email {
+        height: 64px;
         font-size: 32px;
     }
 }

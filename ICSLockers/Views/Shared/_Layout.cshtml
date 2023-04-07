@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ICSWebApp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true">
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true">*@
     <link rel="stylesheet" href="~/css/mystyle.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/responsive.css" asp-append-version="true">
     <link href="~/lib/font-awesome/css/fontawesome.css" rel="stylesheet" />
@@ -104,7 +104,7 @@
                             <div class="user-profile">
                                 <img src="../images/png/user.png" alt="">
                             </div>
-                            <h5 class="m-0 pl-3" title="@(SignInManager.IsSignedIn(User) ? User.Identity?.Name : "login")">@(SignInManager.IsSignedIn(User) ? User.Identity?.Name : "login")</h5>
+                            <h5 class="m-0 pl-3" title="@(SignInManager.IsSignedIn(User) ? User.Identity?.Name : "Login")">@(SignInManager.IsSignedIn(User) ? User.Identity?.Name : "Login")</h5>
                         </div>
                     </div>
                 </div>

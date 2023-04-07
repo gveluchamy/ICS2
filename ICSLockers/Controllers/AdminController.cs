@@ -44,21 +44,28 @@ namespace ICSLockers.Controllers
             return View(lockerUnits);
         }
 
-        public async Task<IActionResult> CreateNewLocker([FromBody] LockerUnits model, string url)
+        public async Task<IActionResult> CreateNewLocker([FromBody] LockerUnits model)
         {
-            var LockerCreationStatus =_lockerManager.CreateNewLockerAsync(model);
-            if (LockerCreationStatus)
-            {  
-                _logger.LogDebug($"Locker {model.LockerUnitNo} has been created successfully");
-             
+            //model.CreatedBy = 
+            var (Status, Message) = _lockerManager.CreateNewLocker(model);
+            string unitHTML = string.Empty;
+            if (Status)
+            {
+                unitHTML = await this.RenderViewAsync("~/Views/Admin/_Units.cshtml", model, true);
+                _logger.LogDebug(Message); 
             }
             else
             {
-                _logger.LogDebug($"Locker {model.LockerUnitNo} has not been created.");
+                _logger.LogDebug(Message);
             }
-            string unitsHtml = await this.RenderViewAsync("~/Views/Admin/_Units.cshtml", model, true);
-            return Json(new { success = true, unitsHtml, Message = $"New locker unit {model.LockerUnitNo} with {model.TotalLocker} has been created!" });
+            return Json(new { success = Status, unitHTML, message = Message });
         }
 
+        public IActionResult LockerDetails()
+        {
+            List<LockerUnits> lockerUnits = _lockerManager.GetLockerUnits();
+            return View(lockerUnits);
+                      
+        }
     }
 }

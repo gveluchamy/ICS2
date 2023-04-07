@@ -108,14 +108,14 @@ function fnNewLockerCreation() {
         data: JSON.stringify(LockerCreationModel),
         success: function (response) {
             if (response.success) {
-                $(".locker-unit-list").append(response.unitsHtml);
+                $(".locker-unit-list").append(response.unitHTML);
                 toastr.success(response.message, 'Success', { timeOut: 4000 });
             } else {
-                alert(response.message);
+                toastr.error(response.message, 'Error', { timeOut: 4000 });
             }
         },
         error: function (xhr, status, error) {
-            console.log(error);
+            toastr.error(response.message, 'Error', { timeOut: 4000 });
         }
     });
 
@@ -172,3 +172,30 @@ $('.locker-unit h1').each(function () {
         }
     });
 });
+
+$(document).ready(function () {
+    $('.user-menu a').click(function () {
+        $('.user-menu a.active').removeClass('active');
+        $(this).toggleClass('active');
+
+    });
+});
+$('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+})
+function increaseValue(button, limit) {
+    const numberInput = button.parentElement.querySelector('.number');
+    var value = parseInt(numberInput.innerHTML, 10);
+    if (isNaN(value)) value = 0;
+    if (limit && value >= limit) return;
+    numberInput.innerHTML = value + 1;
+}
+
+
+function decreaseValue(button) {
+    const numberInput = button.parentElement.querySelector('.number');
+    var value = parseInt(numberInput.innerHTML, 10);
+    if (isNaN(value)) value = 0;
+    if (value < 1) return;
+    numberInput.innerHTML = value - 1;
+}

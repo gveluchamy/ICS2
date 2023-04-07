@@ -7,6 +7,6 @@ namespace ICSLockers.Repository.IRepository
     public interface ILockerManager
     {
         List<LockerUnits> GetLockerUnits();
-        bool CreateNewLockerAsync(LockerUnits lockerUnits);
+        Tuple<bool, string> CreateNewLocker(LockerUnits lockerUnits);
     }
 }

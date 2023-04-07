@@ -11,10 +11,6 @@
         height: calc(100% - 95px);
     }
 
-    .menu-landing {
-        background-position: inherit;
-    }
-
     .heading-col h2 {
         padding-left: 45px;
         padding-bottom: 20px;
@@ -123,5 +119,35 @@
     .passcode .login-card .form-control.user-email {
         font-size: 25px !important;
         padding: 15px 20px;
+    }
+    .passcode .login-card h5, .admin-modal label {
+        font-size: 20px;
+    }
+    .create-user .create-user-form input {
+        font-size: 18px;
+        height: 45px;
+    }
+    .main-heading h5{
+        font-size: 22px;
+    }
+    .dashboard .locker-unit h5{
+        font-size: 18px;
+    }
+    .dashboard .locker-unit h1{
+        font-size: 56px;
+    }
+    .locker-add-modal .modal-header {
+        padding-bottom: 25px;
+        padding-top: 30px;
+    }
+    .admin-modal .modal-content{
+        padding-bottom: 30px;
+    }
+    .passcode .login-card .login {
+        font-size: 24px;
+        line-height: 36px;
+    }
+    .lockers .locker-detail {
+        padding: 25px 30px;
     }
 }

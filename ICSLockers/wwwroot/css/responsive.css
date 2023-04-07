@@ -50,7 +50,7 @@
         padding: 15px 5px;
     }
 
-    .content-wrapper {
+    .content-wrapper, .lockers .content-wrapper {
         padding: 15px;
     }
 
@@ -65,13 +65,12 @@
     }
 
     .profile h5 {
-        width: auto;
         padding: 0;
         font-size: 18px;
-        width: 135px;
+        width: 76%;
         overflow: hidden;
         text-overflow: ellipsis;
-        padding-left: 0 !important;
+        padding-left: 10px !important;
     }
 
     .profile > .row::after {
@@ -97,5 +96,32 @@
     .passcode .login-card .form-control.user-passcode, .passcode .login-card .form-control.user-email {
         height: 64px;
         font-size: 32px;
+    }
+    .create-user .create-user-form .submit {
+        height: 75px;
+        font-size: 24px;
+    }
+    .lockers .locker .user-name{
+        margin-left: 10px;
+        font-size: 22px;
+    }
+    .lockers .locker-condition {
+        padding: 25px;
+    }
+    .lockers .locker .count {
+        font-size: 30px;
+        line-height: 42px;
+        padding: 8px 20px;
+        padding-bottom: 5px;
+    }
+    .admin-modal .btn {
+        font-size: 24px;
+        height: 80px;
+        max-width: 400px;
+        padding: 18px 70px;
+    }
+    .passcode .login-card .form-control.user-email {
+        font-size: 25px !important;
+        padding: 15px 20px;
     }
 }

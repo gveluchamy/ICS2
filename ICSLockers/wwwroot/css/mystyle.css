@@ -263,11 +263,13 @@ a {
         padding: 0;
     }
 
-    .user-menu a .svg.white, .user-menu a.active .svg {
+    .user-menu a .svg.white,
+    .user-menu a.active .svg {
         display: none;
     }
 
-        .user-menu a.active .svg.white, .user-menu a .svg {
+        .user-menu a.active .svg.white,
+        .user-menu a .svg {
             display: block;
         }
 
@@ -309,7 +311,7 @@ a {
     font-size: 20px;
     line-height: 24px;
     color: #555555;
-    width: 180px;
+    width: 72%;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -384,7 +386,7 @@ a {
     float: left;
     width: 100%;
     overflow-y: scroll;
-    height: calc(100% - 50px);
+    height: calc(100vh - 270px);
 }
 
 .content-wrapper {
@@ -455,7 +457,8 @@ a {
     margin-bottom: 34px;
 }
 
-.passcode .login-card .form-control.user-passcode, .passcode .login-card .form-control.user-email {
+.passcode .login-card .form-control.user-passcode,
+.passcode .login-card .form-control.user-email {
     background: #FAFDFF;
     border: 2px solid rgba(0, 0, 0, 0.05);
     box-shadow: inset 0px 1px 10px rgba(0, 0, 0, 0.1);
@@ -625,6 +628,7 @@ a {
         text-transform: uppercase;
         color: #FFFFFF;
     }
+
 /* Locker Unit */
 .locker-unit .grid {
     display: grid;
@@ -633,7 +637,8 @@ a {
     grid-row-gap: 20px;
 }
 
-.locker-unit .btn h6, .locker-unit .btn {
+.locker-unit .btn h6,
+.locker-unit .btn {
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
@@ -712,7 +717,7 @@ a {
 /* Lockers */
 .lockers .grid {
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
 }
 
@@ -1051,7 +1056,8 @@ input::-webkit-inner-spin-button {
 
 
 /* Admin page */
-.admin .title-bar {
+.admin .title-bar,
+.admin.title-bar {
     padding: 18px 20px;
 }
 
@@ -1069,19 +1075,19 @@ input::-webkit-inner-spin-button {
     padding: 10px 30px !important;
 }
 
-.admin .update-locker,
-.admin .add-locker:hover {
-    border: 2px solid #2B4889;
-    border-radius: 5px;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: center;
-    text-transform: uppercase;
-    color: #fff;
-    background: #2B4889;
-    padding: 10px 30px !important;
-}
+    .admin .update-locker,
+    .admin .add-locker:hover {
+        border: 2px solid #2B4889;
+        border-radius: 5px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        text-transform: uppercase;
+        color: #fff;
+        background: #2B4889;
+        padding: 10px 30px !important;
+    }
 
 .update-locker {
     margin-left: 25px;
@@ -1249,19 +1255,21 @@ input.locker-unit {
     text-transform: uppercase;
     color: #FFFFFF;
 }
+
     .admin-modal .btn:hover {
         border: 4px solid #D12B28;
         background: #fff;
         color: #F2302D;
     }
-    .admin-modal label {
-        font-style: normal;
-        font-weight: 500;
-        font-size: 24px;
-        line-height: 29px;
-        text-align: left;
-        color: #2B4889;
-    }
+
+.admin-modal label {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: left;
+    color: #2B4889;
+}
 
 .admin-modal .modal-body {
     padding-top: 40px;
@@ -1279,7 +1287,8 @@ input.locker-unit {
     box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
 }
 
-.staff-create, .staff-create:hover {
+.staff-create,
+.staff-create:hover {
     padding: 12px 30px;
     display: flex;
     align-items: center;
@@ -1566,11 +1575,18 @@ canvas {
         font-size: 18px;
         line-height: 22px;
         color: #808080;
+        border: none;
+        cursor: pointer
     }
 
         .user-table .tab .nav-item .nav-link.active {
             color: #2B4889;
         }
+
+            .user-table .tab .nav-item .nav-link.active:focus {
+                border: none;
+                outline: none;
+            }
 
     .user-table .tab .nav-pills {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -1632,18 +1648,27 @@ canvas {
     color: #FFFFFF;
     z-index: 999;
 }
+
 .locker-admin-panel {
     height: 100%;
 }
 
-.locker-admin-panel .content-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    .locker-admin-panel .content-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
 /* admin dashboard  ends*/
 .admin-modal input.locker-unit {
     background: #fff;
     opacity: 1;
+}
+
+.locker-unit .btn.available:active {
+    background: linear-gradient(180deg, #68D270 0%, #69E772 100%) !important;
+}
+.passcode .login-card .form-control.user-email {
+    font-size: 40px !important;
+    padding: 15px 20px;
 }

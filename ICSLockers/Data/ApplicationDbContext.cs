@@ -28,20 +28,20 @@ namespace ICSLockers.Data
             ApplicationUser user = new()
             {
                 Id = "b74ddd14-6340-4840-95c2-db12554843e5",
-                UserName = "elanchezhiyan.p@aitechindia.com",
-                NormalizedUserName = "elanchezhiyan.p@aitechindia.com",
-                Email = "elanchezhiyan.p@aitechindia.com",
-                NormalizedEmail = "elanchezhiyan.p@aitechindia.com",
+                UserName = "icslocker@hotmail.com",
+                NormalizedUserName = "icslocker@hotmail.com",
+                Email = "icslocker@hotmail.com",
+                NormalizedEmail = "icslocker@hotmail.com",
                 LockoutEnabled = true,
-                PhoneNumber = "9942644999",
+                PhoneNumber = "9876543210",
                 EmailConfirmed = true,
-                FirstName = "Elanchezhiyan",
-                LastName = "P",
+                FirstName = "ICS",
+                LastName = "Lockers",
                 CreatedOn = DateTime.Now,
                 CreatedBy = "Admin",
                 SSN = 987654311,
                 CheckOutStatus = false,
-                PasswordEnc = "EP11",
+                PasswordEnc = "IL11",
                 LockerUnitId = 0,
                 LockerDetailId = 0,
             };
@@ -70,8 +70,7 @@ namespace ICSLockers.Data
 #endregion
 
         #region DbSet Region
-        public DbSet<LockerUnits> LockerUnits { get; set; }
-        public DbSet<LockerDetailsModel> LockerDetails { get; set; }
+
         #endregion
     }
 }

@@ -32,7 +32,6 @@ namespace ICSLockers
 
             builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
             builder.Services.AddScoped<IAccountManager, AccountManager>();
-            builder.Services.AddScoped<ILockerManager, LockerManager>();
 
             var app = builder.Build();
 

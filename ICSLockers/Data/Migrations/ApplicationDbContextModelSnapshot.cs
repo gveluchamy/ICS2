@@ -119,122 +119,27 @@ namespace ICSLockers.Data.Migrations
                             Id = "b74ddd14-6340-4840-95c2-db12554843e5",
                             AccessFailedCount = 0,
                             CheckOutStatus = false,
-                            ConcurrencyStamp = "83192c5b-76be-45de-871c-109b226bbeca",
+                            ConcurrencyStamp = "43a20bfc-5486-4024-8911-b6d2af940b46",
                             CreatedBy = "Admin",
-                            CreatedOn = new DateTime(2023, 4, 7, 13, 43, 34, 990, DateTimeKind.Local).AddTicks(3742),
-                            Email = "elanchezhiyan.p@aitechindia.com",
+                            CreatedOn = new DateTime(2023, 4, 11, 12, 41, 16, 112, DateTimeKind.Local).AddTicks(2215),
+                            Email = "icslocker@hotmail.com",
                             EmailConfirmed = true,
-                            FirstName = "Elanchezhiyan",
-                            LastName = "P",
+                            FirstName = "ICS",
+                            LastName = "Lockers",
                             LockerDetailId = 0,
                             LockerUnitId = 0,
                             LockoutEnabled = true,
-                            NormalizedEmail = "elanchezhiyan.p@aitechindia.com",
-                            NormalizedUserName = "elanchezhiyan.p@aitechindia.com",
-                            PasswordEnc = "EP11",
-                            PasswordHash = "AQAAAAIAAYagAAAAEP8dAZ7FX63l7y9wyrqLKaMx12lmfqdUU8GzRLPNBsAWycrsHypnEO4dwu+S2Pn8+g==",
-                            PhoneNumber = "9942644999",
+                            NormalizedEmail = "icslocker@hotmail.com",
+                            NormalizedUserName = "icslocker@hotmail.com",
+                            PasswordEnc = "IL11",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPMeSkbstkf1N2X/8V2x4gxVePEc7FSiD3Tg81I6X3Wm1v7nVHlOsjhsvo/9iOW7OQ==",
+                            PhoneNumber = "9876543210",
                             PhoneNumberConfirmed = false,
                             SSN = 987654311,
-                            SecurityStamp = "e648489b-0e01-4629-8788-ae9e278ab52d",
+                            SecurityStamp = "b933d9a6-0c5b-4ecf-b1ad-188f96995aa9",
                             TwoFactorEnabled = false,
-                            UserName = "elanchezhiyan.p@aitechindia.com"
+                            UserName = "icslocker@hotmail.com"
                         });
-                });
-
-            modelBuilder.Entity("ICSLockers.Models.LockerDetailsModel", b =>
-                {
-                    b.Property<int>("Sno")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Sno"));
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Item1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Item2")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Item3")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Item4")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("LockerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LockerUnitId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Sno");
-
-                    b.HasIndex("LockerUnitId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("LockerDetails");
-                });
-
-            modelBuilder.Entity("ICSLockers.Models.LockerUnits", b =>
-                {
-                    b.Property<int>("LockerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LockerId"));
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("LockerUnitNo")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("TotalLocker")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsedLocker")
-                        .HasColumnType("int");
-
-                    b.HasKey("LockerId");
-
-                    b.ToTable("LockerUnits");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -402,25 +307,6 @@ namespace ICSLockers.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("ICSLockers.Models.LockerDetailsModel", b =>
-                {
-                    b.HasOne("ICSLockers.Models.LockerUnits", "LockerUnits")
-                        .WithMany()
-                        .HasForeignKey("LockerUnitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ICSLockers.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("LockerUnits");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -12,12 +12,10 @@ namespace ICSLockers.Controllers
     {
         private readonly ILogger<AccountController> _logger;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly ILockerManager _lockerManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        public AdminController(RoleManager<IdentityRole> roleManager, ILockerManager lockerManager, UserManager<ApplicationUser> userManager, ILogger<AccountController> logger)
+        public AdminController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, ILogger<AccountController> logger)
         {
             _roleManager = roleManager;
-            _lockerManager = lockerManager;
             _userManager = userManager;
             _logger = logger;
         }
@@ -45,42 +43,6 @@ namespace ICSLockers.Controllers
             }).ToList();
             ViewBag.ListRole = new SelectList(model, "Id", "Name");
             return View();
-        }
-
-        public IActionResult LockerUnits()
-        {
-            if (GetCurrentUser() == null)
-            {
-                return RedirectToAction("AdminLogin", "Admin");
-            }
-            List<LockerUnits> lockerUnits = _lockerManager.GetLockerUnits();
-            return View(lockerUnits);
-        }
-
-        public async Task<IActionResult> CreateNewLocker([FromBody] LockerUnits model)
-        {           
-            var (Status, Message) = _lockerManager.CreateNewLockerUnit(model, GetCurrentUser());
-            string unitHTML = string.Empty;
-            if (Status)
-            {
-                unitHTML = await this.RenderViewAsync("~/Views/Admin/_Units.cshtml", model, true);
-                _logger.LogDebug(Message); 
-            }
-            else
-            {
-                _logger.LogDebug(Message);
-            }
-            return Json(new { success = Status, unitHTML, message = Message });
-        }
-
-        public IActionResult LockerDetails(int lockerUnitId)
-        {
-            if(GetCurrentUser() == null)
-            {
-                return RedirectToAction("AdminLogin", "Admin");                
-            }
-            List<LockerDetailsModel> lockerDetailsList = _lockerManager.GetLockersByLockerUnit(lockerUnitId);
-            return View(lockerDetailsList);                      
         }
     }
 }

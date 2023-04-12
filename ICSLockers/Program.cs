@@ -31,7 +31,8 @@ namespace ICSLockers
                  .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddControllersWithViews();
-            builder.Services.AddScoped<IAccountManager, AccountManager>();            
+            builder.Services.AddScoped<IAccountManager, AccountManager>();
+            builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 
             var app = builder.Build();
 

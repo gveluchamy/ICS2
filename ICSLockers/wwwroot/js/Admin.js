@@ -6,7 +6,6 @@
     });
 
     $('#example').DataTable({
-        debugger;
         "searching": true,
         "paging": true,
         "info": false,
@@ -216,16 +215,43 @@ function fnGetParameterByName (name) {
 }
 
 function fnAddNewLockerPopup () {
-    let unitId = fnGetParameterByName("lockerUnitId");
-    console.log("Unit Id --> " + unitId);
-    $("#UpdateLockerModal .locker-unit").val(unitId);
-    $("#UpdateLockerModal").modal("show");
+    $("#AddLocationLockerModal").modal("show");
 }
 
-function fnCreateNewLocker () {
-    Console.log("update existing locker");
-    let unitId = fnGetParameterByName("lockerUnitId");
-    console.log("Unit Id --> " + unitId);
+function fnCreateNewLocation () {
+    //$("#UpdateLockerModal").modal("hide");
 
-    $("#UpdateLockerModal").modal("hide");
+    let locationName = $("#AddLocationLockerModal .location-name").val().trim();
+    let totalDivisions = parseInt($("#AddLocationLockerModal .division-number").val());
+    var locationData = {
+        LocationName: locationName,
+        TotalDivision: totalDivisions,
+        IsDeleted: false,
+        CreatedBy: "",
+        CreatedOn: new Date(),
+        ModifiedBy: "",
+        ModifiedOn: new Date()
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/Admin/AddLocation",
+        headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+        contentType: "application/json",
+        data: JSON.stringify(locationData),
+        success: function (response) {
+            debugger;
+            if (response.success) {
+                $(".locker-unit-list").append(response.unitHTML);
+                toastr.success(response.message, 'Success', { timeOut: 4000 });
+            } else {
+                toastr.error(response.message, 'Error', { timeOut: 4000 });
+            }
+            $("#AddLocationLockerModal").modal("hide");
+        },
+        error: function (xhr, status, error) {
+            toastr.error(response.message, 'Error', { timeOut: 4000 });
+            $("#AddLocationLockerModal").modal("hide");
+        }
+    });
 }

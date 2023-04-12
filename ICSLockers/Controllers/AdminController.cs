@@ -9,13 +9,15 @@ namespace ICSLockers.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly ILogger<AccountController> _logger;
-        private readonly RoleManager<IdentityRole> _roleManager;       
         private readonly UserManager<ApplicationUser> _userManager;
-        public AdminController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, ILogger<AccountController> logger)
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IAdminRepository _adminRepository;
+        private readonly ILogger<AccountController> _logger;
+        public AdminController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IAdminRepository adminRepository, ILogger<AccountController> logger)
         {
-            _roleManager = roleManager;            
             _userManager = userManager;
+            _roleManager = roleManager;
+            _adminRepository = adminRepository;
             _logger = logger;
         }
 
@@ -43,13 +45,35 @@ namespace ICSLockers.Controllers
             ViewBag.ListRole = new SelectList(model, "Id", "Name");
             return View();
         }
+
         public IActionResult Location()
         {
-            return View();
+            List<LocationModel> locationModels = _adminRepository.GetAllLocations();
+            return View(locationModels);
         }
-        public IActionResult AddLocation() 
-        {            
-            return View();
+
+        [HttpPost]
+        public async Task<IActionResult> AddLocation([FromBody] LocationModel location) 
+        {
+            if (location != null)
+            {
+                var (Status, Message) = _adminRepository.AddLocation(location);
+                string locationHtml = string.Empty;
+                if (Status)
+                {
+                    locationHtml = await this.RenderViewAsync("~/Views/Admin/_LocationView.cshtml", location, true);
+                    _logger.LogDebug(Message);
+                }
+                else
+                {
+                    _logger.LogDebug(Message);
+                }
+                return Json(new { success = Status, locationHtml, message = Message });
+            }
+            else
+            {
+                return Json(new { success = false, message = $"Location Model is null" });
+            }
         }
     }
 }

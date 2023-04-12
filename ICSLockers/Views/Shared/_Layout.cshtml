@@ -149,12 +149,21 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <script>
+<<<<<<< Updated upstream
       @*  var inactivityTimeout = null;
         var maxInactivityTime = 30000; // in milliseconds (30seconds)
 
         function resetInactivityTimeout() {
             clearTimeout(inactivityTimeout);
             inactivityTimeout = setTimeout(fnLogoutMethod, maxInactivityTime);
+=======
+        @*  var inactivityTimeout = null;
+        var maxInactivityTime = 30000; // in milliseconds (30seconds)
+
+        function resetInactivityTimeout() {
+        clearTimeout(inactivityTimeout);
+        inactivityTimeout = setTimeout(fnLogoutMethod, maxInactivityTime);
+>>>>>>> Stashed changes
         }
 
         window.addEventListener("mousemove", resetInactivityTimeout);

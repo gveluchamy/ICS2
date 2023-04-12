@@ -5,27 +5,47 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 namespace ICSLockers.Controllers
 {
     public class AdminController : Controller
     {
         private readonly ILogger<AccountController> _logger;
+<<<<<<< Updated upstream
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
         public AdminController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, ILogger<AccountController> logger)
         {
             _roleManager = roleManager;
+=======
+        private readonly RoleManager<IdentityRole> _roleManager;       
+        private readonly UserManager<ApplicationUser> _userManager;
+        public AdminController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, ILogger<AccountController> logger)
+        {
+            _roleManager = roleManager;            
+>>>>>>> Stashed changes
             _userManager = userManager;
             _logger = logger;
         }
 
+<<<<<<< Updated upstream
         private ApplicationUser? GetCurrentUser() {
             ClaimsPrincipal? currentUser = HttpContext.User;
             string? userId = currentUser.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             ApplicationUser? user = _userManager?.FindByIdAsync(userId).Result;
             return user;
         }
+=======
+        //private ApplicationUser? GetCurrentUser() {
+        //    ClaimsPrincipal? currentUser = HttpContext.User;
+        //    string? userId = currentUser.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        //    ApplicationUser? user = _userManager?.FindByIdAsync(userId).Result;
+        //    return user;
+        //}
+>>>>>>> Stashed changes
 
         [HttpGet]
         public IActionResult AdminLogin()
@@ -44,5 +64,16 @@ namespace ICSLockers.Controllers
             ViewBag.ListRole = new SelectList(model, "Id", "Name");
             return View();
         }
+<<<<<<< Updated upstream
+=======
+        public IActionResult Location()
+        {
+            return View();
+        }
+        public IActionResult AddLocation() 
+        {            
+            return View();
+        }
+>>>>>>> Stashed changes
     }
 }

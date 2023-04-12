@@ -4,6 +4,10 @@ using ICSLockers.Models;
 using Microsoft.EntityFrameworkCore;
 using ICSLockers.Repository.IRepository;
 using ICSLockers.Helpers;
+<<<<<<< Updated upstream
+=======
+using Microsoft.AspNetCore.Authorization;
+>>>>>>> Stashed changes
 
 namespace ICSLockers.Controllers
 {
@@ -76,7 +80,10 @@ namespace ICSLockers.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
         [HttpPost]
         public async Task<IActionResult> CreateNewUser([FromBody] ApplicationUser model)
         {

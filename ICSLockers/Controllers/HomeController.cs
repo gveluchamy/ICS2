@@ -1,5 +1,4 @@
 ﻿using ICSLockers.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -14,23 +13,14 @@ namespace ICSLockers.Controllers
             _logger = logger;
         }
 
-        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
-
-        [AllowAnonymous]
-        public IActionResult MenuList()
+        public IActionResult MenuList() 
         {
             return View();
         }
-
-        public IActionResult LocateUserLocker()
-        {
-            return View();
-        }
-
         public IActionResult Privacy()
         {
             return View();

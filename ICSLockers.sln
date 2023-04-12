@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.5.33502.453
+VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
+<<<<<<< Updated upstream
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICSLockers", "ICSLockers\ICSLockers.csproj", "{6A251ADD-71DD-44BF-81A6-D27D72FA6C5E}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICSLockers", "ICSLockers\ICSLockers.csproj", "{B3C0E7D3-4CEE-4E0D-8056-59EC84EBC54C}"
+>>>>>>> Stashed changes
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +15,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6A251ADD-71DD-44BF-81A6-D27D72FA6C5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A251ADD-71DD-44BF-81A6-D27D72FA6C5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A251ADD-71DD-44BF-81A6-D27D72FA6C5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A251ADD-71DD-44BF-81A6-D27D72FA6C5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3C0E7D3-4CEE-4E0D-8056-59EC84EBC54C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3C0E7D3-4CEE-4E0D-8056-59EC84EBC54C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3C0E7D3-4CEE-4E0D-8056-59EC84EBC54C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C0E7D3-4CEE-4E0D-8056-59EC84EBC54C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {909CC828-6786-4C6E-BF2D-B3695BB283D1}
+		SolutionGuid = {D46F337D-016A-41FC-B513-8A28DB8A9071}
 	EndGlobalSection
 EndGlobal

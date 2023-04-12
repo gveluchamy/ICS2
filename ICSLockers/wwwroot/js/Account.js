@@ -61,7 +61,12 @@ function fnNewUserCreation() {
         LastName: $(".create-user-form .last-name").val().trim(),
         SSN: parseInt($(".create-user-form .ssn").val()),
         PasswordEnc: "password123",
+<<<<<<< Updated upstream
         LockerUnit: $(".create-user-form .locker-unit").val() ,
+=======
+        LockerUnit:null,   //$(".create-user-form .locker-unit").val(),
+        DateOfBirth: $("#mobileNo").val(),
+>>>>>>> Stashed changes
         CreatedOn: new Date(),
         CreatedBy: "Admin",
         CheckOutStatus: false,

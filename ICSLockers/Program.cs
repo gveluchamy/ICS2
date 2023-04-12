@@ -22,7 +22,11 @@ namespace ICSLockers
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => {
+<<<<<<< Updated upstream
                 options.SignIn.RequireConfirmedAccount = false; 
+=======
+                options.SignIn.RequireConfirmedAccount = false;
+>>>>>>> Stashed changes
                 options.Password.RequiredLength = 4;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
@@ -30,8 +34,13 @@ namespace ICSLockers
             })
                  .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
+<<<<<<< Updated upstream
             builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
             builder.Services.AddScoped<IAccountManager, AccountManager>();
+=======
+            builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IAccountManager, AccountManager>();            
+>>>>>>> Stashed changes
 
             var app = builder.Build();
 

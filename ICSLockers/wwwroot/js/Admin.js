@@ -6,6 +6,10 @@
     });
 
     $('#example').DataTable({
+<<<<<<< Updated upstream
+=======
+        debugger;
+>>>>>>> Stashed changes
         "searching": true,
         "paging": true,
         "info": false,

@@ -1,0 +1,79 @@
+﻿@model List<DivisionModel>
+@using ICSLockers.Models
+
+@{
+    ViewData["Title"] = "Locker User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid main locker-unit admin p-0">
+    <div class="admin title-bar d-flex">
+        <div class="col-lg-6 p-0 d-flex align-items-center">
+            <h5>View Locker Units</h5>
+        </div>
+        <div class="col-lg-6 d-flex justify-content-end">
+            <buttton type="button" class="btn btn-outline-primary add-locker" onclick="fnAddNewLockerPopup()">Update Division</buttton>
+
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="passcode d-flex align-items-center text-center">
+            <div class="main-heading">
+                <h5>Locker Units SELECTION</h5>
+            </div>
+            <div class="col-lg-12 p-0">
+                <div class="grid locker-unit-list">
+                    <partial name="_Division" />
+                   @* @foreach (LockerUnits lockerUnits in Model)
+                    {
+                        
+                    }*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade admin-modal" id="UpdateLockerModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered locker-add-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center w-100" id="exampleModalLongTitle">Update Division</h5>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-12">
+                    <div class="row justify-content-center d-flex">
+                        <div class="col-lg-4"><label for="Locker Unit Number">Locker Location</label></div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control locker-unit" value=" Location">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center d-flex">
+                        <div class="col-lg-4"><label for="Locker Unit Number">Locker Division</label></div>
+                        <div class="col-lg-6">
+                            <div class="quantity-field">
+                                <button class="value-button decrease-button" onclick="decreaseValue(this)"
+                                        title="Azalt">
+                                    -
+                                </button>
+                                <div class="number">1</div>
+                                <button class="value-button increase-button" onclick="increaseValue(this, 10)"
+                                        title="Arrtır">
+                                    +
+                                </button>
+                            </div>
+                            <div class="note">
+                                <p>*  Maximum 10 divisions per location</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ononclick="fnCreateNewLocker()">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Admin.js"></script>

@@ -43,12 +43,9 @@ namespace ICSLockers.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-<<<<<<< Updated upstream
-=======
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("date");
 
->>>>>>> Stashed changes
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -57,17 +54,11 @@ namespace ICSLockers.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
-<<<<<<< Updated upstream
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-=======
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
->>>>>>> Stashed changes
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LockerDetailId")
@@ -91,10 +82,7 @@ namespace ICSLockers.Data.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("PasswordEnc")
-<<<<<<< Updated upstream
-=======
                         .IsRequired()
->>>>>>> Stashed changes
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
@@ -137,16 +125,10 @@ namespace ICSLockers.Data.Migrations
                             Id = "b74ddd14-6340-4840-95c2-db12554843e5",
                             AccessFailedCount = 0,
                             CheckOutStatus = false,
-<<<<<<< Updated upstream
-                            ConcurrencyStamp = "43a20bfc-5486-4024-8911-b6d2af940b46",
-                            CreatedBy = "Admin",
-                            CreatedOn = new DateTime(2023, 4, 11, 12, 41, 16, 112, DateTimeKind.Local).AddTicks(2215),
-=======
                             ConcurrencyStamp = "21eb08ab-7019-45cd-b57b-14a5d90037ad",
                             CreatedBy = "Admin",
                             CreatedOn = new DateTime(2023, 4, 11, 18, 50, 25, 431, DateTimeKind.Local).AddTicks(8527),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
->>>>>>> Stashed changes
                             Email = "icslocker@hotmail.com",
                             EmailConfirmed = true,
                             FirstName = "ICS",
@@ -157,19 +139,11 @@ namespace ICSLockers.Data.Migrations
                             NormalizedEmail = "icslocker@hotmail.com",
                             NormalizedUserName = "icslocker@hotmail.com",
                             PasswordEnc = "IL11",
-<<<<<<< Updated upstream
-                            PasswordHash = "AQAAAAIAAYagAAAAEPMeSkbstkf1N2X/8V2x4gxVePEc7FSiD3Tg81I6X3Wm1v7nVHlOsjhsvo/9iOW7OQ==",
-                            PhoneNumber = "9876543210",
-                            PhoneNumberConfirmed = false,
-                            SSN = 987654311,
-                            SecurityStamp = "b933d9a6-0c5b-4ecf-b1ad-188f96995aa9",
-=======
                             PasswordHash = "AQAAAAIAAYagAAAAEAro1phm9lX4ax0oxsd8/EBg3XHjXDy5mygNuNmoXlZ5wA0ESXsNgperifDjSUOWLg==",
                             PhoneNumber = "9876543210",
                             PhoneNumberConfirmed = false,
                             SSN = 987654311,
                             SecurityStamp = "f65a8946-8646-4862-830f-0a2e6096396e",
->>>>>>> Stashed changes
                             TwoFactorEnabled = false,
                             UserName = "icslocker@hotmail.com"
                         });

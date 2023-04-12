@@ -11,19 +11,6 @@ namespace ICSLockers.Data
             : base(options)
         {
 
-<<<<<<< Updated upstream
-        #region ModelCreation Region
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-            SeedUsers(builder);
-            SeedRoles(builder);
-            SeedUserRoles(builder);
-        }
-        #endregion
-
-        #region Seed Region
-=======
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -32,7 +19,6 @@ namespace ICSLockers.Data
             SeedUsers(builder);
             SeedUserRoles(builder);
         }
->>>>>>> Stashed changes
         private static void SeedUsers(ModelBuilder builder)
         {
             ApplicationUser user = new()
@@ -65,15 +51,9 @@ namespace ICSLockers.Data
         private static void SeedRoles(ModelBuilder builder)
         {
             builder.Entity<IdentityRole>().HasData(
-<<<<<<< Updated upstream
-                new IdentityRole { Id= "b6011125-2b8d-442a-9717-b8cf5345b015", Name = "Admin", ConcurrencyStamp = "1", NormalizedName = "Admin" },
-                new IdentityRole { Id= "c76d8f8d-9e53-433c-b8e3-96fddb7ac25b", Name = "Staff", ConcurrencyStamp = "2", NormalizedName = "Staff" },
-                new IdentityRole { Id= "865d7c89-436d-43a3-946b-f36896d64ccf", Name = "User", ConcurrencyStamp = "3", NormalizedName = "User" }
-=======
                 new IdentityRole { Id = "b6011125-2b8d-442a-9717-b8cf5345b015", Name = "Admin", ConcurrencyStamp = "1", NormalizedName = "Admin" },
                 new IdentityRole { Id = "c76d8f8d-9e53-433c-b8e3-96fddb7ac25b", Name = "Staff", ConcurrencyStamp = "2", NormalizedName = "Staff" },
                 new IdentityRole { Id = "865d7c89-436d-43a3-946b-f36896d64ccf", Name = "User", ConcurrencyStamp = "3", NormalizedName = "User" }
->>>>>>> Stashed changes
             );
         }
 
@@ -83,13 +63,5 @@ namespace ICSLockers.Data
                 new IdentityUserRole<string>() { RoleId = "b6011125-2b8d-442a-9717-b8cf5345b015", UserId = "b74ddd14-6340-4840-95c2-db12554843e5" }
                 );
         }
-<<<<<<< Updated upstream
-#endregion
-
-        #region DbSet Region
-
-        #endregion
-=======
->>>>>>> Stashed changes
     }
 }

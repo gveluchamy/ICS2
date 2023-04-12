@@ -8,17 +8,6 @@
     }
   },
   "profiles": {
-<<<<<<< Updated upstream
-    //"http": {
-    //  "commandName": "Project",
-    //  "launchBrowser": true,
-    //  "environmentVariables": {
-    //    "ASPNETCORE_ENVIRONMENT": "Development"
-    //  },
-    //  "dotnetRunMessages": true,
-    //  "applicationUrl": "http://localhost:5219"
-    //},
-=======
     "http": {
       "commandName": "Project",
       "dotnetRunMessages": true,
@@ -28,42 +17,12 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
->>>>>>> Stashed changes
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Dev"
-      }
-<<<<<<< Updated upstream
-    },
-    "Development": {
-      "commandName": "Project",
-      "dotnetRunMessages": false,
-      "launchBrowser": false,
-      "applicationUrl": "http://localhost:5000",
-      "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
-    },
-    "Production": {
-      "commandName": "Project",
-      "dotnetRunMessages": false,
-      "launchBrowser": true,
-      "applicationUrl": "http://localhost:5000",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Production"
-      }
-    }
-  },
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:50371",
-      "sslPort": 0
-=======
->>>>>>> Stashed changes
     }
   }
 }

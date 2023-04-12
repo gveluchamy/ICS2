@@ -222,7 +222,7 @@ function fnCreateNewLocation () {
     //$("#UpdateLockerModal").modal("hide");
 
     let locationName = $("#AddLocationLockerModal .location-name").val().trim();
-    let totalDivisions = parseInt($("#AddLocationLockerModal .division-number").val());
+    let totalDivisions = parseInt($("#AddLocationLockerModal .division-number").text());
     var locationData = {
         LocationName: locationName,
         TotalDivision: totalDivisions,

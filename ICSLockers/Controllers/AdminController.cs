@@ -36,7 +36,7 @@ namespace ICSLockers.Controllers
 
         public IActionResult Index()
         {
-            List<IdentityRole> model = new List<IdentityRole>();
+            List<IdentityRole> model = new();
             model = _roleManager.Roles.Select(r => new IdentityRole
             {
                 Name = r.Name,
@@ -46,6 +46,7 @@ namespace ICSLockers.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Location()
         {
             List<LocationModel> locationModels = _adminRepository.GetAllLocations();
@@ -74,6 +75,13 @@ namespace ICSLockers.Controllers
             {
                 return Json(new { success = false, message = $"Location Model is null" });
             }
+        }
+
+        [HttpGet]
+        public IActionResult Division(int LocationId)
+        {
+            List<DivisionModel> divisionModel = _adminRepository.GetDivisionByLocationId(LocationId);
+            return View(divisionModel);
         }
     }
 }

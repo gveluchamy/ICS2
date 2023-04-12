@@ -1590,14 +1590,9 @@ else
     </div>
 }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
-        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://rendro.github.io/easy-pie-chart/javascripts/jquery.easy-pie-chart.js"></script>
-<script>
-   
 
-    
+<script>      
     var totalPoints = document.getElementById('totalPoints').innerHTML;
     var differenceValue = '100';
     var calculatePointsPercentage = totalPoints / differenceValue * ('100');
@@ -1613,11 +1608,7 @@ else
             size: 300,
             responsive: true,
             trackColor: "rgba(0, 0, 0, 0.15)",
-            barColor: "#2B4889" // ADVANTAGE TIER COLOR
-            // #8a090d - CHOICE TIER COLOR
-            // #b88c3b - PREFERRED TIER COLOR
-            // #636466 - ELITE TIER COLOR
-            // #000000 - OWNERS CLUB COLOR
+            barColor: "#2B4889"
         });
     });
     $('.totalTierPoints').each(function () {

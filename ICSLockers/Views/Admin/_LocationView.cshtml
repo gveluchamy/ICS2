@@ -1,6 +1,6 @@
 ﻿@using ICSLockers.Models
 
-<div class="location d-flex justify-content-between">
+<div class="location d-flex justify-content-between" style="cursor: pointer" onclick="location.href='@Url.Action("Division", "Admin", new { locationId = Model.LocationId })'">
     <div class="location-count col-lg-9 p-0">
         <div class="w-100 d-flex mb-3">
             <h6>@Model.LocationId</h6>
@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="location-img">
-        <img src="~/images/png/location.png" alt="">
+        <img src="~/images/png/location.png" alt="Location Image">
     </div>
 </div>
  

@@ -3,7 +3,7 @@ using ICSLockers.Models;
 
 namespace ICSLockers.Repository.IRepository
 {
-    public class AdminRepository: IAdminRepository
+    public class AdminRepository : IAdminRepository
     {
         private readonly ApplicationDbContext _context;
         public AdminRepository(ApplicationDbContext context)
@@ -17,10 +17,29 @@ namespace ICSLockers.Repository.IRepository
             string Result = string.Empty;
             try
             {
-                bool IsLocationPresent = _context.Locations.Any(x => x.LocationName.Equals(location.LocationName, StringComparison.OrdinalIgnoreCase));
-                if (!IsLocationPresent) {
-                    _context.Locations.Add(location);
+                bool IsLocationPresent = _context.Locations.ToList().Any(x => x.LocationName.Equals(location.LocationName, StringComparison.OrdinalIgnoreCase));
+                if (!IsLocationPresent)
+                {
+                    var test = _context.Locations.Add(location);
                     _context.SaveChanges();
+
+                    if (location.TotalDivision > 0)
+                    {
+                        for (int i = 1; i <= location.TotalDivision; i++)
+                        {
+                            DivisionModel division = new()
+                            {
+                                LocationId = location.LocationId,
+                                CreatedBy = location.CreatedBy,
+                                ModifiedBy = location.ModifiedBy,
+                                CreatedOn = DateTime.Now,
+                                ModifiedOn = DateTime.Now,
+                            };
+                            AddNewDivision(division);
+                        }
+                    }
+                    IsSuccess = true;
+                    Result = $"The location {location.LocationName} has been added succesfully with {location.TotalDivision} divisions!";
                 }
                 else
                 {
@@ -38,8 +57,28 @@ namespace ICSLockers.Repository.IRepository
 
         public List<LocationModel> GetAllLocations()
         {
-            List<LocationModel> locations = _context.Locations.Where(x => !x.IsDeleted).OrderBy(x=> x.LocationId).ToList();
+            List<LocationModel> locations = _context.Locations.Where(x => !x.IsDeleted).OrderBy(x => x.LocationId).ToList();
             return locations;
+        }
+
+        public List<DivisionModel> GetDivisionByLocationId(int locationId)
+        {
+            List<DivisionModel> divisionList = _context.Divisions.Where(x => x.LocationId == locationId).ToList();
+            return divisionList;
+        }
+
+        public bool AddNewDivision(DivisionModel division)
+        {
+            try
+            {
+                _context.Divisions.Add(division);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

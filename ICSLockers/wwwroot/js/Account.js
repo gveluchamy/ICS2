@@ -62,11 +62,11 @@ function fnNewUserCreation() {
         SSN: parseInt($(".create-user-form .ssn").val()),
         PasswordEnc: "password123",
         LockerUnit:null,   //$(".create-user-form .locker-unit").val(),
-        DateOfBirth: $("#mobileNo").val(),
+        DateOfBirth: $("#Date_only").val(),
         CreatedOn: new Date(),
         CreatedBy: "Admin",
         CheckOutStatus: false,
-        PhoneNumber: $(".create-user-form .mobile-no").val()
+        PhoneNumber: $(".create-user-form ").val()
     };
 
     var isValidated = ValidateUserCreation(JSON.stringify(userCreationModel));

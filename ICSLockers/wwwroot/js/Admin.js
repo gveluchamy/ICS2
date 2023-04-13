@@ -233,25 +233,66 @@ function fnCreateNewLocation () {
         ModifiedOn: new Date()
     };
 
+        $.ajax({
+            type: "POST",
+            url: "/Admin/AddLocation",
+            headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+            contentType: "application/json",
+            data: JSON.stringify(locationData),
+            success: function (response) {
+                debugger;
+                if (response.success) {
+                    $(".grid.location-list").append(response.locationHtml);
+                    toastr.success(response.message, 'Success', { timeOut: 4000 });
+                } else {
+                    toastr.error(response.message, 'Error', { timeOut: 4000 });
+                }
+                $("#AddLocationLockerModal").modal("hide");
+            },
+            error: function (xhr, status, error) {
+                toastr.error(response.message, 'Error', { timeOut: 4000 });
+                $("#AddLocationLockerModal").modal("hide");
+            }
+        });
+}
+function fnAddNewDivisionPopup() {
+    $("#UpdateDivisionModal").modal("show");
+}
+
+function fnUpdateDivision() {
+    //$("#UpdateLockerModal").modal("hide");
+    debugger;
+    let locationName = $("#UpdateDivisionModal .location-name").val().trim();
+    let totalDivisions = parseInt($("#UpdateDivisionModal .division-number").text());
+    var locationData = {
+        LocationName: locationName,
+        TotalDivision: totalDivisions,
+        IsDeleted: false,
+        CreatedBy: "",
+        CreatedOn: new Date(),
+        ModifiedBy: "",
+        ModifiedOn: new Date()
+    };
+
     $.ajax({
         type: "POST",
-        url: "/Admin/AddLocation",
+        url: "/Admin/UpdateDivision",
         headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
         contentType: "application/json",
         data: JSON.stringify(locationData),
         success: function (response) {
             debugger;
             if (response.success) {
-                $(".locker-unit-list").append(response.unitHTML);
+                $(".grid.locker-unit-list").append(response.DevisionHtml);
                 toastr.success(response.message, 'Success', { timeOut: 4000 });
             } else {
                 toastr.error(response.message, 'Error', { timeOut: 4000 });
             }
-            $("#AddLocationLockerModal").modal("hide");
+            $("#UpdateDivisionModal").modal("hide");
         },
         error: function (xhr, status, error) {
             toastr.error(response.message, 'Error', { timeOut: 4000 });
-            $("#AddLocationLockerModal").modal("hide");
+            $("#UpdateDivisionModal").modal("hide");
         }
     });
 }

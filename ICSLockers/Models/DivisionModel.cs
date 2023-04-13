@@ -10,10 +10,11 @@ namespace ICSLockers.Models
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int DivisionId { get; set; }
-
+        public int DivisionNo { get; set; }
         [Required]
         [ForeignKey("Location")]
         public int LocationId { get; set; }
+        public int TotalLockers { get; set; }
         public string? IpAddress { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }

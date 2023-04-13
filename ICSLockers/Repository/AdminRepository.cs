@@ -1,5 +1,7 @@
 ﻿using ICSLockers.Data;
 using ICSLockers.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ICSLockers.Repository.IRepository
 {
@@ -17,29 +19,39 @@ namespace ICSLockers.Repository.IRepository
             string Result = string.Empty;
             try
             {
+                var locationName=location.LocationName;
                 bool IsLocationPresent = _context.Locations.ToList().Any(x => x.LocationName.Equals(location.LocationName, StringComparison.OrdinalIgnoreCase));
                 if (!IsLocationPresent)
                 {
-                    var test = _context.Locations.Add(location);
-                    _context.SaveChanges();
-
-                    if (location.TotalDivision > 0)
+                    if (locationName != "")
                     {
-                        for (int i = 1; i <= location.TotalDivision; i++)
+                        var test = _context.Locations.Add(location);
+                        _context.SaveChanges();
+
+                        if (location.TotalDivision > 0)
                         {
-                            DivisionModel division = new()
+                            for (int i = 1; i <= location.TotalDivision; i++)
                             {
-                                LocationId = location.LocationId,
-                                CreatedBy = location.CreatedBy,
-                                ModifiedBy = location.ModifiedBy,
-                                CreatedOn = DateTime.Now,
-                                ModifiedOn = DateTime.Now,
-                            };
-                            AddNewDivision(division);
-                        }
+                                DivisionModel division = new()
+                                {
+                                    LocationId = location.LocationId,
+                                    CreatedBy = location.CreatedBy,
+                                    ModifiedBy = location.ModifiedBy,
+                                    CreatedOn = DateTime.Now,
+                                    ModifiedOn = DateTime.Now,
+                                };
+                                AddNewDivision(division);
+                            }
+                        }                   
+                        IsSuccess = true;
+                        Result = $"The location {location.LocationName} has been added succesfully with {location.TotalDivision} divisions!";
                     }
-                    IsSuccess = true;
-                    Result = $"The location {location.LocationName} has been added succesfully with {location.TotalDivision} divisions!";
+                    else
+                    {
+                        IsSuccess = false;
+                        Result = $"Please Enter the Location Name!";
+
+                    }
                 }
                 else
                 {
@@ -72,6 +84,52 @@ namespace ICSLockers.Repository.IRepository
             try
             {
                 _context.Divisions.Add(division);
+                _context.SaveChanges();
+               
+                if (division.TotalLockers > 0)
+                {
+                    for (int i = 1; i <= division.TotalLockers; i++)
+                    {
+                        LockerUnitModel lockerUnit = new()
+                        {
+                            DivisionId = division.DivisionId,
+                            CreatedBy = division.CreatedBy,
+                            ModifiedBy = division.ModifiedBy,
+                            CreatedOn = DateTime.Now,
+                            ModifiedOn = DateTime.Now,
+                        };
+                        AddLocker(lockerUnit);
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+           
+            return true;
+        }
+        public bool UpdateDivision(DivisionModel division)
+        {
+            if (division != null)
+            {
+                _context.Divisions.Add(division);
+                _context.SaveChanges();
+            }
+            return true;
+        }
+
+        //public List<LockerUnitModel> GetLockerByLocationId(int locationId)
+        //{
+        //    List<DivisionModel> lockerUnits = _context.LockerUnits.Where(x => x.LockerId == locationId).ToList();
+        //    return lockerUnits;
+        //}
+        public bool AddLocker(LockerUnitModel lockerUnit)
+        {
+            try
+            {
+                //_context.LockerUnits.Add(lockerUnit);
                 _context.SaveChanges();
                 return true;
             }

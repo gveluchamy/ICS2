@@ -83,5 +83,16 @@ namespace ICSLockers.Controllers
             List<DivisionModel> divisionModel = _adminRepository.GetDivisionByLocationId(LocationId);
             return View(divisionModel);
         }
+        public bool UpdateDivision(DivisionModel division)
+        {
+            //var test = _adminRepository.UpdateDivision(division);
+            return true;
+        }
+        public IActionResult LockerUnits(int divisionId)
+        {
+            //List<LockerUnitModel> lockerUnits= _adminRepository.GetLockerByLocationId(divisionId);
+
+            return View();
+        }
     }
 }

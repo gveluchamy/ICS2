@@ -255,6 +255,7 @@ function fnCreateNewLocation () {
             }
         });
 }
+
 function fnAddNewDivisionPopup() {
     $("#UpdateDivisionModal").modal("show");
 }

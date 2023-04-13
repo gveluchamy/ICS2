@@ -1,6 +1,7 @@
 ﻿using ICSLockers.Models;
 using ICSLockers.Repository;
 using ICSLockers.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -28,10 +29,16 @@ namespace ICSLockers.Controllers
         //    return user;
         //}
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult AdminLogin()
         {
             return View("Admin");
+        }
+
+        public IActionResult Dashboard()
+        {
+            return View("AdminDashboard");
         }
 
         public IActionResult Index()
@@ -53,6 +60,7 @@ namespace ICSLockers.Controllers
             return View(locationModels);
         }
 
+        //[ValidateAntiForgeryToken]
         [HttpPost]
         public async Task<IActionResult> AddLocation([FromBody] LocationModel location) 
         {
@@ -83,11 +91,13 @@ namespace ICSLockers.Controllers
             List<DivisionModel> divisionModel = _adminRepository.GetDivisionByLocationId(LocationId);
             return View(divisionModel);
         }
+
         public bool UpdateDivision(DivisionModel division)
         {
-            //var test = _adminRepository.UpdateDivision(division);
+           // var test = _adminRepository.UpdateDivision(division);
             return true;
         }
+
         public IActionResult LockerUnits(int divisionId)
         {
             //List<LockerUnitModel> lockerUnits= _adminRepository.GetLockerByLocationId(divisionId);

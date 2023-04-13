@@ -4,6 +4,7 @@ using ICSLockers.Repository.IRepository;
 using ICSLockers.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace ICSLockers
 {
@@ -27,12 +28,16 @@ namespace ICSLockers
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
+                options.User.RequireUniqueEmail = true;
             })
-                 .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
+            builder.Services.AddRazorPages();
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<IAccountManager, AccountManager>();
             builder.Services.AddScoped<IAdminRepository, AdminRepository>();
+
+            //builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x => x.LoginPath = "/Admin/AdminLogin");
 
             var app = builder.Build();
 
@@ -50,6 +55,7 @@ namespace ICSLockers
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.MapControllerRoute(
                 name: "default",

@@ -18,7 +18,7 @@ function fnLoginMethod() {
 
     $.ajax({
         type: 'POST',
-        url: '/Account/Login?returnUrl=' + encodeURIComponent(window.location.pathname),
+        url: '/Account/Login?returnUrl=' + encodeURIComponent(fnGetParameterByName(ReturnUrl)),
         async: true,
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(loginmodel),
@@ -165,10 +165,11 @@ function fnAdminLoginMethod (page) {
     loginmodel.Email = email;
     loginmodel.Password = password;
     loginmodel.RememberMe = false;
+    var returnUrls = fnGetParameterByName("ReturnUrl");
 
     $.ajax({
         type: 'POST',
-        url: '/Account/Login?returnUrl=' + encodeURIComponent(window.location.pathname) + '&page=' + page,
+        url: '/Account/Login?returnUrl=' + encodeURIComponent(returnUrls) + '&page=' + page,
         async: false,
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(loginmodel),
@@ -201,4 +202,14 @@ function fnAdminLoginMethod (page) {
             toastr.error('Some error has occurred in logging in. Please try again!', 'Error', { timeOut: 4000 })
         }
     });
+}
+
+function fnGetParameterByName (name) {
+    url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[ 2 ]) return '';
+    return decodeURIComponent(results[ 2 ].replace(/\+/g, " "));
 }

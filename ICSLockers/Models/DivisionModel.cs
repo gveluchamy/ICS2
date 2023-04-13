@@ -15,6 +15,21 @@ namespace ICSLockers.Models
         [ForeignKey("Location")]
         public int LocationId { get; set; }
         public int TotalLockers { get; set; }
+        public int UsedLockers { get; set; }
+        public virtual int AvailableLocker
+        {
+            get
+            {
+                return TotalLockers - UsedLockers;
+            }
+        }
+         public virtual bool IsLockersAvailable
+        {
+            get
+            {
+                return TotalLockers - AvailableLocker != 0;
+            }
+        }
         public string? IpAddress { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }

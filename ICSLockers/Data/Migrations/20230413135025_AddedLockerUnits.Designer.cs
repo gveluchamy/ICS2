@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ICSLockers.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230412105643_AddedDivision")]
-    partial class AddedDivision
+    [Migration("20230413135025_AddedLockerUnits")]
+    partial class AddedLockerUnits
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -128,9 +128,9 @@ namespace ICSLockers.Data.Migrations
                             Id = "b74ddd14-6340-4840-95c2-db12554843e5",
                             AccessFailedCount = 0,
                             CheckOutStatus = false,
-                            ConcurrencyStamp = "e3b265d2-a074-440f-aba0-6fe59af488ab",
+                            ConcurrencyStamp = "8ffaa3ec-2240-4cce-8308-17c30fc969fd",
                             CreatedBy = "Admin",
-                            CreatedOn = new DateTime(2023, 4, 12, 16, 26, 43, 217, DateTimeKind.Local).AddTicks(7657),
+                            CreatedOn = new DateTime(2023, 4, 13, 19, 20, 24, 990, DateTimeKind.Local).AddTicks(6214),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "icslocker@hotmail.com",
                             EmailConfirmed = true,
@@ -142,11 +142,11 @@ namespace ICSLockers.Data.Migrations
                             NormalizedEmail = "icslocker@hotmail.com",
                             NormalizedUserName = "icslocker@hotmail.com",
                             PasswordEnc = "IL11",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIfJp9HRQgC/eAl5gjKzM0zjUbdfOv/Xk0EmRcqqNMhNVnZRuUL41WznPlkXkGLrig==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEErmYxwCRz6DcMykEc9eDrw8zc31bexN5k7KztxvWZynZsHvHlr6rMQioZBsDlKdvw==",
                             PhoneNumber = "9876543210",
                             PhoneNumberConfirmed = false,
                             SSN = 987654311,
-                            SecurityStamp = "c8131236-16bc-44b0-a7da-86ef9aec8ba9",
+                            SecurityStamp = "74bdc661-2f4f-4193-970b-ed575b5ac981",
                             TwoFactorEnabled = false,
                             UserName = "icslocker@hotmail.com"
                         });
@@ -166,6 +166,9 @@ namespace ICSLockers.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("DivisionNo")
+                        .HasColumnType("int");
+
                     b.Property<string>("IpAddress")
                         .HasColumnType("nvarchar(max)");
 
@@ -178,7 +181,15 @@ namespace ICSLockers.Data.Migrations
                     b.Property<DateTime>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("TotalLockers")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsedLockers")
+                        .HasColumnType("int");
+
                     b.HasKey("DivisionId");
+
+                    b.HasIndex("LocationId");
 
                     b.ToTable("Division");
                 });
@@ -216,6 +227,54 @@ namespace ICSLockers.Data.Migrations
                     b.HasKey("LocationId");
 
                     b.ToTable("Location");
+                });
+
+            modelBuilder.Entity("ICSLockers.Models.LockerUnitModel", b =>
+                {
+                    b.Property<int>("LockerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LockerId"));
+
+                    b.Property<string>("Barcode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DivisionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Item1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Item2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Item3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Item4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Item5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("LockerId");
+
+                    b.HasIndex("DivisionId");
+
+                    b.ToTable("Locker");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -383,6 +442,28 @@ namespace ICSLockers.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("ICSLockers.Models.DivisionModel", b =>
+                {
+                    b.HasOne("ICSLockers.Models.LocationModel", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("ICSLockers.Models.LockerUnitModel", b =>
+                {
+                    b.HasOne("ICSLockers.Models.DivisionModel", "Division")
+                        .WithMany()
+                        .HasForeignKey("DivisionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Division");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -4,6 +4,7 @@ using ICSLockers.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ICSLockers.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230413133944_AddedDivisions")]
+    partial class AddedDivisions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,9 +128,9 @@ namespace ICSLockers.Data.Migrations
                             Id = "b74ddd14-6340-4840-95c2-db12554843e5",
                             AccessFailedCount = 0,
                             CheckOutStatus = false,
-                            ConcurrencyStamp = "8ffaa3ec-2240-4cce-8308-17c30fc969fd",
+                            ConcurrencyStamp = "2f2173f4-122a-4d64-baba-bae07096db04",
                             CreatedBy = "Admin",
-                            CreatedOn = new DateTime(2023, 4, 13, 19, 20, 24, 990, DateTimeKind.Local).AddTicks(6214),
+                            CreatedOn = new DateTime(2023, 4, 13, 19, 9, 43, 860, DateTimeKind.Local).AddTicks(139),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "icslocker@hotmail.com",
                             EmailConfirmed = true,
@@ -139,11 +142,11 @@ namespace ICSLockers.Data.Migrations
                             NormalizedEmail = "icslocker@hotmail.com",
                             NormalizedUserName = "icslocker@hotmail.com",
                             PasswordEnc = "IL11",
-                            PasswordHash = "AQAAAAIAAYagAAAAEErmYxwCRz6DcMykEc9eDrw8zc31bexN5k7KztxvWZynZsHvHlr6rMQioZBsDlKdvw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGV4EMc9b6TIBuGlUKHu155N0QpaSKvewi1yqC+mGfAB6QxmHWmQ+4BbiH5BQrASiA==",
                             PhoneNumber = "9876543210",
                             PhoneNumberConfirmed = false,
                             SSN = 987654311,
-                            SecurityStamp = "74bdc661-2f4f-4193-970b-ed575b5ac981",
+                            SecurityStamp = "9928d089-0edf-4afb-861a-630842a3ce9a",
                             TwoFactorEnabled = false,
                             UserName = "icslocker@hotmail.com"
                         });
@@ -179,9 +182,6 @@ namespace ICSLockers.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("TotalLockers")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsedLockers")
                         .HasColumnType("int");
 
                     b.HasKey("DivisionId");
@@ -224,54 +224,6 @@ namespace ICSLockers.Data.Migrations
                     b.HasKey("LocationId");
 
                     b.ToTable("Location");
-                });
-
-            modelBuilder.Entity("ICSLockers.Models.LockerUnitModel", b =>
-                {
-                    b.Property<int>("LockerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LockerId"));
-
-                    b.Property<string>("Barcode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DivisionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Item1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Item2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Item3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Item4")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Item5")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("LockerId");
-
-                    b.HasIndex("DivisionId");
-
-                    b.ToTable("Locker");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -450,17 +402,6 @@ namespace ICSLockers.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Location");
-                });
-
-            modelBuilder.Entity("ICSLockers.Models.LockerUnitModel", b =>
-                {
-                    b.HasOne("ICSLockers.Models.DivisionModel", "Division")
-                        .WithMany()
-                        .HasForeignKey("DivisionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Division");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

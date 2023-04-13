@@ -86,7 +86,7 @@
 
     .locker-unit .grid {
         display: grid;
-        grid-template-columns: repeat(4, auto);
+        grid-template-columns: repeat(5, auto);
     }
 
     .passcode .login-card .form-control.user-passcode, .passcode .login-card .form-control.user-email {
@@ -152,5 +152,27 @@
     }
     .passcode {
         padding-top: 50px;
+    }
+    .locker-unit .unit-count h6 {
+        font-size: 32px;
+    }
+    .locker-unit .unit-count h3 {
+        font-size: 32px;
+        padding: 0px 15px 0px 15px;
+    }
+    .locker-unit .passcode, .locker-location .passcode {
+        padding: 0;
+    }
+    .locker-unit .btn.available, .locker-unit .btn.not-available {
+        font-size: 18px;
+    }
+    .unit .unit-count{
+        margin-bottom: 0 !important;
+    }
+    .unit .location-detail{
+        padding:15px 20px;
+    }
+    .unit .location-btn{
+        padding-top: 10px;
     }
 }

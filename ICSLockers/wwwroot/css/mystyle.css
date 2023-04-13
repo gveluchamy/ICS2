@@ -719,7 +719,7 @@ a {
     color: #2B4889;
     border: 2px solid #2B4889;
     border-radius: 10px;
-    padding: 10px 5px 10px 5px;
+    padding: 10px 15px 5px 15px;
 }
 
 .locker-unit .unit {
@@ -1138,8 +1138,8 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-input.locker-unit {
-    background: #EFEFEF;
+input.locker-unit, input.location-name {
+    background: #fff;
     border: 2px solid rgba(0, 0, 0, 0.05);
     box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.1);
     border-radius: 25px;
@@ -1154,7 +1154,25 @@ input.locker-unit {
     margin-bottom: 30px;
     text-align: center;
 }
-
+input.location-search {
+    border: 2px solid rgba(85, 85, 85, 0.15);
+    border-radius: 5px;
+    width: 292px;
+    height: 40px;
+    padding-right: 40px;
+}
+    input.location-search::placeholder {
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 18px;
+        line-height: 22px;
+    }
+.search-btn {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    background: #fff0;
+    border: none;
+}
 .quantity-field {
     display: flex;
     justify-content: center;
@@ -1723,7 +1741,7 @@ canvas {
     border: 2px solid #FC7C7C;
     border-radius: 10px;
     color: #FC7C7C;
-    padding: 15px 10px;
+    padding: 15px 15px;
     padding-bottom: 10px;
 }
 
@@ -1755,9 +1773,15 @@ canvas {
 
 .content-wrapper.view-location {
     padding: 60px 20px;
-    padding-top:10px;
 }
-
+.search-btn:focus, .location-search:focus{
+    box-shadow: none;
+}
+.location .location-count{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 @media screen and (max-width: 1600px) {
     .location .location-count h5 {
         font-size: 14px;
@@ -1770,4 +1794,4 @@ canvas {
     .location .location-count h6 {
         font-size: 28px;
         padding-bottom: 5px;
-    }
+}

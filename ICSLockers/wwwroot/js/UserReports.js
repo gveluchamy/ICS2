@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     
-    $('#myTable').DataTable({
+    $('#userRepor').DataTable({
         dom: 'Bfrtip',
         buttons: [
             'excel', 'pdf'
@@ -22,3 +22,4 @@
     
     
 });
+

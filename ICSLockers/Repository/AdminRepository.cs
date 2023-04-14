@@ -145,7 +145,17 @@ namespace ICSLockers.Repository.IRepository
                 return false;
             }
         }
-
+        public Tuple<bool, string> UpdateLockerByDivisionId(LockerUnitModel lockerunit)
+        {
+            bool IsSuccess = false;
+            string Result = string.Empty;
+            if (lockerunit != null)
+            {
+                _context.LockerUnits.Add(lockerunit);
+                _context.SaveChanges();
+            }
+            return new Tuple<bool, string>(IsSuccess, Result);
+        }
         public AdminDashboard GetDashBoardDetails()
         {
             AdminDashboard dashboard = new()

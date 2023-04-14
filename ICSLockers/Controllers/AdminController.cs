@@ -93,7 +93,7 @@ namespace ICSLockers.Controllers
             return View(divisionModel);
         }
 
-        public async Task<IActionResult>UpdateDivision(DivisionModel division)
+        public async Task<IActionResult> UpdateDivision([FromBody] DivisionModel division)
         {
             if (division != null)
             {
@@ -114,10 +114,31 @@ namespace ICSLockers.Controllers
             {
                 return Json(new { success = false, message = $"Location Model is null" });
             }
-            
+
         }
-          
-       
+        public async Task<IActionResult> UpdateLocker([FromBody] LockerUnitModel lockerUnit) 
+        {
+            if (lockerUnit != null)
+            {
+                var (Status, Message) = _adminRepository.UpdateLockerByDivisionId(lockerUnit);
+                string lockerHtml = string.Empty;
+                if (Status)
+                {
+                    lockerHtml = await this.RenderViewAsync("~/Views/Admin/_Units.cshtml", lockerUnit, true);
+                    _logger.LogDebug(Message);
+                }
+                else
+                {
+                    _logger.LogDebug(Message);
+                }
+                return Json(new { success = Status, lockerHtml, message = Message });
+            }
+            else 
+            {
+                return Json(new { success = false, message = $"Location Model is null" });
+            }
+
+        }
 
         public IActionResult LockerUnits(int DivisionId)
         {

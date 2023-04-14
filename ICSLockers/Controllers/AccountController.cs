@@ -93,5 +93,10 @@ namespace ICSLockers.Controllers
             return View();
         }
 
+        public IActionResult UserReports()
+        {
+            return View();
+        }
+
     }
 }

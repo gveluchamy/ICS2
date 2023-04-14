@@ -296,3 +296,40 @@ function fnUpdateDivision() {
         }
     });
 }
+
+function fnUpdatelocker() {
+    debugger;
+    //let lockerId = $("#UpdateDivisionModal .location-name").val().trim();
+    let totalLocker = parseInt($("#exampleModalCenter .Locker-count").text());
+    var LockerData = {
+        //LocationName: locationName,
+        LockerID: totalLocker,
+        IsDeleted: false,
+        CreatedBy: "",
+        CreatedOn: "",
+        ModifiedBy: "",
+        ModifiedOn: new Date()
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/Admin/UpdateLocker",
+        headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+        contentType: "application/json",
+        data: JSON.stringify(LockerData),
+        success: function (response) {
+            debugger;
+            if (response.success) {
+                $(".division-model").append(response.divisionHtml);
+                toastr.success(response.message, 'Success', { timeOut: 4000 });
+            } else {
+                toastr.error(response.message, 'Error', { timeOut: 4000 });
+            }
+            $("#exampleModalCenter").modal("hide");
+        },
+        error: function (xhr, status, error) {
+            toastr.error(response.message, 'Error', { timeOut: 4000 });
+            $("#exampleModalCenter").modal("hide");
+        }
+    });
+}

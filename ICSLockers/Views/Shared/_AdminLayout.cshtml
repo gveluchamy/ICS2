@@ -58,7 +58,7 @@
                                 </div>
                             </a>
                             <a href="#" class="col-lg-2 @(ViewContext.RouteData.Values["Action"]?.ToString() == "UserReports" ? "active" : "")" id="menu-item">
-                                <div class="row h-100 align-items-center" onclick="location.href='@Url.Action("UserReports", "Locker")'">
+                                <div class="row h-100 align-items-center" onclick="location.href='@Url.Action("UserReports", "Account")'">
                                     <img src="../images/svg/user-report-color.svg" alt="" class="svg col-lg-3">
                                     <img src="../images/svg/user-report-color-white.svg" alt="" class="svg col-lg-3 white">
                                     <h5 class="col-lg-7">User Reports</h5>

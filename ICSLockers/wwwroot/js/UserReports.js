@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
-    
-    $('#userRepor').DataTable({
+
+    //$('#UserReportTable').DataTable();
+    $('#UserReportTable').DataTable({
         dom: 'Bfrtip',
         buttons: [
             'excel', 'pdf'
@@ -18,8 +19,6 @@
         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
         "bInfo": false, 
         
-    });
-    
-    
+    });     
 });
 

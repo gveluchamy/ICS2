@@ -11,5 +11,6 @@ namespace ICSLockers.Repository.IRepository
         List<DivisionModel> GetDivisionByLocationId(int locationId);
         List<LockerUnitModel> GetLockerUnitsByDivisionId(int divisionId);
         AdminDashboard GetDashBoardDetails();
+        List<ApplicationUser> GetAllUsers();
     }
 }

@@ -20,7 +20,7 @@
                 <h5>Location</h5>
             </div>
             <div class="col-lg-12 p-0">
-                <div class="col-lg-12 mb-5 p-0 d-flex justify-content-end position-relative">
+                <div class="col-lg-12 p-0 d-flex justify-content-end position-relative">
                     <input type="search" class="form-control location-search" placeholder="Search"/>
                     <img src="~/images/png/search.png" class="search-btn" alt="search">
                 </div>
@@ -74,4 +74,16 @@
 
 <script src="~/js/Admin.js"></script>
 
- 
+ <script>
+    $(document).ready(function () {
+        $(".location-search").on("keyup", function () {
+            debugger;
+            var value = $(this).val().toLowerCase();
+            $(".grid.location-list .location").filter(function () {
+                debugger;
+                var isPresent = $(this).attr("data-value").toLowerCase().indexOf(value) > -1;
+                $(this).toggle(isPresent);
+            });
+        });
+    });
+ </script>

@@ -1,0 +1,48 @@
+﻿@using ICSLockers.Models
+@model List<ApplicationUser>
+
+@{
+    ViewData["Title"] = "Locker User";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid main p-0">
+    <div class="title-bar">
+        <h5>User Reports</h5>
+    </div>
+
+    <div class="container" id="userRepor">
+        <div class="content-wrapper">
+            <table id="UserReportTable" class="table table-bordered:1px">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                        <th>Locker</th>
+                        <th>Code</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int count = 1;
+                        @foreach (ApplicationUser user in Model)
+                        {
+                             <tr>
+                                <td>@count</td>
+                                <td>@user.FirstName</td>
+                                <td>@user.LastName</td>
+                                <td>@user.LockerUnitId</td>
+                                <td>@user.PasswordEnc</td>
+                                    </tr>
+                            count++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/UserReports.js" defer></script>

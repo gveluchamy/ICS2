@@ -666,7 +666,7 @@ a {
     }
 
 .locker-unit .content-wrapper {
-    padding: 60px 40px;
+/*    padding: 60px 40px;*/
     padding-bottom: 0;
 }
 
@@ -1758,6 +1758,8 @@ canvas {
 .location .location-img img {
     opacity: 0.3;
     width: 80px;
+    margin-top: -115px; /*need to fix*/
+    margin-left: 200px; /*need to fix*/
 }
 
 .location .location-count h5 {
@@ -1772,16 +1774,19 @@ canvas {
 }
 
 .content-wrapper.view-location {
-    padding: 60px 20px;
+    /*padding: 60px 20px;*/
 }
+
 .search-btn:focus, .location-search:focus{
     box-shadow: none;
 }
+
 .location .location-count{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
+
 @media screen and (max-width: 1600px) {
     .location .location-count h5 {
         font-size: 14px;
@@ -1794,4 +1799,5 @@ canvas {
     .location .location-count h6 {
         font-size: 28px;
         padding-bottom: 5px;
+    }
 }

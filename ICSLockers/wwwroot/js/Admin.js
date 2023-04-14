@@ -2,7 +2,6 @@
     $('.user-menu a').click(function () {
         $('.user-menu a.active').removeClass('active');
         $(this).toggleClass('active');
-
     });
 
     $('#example').DataTable({
@@ -76,7 +75,7 @@ $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
 })
 
-function increaseValue(button, limit) {
+function increaseValue (button, limit) {
     const numberInput = button.parentElement.querySelector('.number');
     var value = parseInt(numberInput.innerHTML, 10);
     if (isNaN(value)) value = 0;
@@ -84,12 +83,20 @@ function increaseValue(button, limit) {
     numberInput.innerHTML = value + 1;
 }
 
+function decreaseValue (button) {
+    const numberInput = button.parentElement.querySelector('.number');
+    var value = parseInt(numberInput.innerHTML, 10);
+    if (isNaN(value)) value = 0;
+    if (value < 1) return;
+    numberInput.innerHTML = value - 1;
+}
+
 function fnAddLockerPopup () {
     $("#AddLockerModal #count").val(1);
     $("#AddLockerModal").modal("show");
 }
 
-function fnNewLockerCreation() {
+function fnNewLockerCreation () {
     var LockerCreationModel = {
         LockerUnitNo: parseInt($("#AddLockerModal #lokernumber").val()),
         TotalLocker: parseInt($("#AddLockerModal #count").text()),
@@ -123,87 +130,6 @@ function fnNewLockerCreation() {
 
 }
 
-function decreaseValue (button) {
-    const numberInput = button.parentElement.querySelector('.number');
-    var value = parseInt(numberInput.innerHTML, 10);
-    if (isNaN(value)) value = 0;
-    if (value < 1) return;
-    numberInput.innerHTML = value - 1;
-}
-
-var totalPoints = document.getElementById('totalPoints').innerHTML;
-var differenceValue = '100';
-var calculatePointsPercentage = totalPoints / differenceValue * ('100');
-var dataPercentage = calculatePointsPercentage.toFixed(0);
-
-$(function (value) {
-    $("#tierPointsValue").attr("data-percent", dataPercentage);
-    $('.target-chart').easyPieChart({
-        animate: 2000,
-        lineWidth: 30,
-        scaleColor: false,
-        lineCap: 'butt',
-        size: 300,
-        responsive: true,
-        trackColor: "rgba(0, 0, 0, 0.15)",
-        barColor: "#2B4889" // ADVANTAGE TIER COLOR
-        // #8a090d - CHOICE TIER COLOR
-        // #b88c3b - PREFERRED TIER COLOR
-        // #636466 - ELITE TIER COLOR
-        // #000000 - OWNERS CLUB COLOR
-    });
-});
-$('.totalTierPoints').each(function () {
-    $(this).prop('Counter', 0).animate({
-        Counter: $(this).text()
-    }, {
-        duration: 2000,
-        easing: 'swing',
-        step: function (now) {
-            $(this).text(Math.ceil(now));
-        }
-    });
-});
-$('.locker-unit h1').each(function () {
-    $(this).prop('Counter', 0).animate({
-        Counter: $(this).text()
-    }, {
-        duration: 2000,
-        easing: 'swing',
-        step: function (now) {
-            $(this).text(Math.ceil(now));
-        }
-    });
-});
-
-$(document).ready(function () {
-    $('.user-menu a').click(function () {
-        $('.user-menu a.active').removeClass('active');
-        $(this).toggleClass('active');
-
-    });
-});
-
-$('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
-})
-
-function increaseValue (button, limit) {
-    const numberInput = button.parentElement.querySelector('.number');
-    var value = parseInt(numberInput.innerHTML, 10);
-    if (isNaN(value)) value = 0;
-    if (limit && value >= limit) return;
-    numberInput.innerHTML = value + 1;
-}
-
-function decreaseValue(button) {
-    const numberInput = button.parentElement.querySelector('.number');
-    var value = parseInt(numberInput.innerHTML, 10);
-    if (isNaN(value)) value = 0;
-    if (value < 1) return;
-    numberInput.innerHTML = value - 1;
-}
-
 function fnGetParameterByName (name) {
     url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -233,34 +159,34 @@ function fnCreateNewLocation () {
         ModifiedOn: new Date()
     };
 
-        $.ajax({
-            type: "POST",
-            url: "/Admin/AddLocation",
-            headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-            contentType: "application/json",
-            data: JSON.stringify(locationData),
-            success: function (response) {
-                debugger;
-                if (response.success) {
-                    $(".grid.location-list").append(response.locationHtml);
-                    toastr.success(response.message, 'Success', { timeOut: 4000 });
-                } else {
-                    toastr.error(response.message, 'Error', { timeOut: 4000 });
-                }
-                $("#AddLocationLockerModal").modal("hide");
-            },
-            error: function (xhr, status, error) {
+    $.ajax({
+        type: "POST",
+        url: "/Admin/AddLocation",
+        headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+        contentType: "application/json",
+        data: JSON.stringify(locationData),
+        success: function (response) {
+            debugger;
+            if (response.success) {
+                $(".grid.location-list").append(response.locationHtml);
+                toastr.success(response.message, 'Success', { timeOut: 4000 });
+            } else {
                 toastr.error(response.message, 'Error', { timeOut: 4000 });
-                $("#AddLocationLockerModal").modal("hide");
             }
-        });
+            $("#AddLocationLockerModal").modal("hide");
+        },
+        error: function (xhr, status, error) {
+            toastr.error(response.message, 'Error', { timeOut: 4000 });
+            $("#AddLocationLockerModal").modal("hide");
+        }
+    });
 }
 
-function fnAddNewDivisionPopup() {
+function fnAddNewDivisionPopup () {
     $("#UpdateDivisionModal").modal("show");
 }
 
-function fnUpdateDivision() {
+function fnUpdateDivision () {
     debugger;
     let locationName = $("#UpdateDivisionModal .location-name").val().trim();
     let totalDivisions = parseInt($("#UpdateDivisionModal .division-number").text());
@@ -269,7 +195,7 @@ function fnUpdateDivision() {
         TotalDivision: totalDivisions,
         IsDeleted: false,
         CreatedBy: "",
-        CreatedOn:"",
+        CreatedOn: new Date(),
         ModifiedBy: "",
         ModifiedOn: new Date()
     };
@@ -297,16 +223,13 @@ function fnUpdateDivision() {
     });
 }
 
-function fnUpdatelocker() {
-    debugger;
-    //let lockerId = $("#UpdateDivisionModal .location-name").val().trim();
+function fnUpdatelocker () {
     let totalLocker = parseInt($("#exampleModalCenter .Locker-count").text());
     var LockerData = {
-        //LocationName: locationName,
         LockerID: totalLocker,
         IsDeleted: false,
         CreatedBy: "",
-        CreatedOn: "",
+        CreatedOn: new Date(),
         ModifiedBy: "",
         ModifiedOn: new Date()
     };

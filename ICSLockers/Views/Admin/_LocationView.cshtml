@@ -1,18 +1,18 @@
 ﻿@using ICSLockers.Models
 
-<div class="location d-flex justify-content-between" style="cursor: pointer" onclick="location.href='@Url.Action("Division", "Admin", new { locationId = Model.LocationId })'">
+<div class="location justify-content-between" style="cursor: pointer" onclick="location.href='@Url.Action("Division", "Admin", new { locationId = Model.LocationId })'" data-value="@Model.LocationName">
     <div class="location-count col-lg-9 p-0">
-        <div class="w-100 d-flex mb-3">
+        <div class="w-100 d-flex mb-3 location-name">
             <h6>@Model.LocationId</h6>
             <h3>@Model.LocationName</h3>
+        </div>
+        <div class="location-img">
+            <img src="~/images/png/location.png" alt="Location Image">
         </div>
         <div class="w-100 d-flex justify-content-between">
             <h5>Locker Division: <span>@Model.TotalDivision</span></h5>
             <h5>Lockers:  <span>500</span></h5>
         </div>
-    </div>
-    <div class="location-img">
-        <img src="~/images/png/location.png" alt="Location Image">
     </div>
 </div>
  

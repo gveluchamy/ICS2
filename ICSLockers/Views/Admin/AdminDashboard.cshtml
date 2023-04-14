@@ -1,6 +1,5 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
+﻿@using ICSLockers.Models
+@model AdminDashboard
 
 @{
     ViewData["Title"] = "Admin Dashboard";
@@ -13,7 +12,7 @@
             <nav aria-label="breadcrumb bg-white">
                 <ol class="breadcrumb bg-white m-0">
                     <li class="breadcrumb-item">
-                        <a href="admin.html">
+                        <a href="/Admin/Dashboard">
                             <h5>Dashboard</h5>
                         </a>
                     </li>
@@ -27,8 +26,8 @@
                 <div class="grid">
                     <div class="locker-unit d-flex">
                         <div class="col-lg-8 p-0">
-                            <h5 class="text-left">Total Locker Units</h5>
-                            <h1 class="text-left">28</h1>
+                            <h5 class="text-left">Total Locations</h5>
+                            <h1 class="text-left">@Model.TotalLocation</h1>
                         </div>
                         <div class="col-lg-4 p-0">
                             <img src="~/images/png/locker(1).png" alt="" class="dashboard-icon">
@@ -36,8 +35,17 @@
                     </div>
                     <div class="locker-unit d-flex">
                         <div class="col-lg-8 p-0">
+                            <h5 class="text-left">Total Divisions</h5>
+                            <h1 class="text-left">@Model.TotalDivisions</h1>
+                        </div>
+                        <div class="col-lg-4 p-0">
+                            <img src="~/images/png/secure.png" alt="" class="dashboard-icon">
+                        </div>
+                    </div>
+                     <div class="locker-unit d-flex">
+                        <div class="col-lg-8 p-0">
                             <h5 class="text-left">Total Lockers</h5>
-                            <h1 class="text-left">155</h1>
+                            <h1 class="text-left">@Model.TotalLockers</h1>
                         </div>
                         <div class="col-lg-4 p-0">
                             <img src="~/images/png/secure.png" alt="" class="dashboard-icon">
@@ -46,7 +54,7 @@
                     <div class="locker-unit d-flex">
                         <div class="col-lg-8 p-0">
                             <h5 class="text-left">Total Staffs</h5>
-                            <h1 class="text-left">65</h1>
+                            <h1 class="text-left">@Model.UserList.Count()</h1>
                         </div>
                         <div class="col-lg-4 p-0">
                             <img src="~/images/png/employee.png" alt="" class="dashboard-icon">
@@ -55,7 +63,7 @@
                     <div class="locker-unit d-flex">
                         <div class="col-lg-8 p-0">
                             <h5 class="text-left">Total Users</h5>
-                            <h1 class="text-left">150</h1>
+                            <h1 class="text-left">@Model.UserList.Count()</h1>
                         </div>
                         <div class="col-lg-4 p-0">
                             <img src="~/images/png/avatar.png" alt="" class="dashboard-icon">

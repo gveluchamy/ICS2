@@ -38,8 +38,8 @@ namespace ICSLockers.Controllers
 
         public IActionResult Dashboard()
         {
-            AdminDashboard dashboard = _adminRepository.GetDashBoardDetails();
-            return View("AdminDashboard");
+            AdminDashboard dashboard = _adminRepository.GetDashBoardDetails();            
+            return View("AdminDashboard", dashboard);
         }
 
         public IActionResult Index()

@@ -63,6 +63,7 @@ namespace ICSLockers.Controllers
                     if (result.Succeeded)
                     {
                         _logger.LogDebug($"The user {model.Email} is about to sign in.");
+                        await _accountManager.LogUserEventAsync(user, true);
                         return Json(new { success = true, message = $"User {user.FirstName+ " "  + user.LastName} has been signed in successfully!", redirectUrl = returnUrl });
                     }
                 }
@@ -75,6 +76,7 @@ namespace ICSLockers.Controllers
         {
             _logger.LogDebug("The user is about to signout...");
             await _signInManager.SignOutAsync();
+            //await _accountManager.LogUserEventAsync(user, true);
             return RedirectToAction("Index", "Home");
         }
         [HttpPost]

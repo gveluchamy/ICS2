@@ -38,5 +38,21 @@ namespace ICSLockers.Repository
             ApplicationUser? user = _userManager.Users?.FirstOrDefault(x => email.Equals(x.Email));
             return user;
         }
+        public async Task LogUserEventAsync(ApplicationUser user, bool isLogin)
+        {
+
+            var loginEvent = new UserEvent
+            {
+                UserId = user.Id,
+                Username = user.UserName,
+                Role = null,
+                EventType = isLogin ? UserEventType.Login : UserEventType.Logout,
+                EventTime = DateTime.UtcNow
+            };
+
+
+            _context.UserEvents.Add(loginEvent);
+            await _context.SaveChangesAsync();
+        }
     }
 }

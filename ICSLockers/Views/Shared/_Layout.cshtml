@@ -45,10 +45,10 @@
                                     <img src="../images/png/dashboard-color.png" alt="" class="svg col-lg-3">
                                     <img src="../images/png/dashboard-white.png" alt="" class="svg col-lg-3 white">
                                     <h5 class="col-lg-9">Dashboard</h5>
-                                </div>
+                                </div>  
                             </a>
-                            <a href="#" class="col-lg-3 @(ViewContext.RouteData.Values["Action"]?.ToString() == "LockerUnits" ? "active" : "")" id="menu-item">
-                                <div class="row h-100 align-items-center" onclick="location.href='@Url.Action("LockerUnits", "Admin")'">
+                            <a href="#" class="col-lg-3 @(ViewContext.RouteData.Values["Action"]?.ToString() == "Location" ? "active" : "")" id="menu-item">
+                                <div class="row h-100 align-items-center" onclick="location.href='@Url.Action("Location", "Admin")'">
                                     <img src="../images/svg/locker-unit-color.svg" alt="" class="svg col-lg-3">
                                     <img src="../images/svg/locker-unit-color-white.svg" alt="" class="svg col-lg-3 white">
                                     <h5 class="col-lg-9">

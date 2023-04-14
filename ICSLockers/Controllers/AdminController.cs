@@ -92,17 +92,41 @@ namespace ICSLockers.Controllers
             return View(divisionModel);
         }
 
-        public bool UpdateDivision(DivisionModel division)
+        public async Task<IActionResult>UpdateDivision(DivisionModel division)
         {
-           // var test = _adminRepository.UpdateDivision(division);
-            return true;
+            if (division != null)
+            {
+                var (Status, Message) = _adminRepository.UpdateDivisionByDivisionID(division);
+                string divisionHtml = string.Empty;
+                if (Status)
+                {
+                    divisionHtml = await this.RenderViewAsync("~/Views/Admin/_DivisionView.cshtml", division, true);
+                    _logger.LogDebug(Message);
+                }
+                else
+                {
+                    _logger.LogDebug(Message);
+                }
+                return Json(new { success = Status, divisionHtml, message = Message });
+            }
+            else
+            {
+                return Json(new { success = false, message = $"Location Model is null" });
+            }
+            
         }
+          
+       
 
-        public IActionResult LockerUnits(int divisionId)
+        public IActionResult LockerUnits(int DivisionId)
         {
-            //List<LockerUnitModel> lockerUnits= _adminRepository.GetLockerByLocationId(divisionId);
+            List<LockerUnitModel> lockerUnits= _adminRepository.GetLockerUnitsByDivisionId(DivisionId);
+            if (lockerUnits == null)
+            {
+                return NotFound();
+            }
 
-            return View();
+            return View(lockerUnits);
         }
     }
 }

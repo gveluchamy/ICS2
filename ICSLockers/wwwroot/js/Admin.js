@@ -261,7 +261,6 @@ function fnAddNewDivisionPopup() {
 }
 
 function fnUpdateDivision() {
-    //$("#UpdateLockerModal").modal("hide");
     debugger;
     let locationName = $("#UpdateDivisionModal .location-name").val().trim();
     let totalDivisions = parseInt($("#UpdateDivisionModal .division-number").text());
@@ -270,7 +269,7 @@ function fnUpdateDivision() {
         TotalDivision: totalDivisions,
         IsDeleted: false,
         CreatedBy: "",
-        CreatedOn: new Date(),
+        CreatedOn:"",
         ModifiedBy: "",
         ModifiedOn: new Date()
     };
@@ -284,7 +283,7 @@ function fnUpdateDivision() {
         success: function (response) {
             debugger;
             if (response.success) {
-                $(".grid.locker-unit-list").append(response.DevisionHtml);
+                $(".division-model").append(response.divisionHtml);
                 toastr.success(response.message, 'Success', { timeOut: 4000 });
             } else {
                 toastr.error(response.message, 'Error', { timeOut: 4000 });

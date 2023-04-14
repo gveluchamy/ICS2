@@ -16,7 +16,7 @@
                 <h5>Division</h5>
         </div>
         <div class="col-lg-6 d-flex justify-content-end p-0">
-            <buttton type="button" class="btn btn-outline-primary add-locker" onclick="fnAddNewLockerPopup()">Update Division</buttton>
+            <buttton type="button" class="btn btn-outline-primary add-locker" onclick="fnAddNewDivisionPopup()">Update Division</buttton>
         </div>
     </div>
     <div class="content-wrapper">
@@ -37,7 +37,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade admin-modal" id="UpdateLockerModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<div class="modal fade admin-modal" id="UpdateDivisionModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered locker-add-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -48,15 +48,15 @@
                     <div class="row justify-content-center d-flex">
                         <div class="col-lg-4"><label for="Locker Unit Number">Locker Location</label></div>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control locker-unit" value=" Location">
-                        </div>
+                            <input type="text" class="form-control locker-unit location-name" value=" Location">
+                        </div>  
                     </div>
                     <div class="row justify-content-center d-flex">
                         <div class="col-lg-4"><label for="Locker Unit Number">Locker Division</label></div>
                         <div class="col-lg-6">
                             <div class="quantity-field">
                                 <button class="value-button decrease-button" onclick="decreaseValue(this)" title="Azalt"> - </button>
-                                <div class="number">1</div>
+                                <div class="number division-number">1</div>
                                 <button class="value-button increase-button" onclick="increaseValue(this, 10)" title="Arrtır"> + </button>
                             </div>
                             <div class="note">
@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ononclick="fnCreateNewLocker()">Create</button>
+                <button type="button" class="btn btn-primary" ononclick="fnUpdateDivision()">Create</button>
             </div>
         </div>
     </div>

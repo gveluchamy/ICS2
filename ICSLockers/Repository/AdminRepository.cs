@@ -34,6 +34,8 @@ namespace ICSLockers.Repository.IRepository
                             {
                                 DivisionModel division = new()
                                 {
+                                    DivisionNo = i,
+                                    TotalLockers = 5,
                                     LocationId = location.LocationId,
                                     CreatedBy = location.CreatedBy,
                                     ModifiedBy = location.ModifiedBy,
@@ -72,7 +74,7 @@ namespace ICSLockers.Repository.IRepository
             List<LocationModel> locations = _context.Locations.Where(x => !x.IsDeleted).OrderBy(x => x.LocationId).ToList();
             return locations;
         }
-
+            
         public List<DivisionModel> GetDivisionByLocationId(int locationId)
         {
             List<DivisionModel> divisionList = _context.Divisions.Where(x => x.LocationId == locationId).ToList();
@@ -92,6 +94,7 @@ namespace ICSLockers.Repository.IRepository
                     {
                         LockerUnitModel lockerUnit = new()
                         {
+                            
                             DivisionId = division.DivisionId,
                             CreatedBy = division.CreatedBy,
                             ModifiedBy = division.ModifiedBy,
@@ -110,26 +113,28 @@ namespace ICSLockers.Repository.IRepository
            
             return true;
         }
-        public bool UpdateDivision(DivisionModel division)
+        public Tuple<bool, string> UpdateDivisionByDivisionID(DivisionModel division)
         {
+            bool IsSuccess = false;
+            string Result = string.Empty;
             if (division != null)
             {
                 _context.Divisions.Add(division);
                 _context.SaveChanges();
             }
-            return true;
+            return new Tuple<bool, string>(IsSuccess, Result);
         }
 
-        //public List<LockerUnitModel> GetLockerByLocationId(int locationId)
-        //{
-        //    List<DivisionModel> lockerUnits = _context.LockerUnits.Where(x => x.LockerId == locationId).ToList();
-        //    return lockerUnits;
-        //}
+        public List<LockerUnitModel> GetLockerUnitsByDivisionId(int divisionId)
+        {
+            List<LockerUnitModel> lockerUnits = _context.LockerUnits.Where(x => x.DivisionId == divisionId).ToList();
+            return lockerUnits;
+        }
         public bool AddLocker(LockerUnitModel lockerUnit)
         {
             try
             {
-                //_context.LockerUnits.Add(lockerUnit);
+                _context.LockerUnits.Add(lockerUnit);
                 _context.SaveChanges();
                 return true;
             }

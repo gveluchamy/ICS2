@@ -113,6 +113,7 @@ namespace ICSLockers.Repository.IRepository
            
             return true;
         }
+
         public Tuple<bool, string> UpdateDivisionByDivisionID(DivisionModel division)
         {
             bool IsSuccess = false;
@@ -130,6 +131,7 @@ namespace ICSLockers.Repository.IRepository
             List<LockerUnitModel> lockerUnits = _context.LockerUnits.Where(x => x.DivisionId == divisionId).ToList();
             return lockerUnits;
         }
+
         public bool AddLocker(LockerUnitModel lockerUnit)
         {
             try
@@ -142,6 +144,18 @@ namespace ICSLockers.Repository.IRepository
             {
                 return false;
             }
+        }
+
+        public AdminDashboard GetDashBoardDetails()
+        {
+            AdminDashboard dashboard = new()
+            {
+                TotalLocation = _context.Locations.Count(),
+                TotalDivisions = _context.Divisions.Count(),
+                TotalLockers = _context.LockerUnits.Count()
+            };
+
+            return dashboard;
         }
     }
 }

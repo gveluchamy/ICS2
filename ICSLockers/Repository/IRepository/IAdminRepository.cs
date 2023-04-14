@@ -9,5 +9,6 @@ namespace ICSLockers.Repository.IRepository
         Tuple<bool, string> UpdateDivisionByDivisionID(DivisionModel division);
         List<DivisionModel> GetDivisionByLocationId(int locationId);
         List<LockerUnitModel> GetLockerUnitsByDivisionId(int divisionId);
+        AdminDashboard GetDashBoardDetails();
     }
 }

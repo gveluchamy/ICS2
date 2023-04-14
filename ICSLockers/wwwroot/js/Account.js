@@ -169,7 +169,7 @@ function fnAdminLoginMethod (page) {
 
     $.ajax({
         type: 'POST',
-        url: '/Account/Login?returnUrl=' + encodeURIComponent(returnUrls) + '&page=' + page,
+        url: '/Account/Login?returnUrl=' + encodeURIComponent(returnUrls == null ? "/Admin/Dashboard" : returnUrls) + '&page=' + page,
         async: false,
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(loginmodel),

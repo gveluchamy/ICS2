@@ -152,7 +152,9 @@ namespace ICSLockers.Repository.IRepository
             {
                 TotalLocation = _context.Locations.Count(),
                 TotalDivisions = _context.Divisions.Count(),
-                TotalLockers = _context.LockerUnits.Count()
+                TotalLockers = _context.LockerUnits.Count(),
+                LockerUsed = 0,
+                UserList = _context.Users.ToList()
             };
 
             return dashboard;

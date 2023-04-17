@@ -7,14 +7,19 @@
 }
 <div class="container-fluid main locker-unit admin p-0">
     <div class="admin title-bar d-flex">
-        <div class="col-lg-1 p-2 d-flex align-items-center p-0">
-            <a href="/Admin/Location">
-                <h5>Location</h5>
-            </a>
-        </div>        
-        <div class="col-lg-5 p-0 d-flex align-items-center p-0">
-                <h5>Division</h5>
+        <div class="col-lg-6 p-0 d-flex align-items-center">
+            <nav aria-label="breadcrumb bg-white">
+                <ol class="breadcrumb bg-white p-0 m-0">
+                    <li class="breadcrumb-item">
+                        <a href="/Admin/Location">
+                            <h5>Location</h5>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Division</li>
+                </ol>
+            </nav>
         </div>
+        
         <div class="col-lg-6 d-flex justify-content-end p-0">
             <buttton type="button" class="btn btn-outline-primary add-locker" onclick="fnAddNewDivisionPopup()">Add Division</buttton>
             <buttton type="button" class="btn btn-outline-primary update-locker" onclick="fnUpdatePopup()">Update Division</buttton>

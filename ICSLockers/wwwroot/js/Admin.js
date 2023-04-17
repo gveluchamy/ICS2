@@ -192,11 +192,11 @@ function fnUpdatePopup() {
 
 function fnUpdateDivision () {
     debugger;
-    let locationName = $("#UpdateDivisionModal .location-name").val().trim();
-    let totalDivisions = parseInt($("#UpdateDivisionModal .division-number").text());
+    let locationName = $("#AddDivisionModal .location-name").val();
+    let totalDivisions = parseInt($("#AddDivisionModal .division-number").text());
     var locationData = {
-        LocationName: locationName,
-        TotalDivision: totalDivisions,
+        LocationId: locationName,
+        DivisionId: totalDivisions,
         IsDeleted: false,
         CreatedBy: "",
         CreatedOn: new Date(),
@@ -218,11 +218,11 @@ function fnUpdateDivision () {
             } else {
                 toastr.error(response.message, 'Error', { timeOut: 4000 });
             }
-            $("#UpdateDivisionModal").modal("hide");
+            $("#AddDivisionModal").modal("hide");
         },
         error: function (xhr, status, error) {
             toastr.error(response.message, 'Error', { timeOut: 4000 });
-            $("#UpdateDivisionModal").modal("hide");
+            $("#AddDivisionModal").modal("hide");
         }
     });
 }

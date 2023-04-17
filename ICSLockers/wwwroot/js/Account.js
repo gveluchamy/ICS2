@@ -65,8 +65,9 @@ function fnNewUserCreation() {
         DateOfBirth: $(".create-user-form #DateOnly").val(),
         CreatedOn: new Date(),
         CreatedBy: "Admin",
+        Role: $(".Role").val(),
         CheckOutStatus: false,
-        PhoneNumber: $(".create-user-form ").val()
+        PhoneNumber: $(".create-user-form .mobile-no").val()
     };
 
     var isValidated = ValidateUserCreation(JSON.stringify(userCreationModel));

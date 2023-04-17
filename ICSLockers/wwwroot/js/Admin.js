@@ -183,7 +183,11 @@ function fnCreateNewLocation () {
 }
 
 function fnAddNewDivisionPopup () {
-    $("#UpdateDivisionModal").modal("show");
+    $("#AddDivisionModal").modal("show");
+}
+
+function fnUpdatePopup() {
+    $("#UpdateNewDivisionPopup").modal("show");
 }
 
 function fnUpdateDivision () {

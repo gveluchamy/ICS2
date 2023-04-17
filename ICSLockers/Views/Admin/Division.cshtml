@@ -16,7 +16,8 @@
                 <h5>Division</h5>
         </div>
         <div class="col-lg-6 d-flex justify-content-end p-0">
-            <buttton type="button" class="btn btn-outline-primary add-locker" onclick="fnAddNewDivisionPopup()">Update Division</buttton>
+            <buttton type="button" class="btn btn-outline-primary add-locker" onclick="fnAddNewDivisionPopup()">Add Division</buttton>
+            <buttton type="button" class="btn btn-outline-primary update-locker" onclick="fnUpdatePopup()">Update Division</buttton>
         </div>
     </div>
     <div class="content-wrapper">
@@ -37,21 +38,21 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade admin-modal" id="UpdateDivisionModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<div class="modal fade admin-modal" id="AddDivisionModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered locker-add-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center w-100" id="exampleModalLongTitle">Update Division</h5>
+                <h5 class="modal-title text-center w-100" id="exampleModalLongTitle">Add Division</h5>
             </div>
             <div class="modal-body">
                 <div class="col-lg-12">
-                    <div class="row justify-content-center d-flex">
-                        <div class="col-lg-4"><label for="Locker Unit Number">Locker Location</label></div>
+                    <div class="row justify-content-center d-flex fields">
+                        <div class="col-lg-4"><label for="Locker Unit Number">Location Name</label></div>
                         <div class="col-lg-6">
                             <input type="text" class="form-control locker-unit location-name" value=" Location">
                         </div>  
                     </div>
-                    <div class="row justify-content-center d-flex">
+                    <div class="row justify-content-center d-flex fields">
                         <div class="col-lg-4"><label for="Locker Unit Number">Locker Division</label></div>
                         <div class="col-lg-6">
                             <div class="quantity-field">
@@ -61,6 +62,60 @@
                             </div>
                             <div class="note">
                                 <p>*  Maximum 10 divisions per location</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="fnUpdateDivision()">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade admin-modal" id="UpdateNewDivisionPopup" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered locker-add-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center w-100" id="exampleModalLongTitle" onclick="fnAddNewDivisionPopup()">Update Division</h5>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-12">
+                    <div class="row justify-content-center d-flex fields">
+                        <div class="col-lg-4 d-flex align-items-center"><label for="Locker Unit Number">Location Name</label></div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control locker-unit location-name" value=" Location">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center d-flex fields">
+                        <div class="col-lg-4 d-flex align-items-center"><label for="Locker Unit Number">Division Number</label></div>
+                        <div class="col-lg-6">
+                            <select class="form-control location-name form-control-sm">
+                                <option disabled selected>--Select Division--</option>
+                                <option>Divsion 1</option>
+                                <option>Divsion 2</option>
+                                <option>Divsion 3</option>
+                                <option>Divsion 4</option>
+                                <option>Divsion 5</option>
+                                <option>Divsion 6</option>
+                                <option>Divsion 7</option>
+                                <option>Divsion 8</option>
+                                <option>Divsion 9</option>
+                                <option>Divsion 10</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center d-flex fields">
+                        <div class="col-lg-4 d-flex align-items-center"><label for="Locker Unit Number">Locker Division</label></div>
+                        <div class="col-lg-6">
+                            <div class="quantity-field">
+                                <button class="value-button decrease-button" onclick="decreaseValue(this)" title="Azalt"> - </button>
+                                <div class="number division-number">1</div>
+                                <button class="value-button increase-button" onclick="increaseValue(this, 10)" title="Arrtır"> + </button>
+                            </div>
+                            <div class="note">
+                                <p>*  Maximum 500 Lockers per division</p>
                             </div>
                         </div>
                     </div>

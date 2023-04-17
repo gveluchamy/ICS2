@@ -53,7 +53,7 @@ function fnLogoutMethod() {
 }
 
 function fnNewUserCreation() {
-
+    debugger;
     var userCreationModel = {
         UserName: $(".create-user-form .first-name").val().trim() + "-" + $(".create-user-form .last-name").val().trim(),
         Email: $(".create-user-form .email-id").val(),
@@ -62,7 +62,7 @@ function fnNewUserCreation() {
         SSN: parseInt($(".create-user-form .ssn").val()),
         PasswordEnc: "password123",
         LockerUnit:null,   //$(".create-user-form .locker-unit").val(),
-        DateOfBirth: $("#Date_only").val(),
+        DateOfBirth: $(".create-user-form #DateOnly").val(),
         CreatedOn: new Date(),
         CreatedBy: "Admin",
         CheckOutStatus: false,

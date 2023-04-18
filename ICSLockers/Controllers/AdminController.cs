@@ -174,5 +174,12 @@ namespace ICSLockers.Controllers
             List<ApplicationUser> users = _adminRepository.GetAllUsers();
             return View(users);
         }
+        public IActionResult UserLockerRecords()
+        {
+
+              
+            return View();
+        }
+
     }
 }

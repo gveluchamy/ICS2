@@ -1,0 +1,46 @@
+﻿@model List<UserEvent>
+@using ICSLockers.Models
+@{
+    ViewData["Title"] = "LockerRecords";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid main p-0">
+    <div class="title-bar">
+        <h5>LockerRecords</h5>
+    </div>
+
+    <div class="container" id="LockerRecords">
+        <div class="content-wrapper">
+            <table id="UserReportTable" class="table table-bordered:1px">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Event Type</th>
+                        <th>Event Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ev in Model)
+                    {
+                        <tr>
+                            <td>@ev.UserId</td>
+                            <td>@ev.Username</td>
+                            <td>@ev.Role</td>
+                            <td>@ev.EventType</td>
+                            <td>@ev.EventTime</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

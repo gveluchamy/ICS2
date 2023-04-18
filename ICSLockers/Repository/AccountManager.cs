@@ -11,20 +11,66 @@ namespace ICSLockers.Repository
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-        public AccountManager(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public AccountManager(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
-        public async Task<IdentityResult> CreateNewUserAsync(ApplicationUser applicationUser)
+        public async Task<IdentityResult> CreateNewUserAsync(RegistrationModel model)
         {
-            string password = AccountHelper.CreatePassword(applicationUser);
-            applicationUser.PasswordEnc = password;
+            var status = new IdentityResult();
+            var userExists = await _userManager.FindByNameAsync(model.UserName);
+            if (userExists != null)
+            {                
+               
+                return status;
+            }
+           
+            ApplicationUser user = new ApplicationUser()
+            {
+                Email = model.Email,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                PhoneNumber = model.PhoneNumber,
+                DateOfBirth = model.DateOfBirth,
+                UserName = model.UserName,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                EmailConfirmed = false,
+                PhoneNumberConfirmed =false,
+                PasswordEnc = AccountHelper.CreatePassword(model)
+        };
+           
+            try
+            {
+                var result = await _userManager.CreateAsync(user, user.PasswordEnc);
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
+            var RoleName = _roleManager.Roles.FirstOrDefault(x => x.Id == model.Role).Name;
+            if (!await _roleManager.RoleExistsAsync(RoleName))
+                await _roleManager.CreateAsync(new IdentityRole(model.Role));
 
-            IdentityResult userResult = await _userManager.CreateAsync(applicationUser, password);
 
-            return userResult;
+            if (await _roleManager.RoleExistsAsync(RoleName))
+            {
+
+                await  _userManager.AddToRoleAsync(user, RoleName);
+            }          
+            
+            return status;
+            //string password = AccountHelper.CreatePassword(applicationUser);
+            //applicationUser.PasswordEnc = password;
+
+            //IdentityResult userResult = await _userManager.CreateAsync(applicationUser, password);
+
+            //return userResult;
         }
 
         public ApplicationUser? FindUserByPassword(string password)

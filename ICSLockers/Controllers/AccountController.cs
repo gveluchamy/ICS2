@@ -80,9 +80,9 @@ namespace ICSLockers.Controllers
             return RedirectToAction("Index", "Home");
         }
         [HttpPost]
-        public async Task<IActionResult> CreateNewUser([FromBody] ApplicationUser model)
+        public async Task<IActionResult> CreateNewUser([FromBody] RegistrationModel model)
         {
-
+            var user = await _userManager.FindByIdAsync(model.Id);
             IdentityResult userCreationStatus = await _accountManager.CreateNewUserAsync(model);
             if (userCreationStatus.Succeeded)
             {

@@ -4,7 +4,7 @@ namespace ICSLockers.Helpers
 {
     public class AccountHelper
     {
-        public static string CreatePassword(ApplicationUser user)
+        public static string CreatePassword(RegistrationModel user)
         {
             string password = string.Empty;
 

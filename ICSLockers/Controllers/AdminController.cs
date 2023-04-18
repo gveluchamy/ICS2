@@ -130,7 +130,7 @@ namespace ICSLockers.Controllers
                 return Json(new { success = false, message = $"Location Model is null" });
             }
         }
-
+                    
         public async Task<IActionResult> UpdateLocker([FromBody] LockerUnitModel lockerUnit)
         {
             if (lockerUnit != null)
@@ -156,7 +156,7 @@ namespace ICSLockers.Controllers
 
         public IActionResult LockerUnits(int DivisionId)
         {
-            List<LockerUnitModel> lockerUnits = _adminRepository.GetLockerUnitsByDivisionId(DivisionId);
+            List<LockerUnitModel> lockerUnits = _adminRepository.GetLockerUnitsByDivisionId(DivisionId).ToList();
             if (lockerUnits == null)
             {
                 return NotFound();

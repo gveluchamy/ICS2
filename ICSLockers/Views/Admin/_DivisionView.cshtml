@@ -11,7 +11,7 @@
         <h6>Location: <span>@Model.LocationId</span></h6>
     </div>
     <div class="d-flex justify-content-end location-btn">
-        <button class="btn available" onclick="location.href='@Url.Action("LockerUnits", "Admin")'">
+        <button class="btn available" onclick="location.href='@Url.Action("LockerUnits", "Admin", new { divisionId = Model.DivisionId })'" data-value="@Model.DivisionId" )'">
         Available
         </button>
     </div>

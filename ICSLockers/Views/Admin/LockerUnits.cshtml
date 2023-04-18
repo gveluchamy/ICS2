@@ -5,47 +5,48 @@
     ViewData["Title"] = "LockerUnits";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<div class="container-fluid main lockers">
+<div class="container-fluid main lockers p-0">
     <div class="admin title-bar d-flex">
-        <div class="col-lg-1 p-0 d-flex align-items-center p-0">
-            <a href="/Admin/Location">
-                <h5>Location</h5>
-            </a>
-        </div>
-        <div class="col-lg-1 p-0 d-flex align-items-center p-0">
-            <a href="/Admin/Division?locationId=1">
-                <h5>Division</h5>
-            </a>
-        </div>
-        <div class="col-lg-5 p-0 d-flex align-items-center p-0">
-            <h5>Locker Units</h5>
-        </div>
-        <div class="col-lg-5 d-flex justify-content-end">
-            <buttton type="button" class="btn btn-outline-primary add-locker" data-toggle="modal"
-                     data-target="#exampleModalCenter">Update Lockers</buttton>
+        <div class="col-lg-6 p-0 d-flex align-items-center">
+            <nav aria-label="breadcrumb bg-white">
+                <ol class="breadcrumb bg-white p-0 m-0">
+                    <li class="breadcrumb-item">
+                        <a href="/Admin/Location d-flex">
+                            <h5>Location</h5>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item d-flex">
+                        <a href="/Admin/Division?locationId=1">
+                            <h5>Divisions</h5>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Locker Units</li>
+                </ol>
+            </nav>
         </div>
     </div>
     <div class="content-wrapper">
         <div class="passcode d-flex align-items-center text-center">
-
             <div class="col-lg-12 p-0">
+                <div class="col-lg-12 p-0 d-flex justify-content-end position-relative mb-4">
+                    <div class="col-lg-6 p-0 d-flex justify-content-start align-items-center position-relative">
+                        <label class="form-label d-flex align-items-center  m-0">Filter</label>
+                        <select class="form-control col-lg-4 location-name filter ml-2">
+                            <option>All</option>
+                            <option>Available lockers</option>
+                            <option>Not-available lockers</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6 p-0 d-flex justify-content-end position-relative">
+                        <input type="search" class="form-control location-search" placeholder="Search" />
+                        <img src="~/images/png/search.png" class="search-btn" alt="search">
+                    </div>
+                </div>
                 <div class="grid">
-                   
                     @foreach(LockerUnitModel lockerUnit in Model)
                     {
                         <partial name="_Units" model="lockerUnit" />
-                    }
-                    <div class="locker not-available">
-                        <div class="d-flex align-items-center locker-detail">
-                            <div class="count">2</div>
-                            <div class="user-name">Stephen Edwards</div>
-                        </div>
-                        <div class="locker-condition flex-column d-flex align-items-center">
-                            <img src="~/images/png/available.png" alt="" class="success">
-                            <img src="~/images/png/not-available.png" alt="" class="danger">
-                            <span>Locker in use</span>
-                        </div>
-                    </div>                                      
+                    }                                                        
                 </div>
             </div>
         </div>

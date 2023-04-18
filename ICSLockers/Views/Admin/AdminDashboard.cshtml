@@ -32,7 +32,7 @@
                             <h1 class="text-left">@Model.TotalLocation</h1>
                         </div>
                         <div class="col-lg-4 p-0">
-                            <img src="~/images/png/location.png" alt="" class="dashboard-icon">
+                            <img src="~/images/png/locker(1).png" alt="" class="dashboard-icon">
                         </div>
                     </div>
                     <div class="locker-unit d-flex">
@@ -41,7 +41,7 @@
                             <h1 class="text-left">@Model.TotalDivisions</h1>
                         </div>
                         <div class="col-lg-4 p-0">
-                            <img src="~/images/png/locker(1).png" alt="" class="dashboard-icon">
+                            <img src="~/images/png/secure.png" alt="" class="dashboard-icon">
                         </div>
                     </div>
                      <div class="locker-unit d-flex">
@@ -51,6 +51,15 @@
                         </div>
                         <div class="col-lg-4 p-0">
                             <img src="~/images/png/secure.png" alt="" class="dashboard-icon">
+                        </div>
+                    </div>                    
+                    <div class="locker-unit d-flex">
+                        <div class="col-lg-8 p-0">
+                            <h5 class="text-left">Total Admin</h5>
+                            <h1 class="text-left">@Model.UserList.Count()</h1>
+                        </div>
+                        <div class="col-lg-4 p-0">
+                            <img src="~/images/png/employee.png" alt="" class="dashboard-icon">
                         </div>
                     </div>
                     <div class="locker-unit d-flex">
@@ -77,69 +86,10 @@
                         <div class="chart-title">
                             <h5>Locker usage</h5>
                         </div>
-                        <div class="chart">
-                            <canvas id="myChart" style="float: left;width:100%;max-width:600px;"></canvas>
-                            
+                        <div class="chart" style="height: 300px">
+                            <canvas id="myChart" style="width:100%;max-width:600px;margin-top: 30%;"></canvas>
                         </div>
-                    </div>
-                    <div class="user-table">
-                        <div class="table-title">
-                            <h5>Users Details</h5>
-                        </div>
-                        <div class="line-chart">
-                            
-                        </div>
-                        <div class="tab">
-                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="pills-home-tab"
-                                            data-bs-toggle="pill" data-bs-target="#pills-home" type="button"
-                                            role="tab" aria-controls="pills-home"
-                                            aria-selected="true">
-                                        Staff
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                            data-bs-target="#pills-profile" type="button" role="tab"
-                                            aria-controls="pills-profile" aria-selected="false">
-                                        User
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                            data-bs-target="#pills-contact" type="button" role="tab"
-                                            aria-controls="pills-contact" aria-selected="false">
-                                        Admin
-                                    </button>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                                     aria-labelledby="pills-home-tab">
-                                    <div class="col-lg-12 p-0 employee-table">
-                                        <button class="add-user btn btn-primary">Create User</button>
-                                        
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                                     aria-labelledby="pills-profile-tab">
-                                    <div class="col-lg-12 p-0 employee-table">
-                                        <button class="add-user btn btn-primary">Create Staff</button>
-                                        
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="pills-contact" role="tabpanel"
-                                     aria-labelledby="pills-contact-tab">
-                                    <div class="col-lg-12 p-0 employee-table">
-                                        <button class="add-user btn btn-primary">Create Admin</button>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                    </div>               
                 </div>
             </div>
         </div>
@@ -157,8 +107,8 @@
     var xValues = [ "Available Lockers", "Used Lockers" ];
     var yValues = [ freeLockers, usedLockers ];
     var barColors = [
-        "#D9D9D9",
-        "#2B4889"
+        "#b2cbea",
+        "#014efb"
     ];
 
     // Global Options:
@@ -166,7 +116,6 @@
     Chart.defaults.global.defaultFontSize = 16;
 
     var data = {
-
         labels: xValues,
         datasets: [
             {
@@ -196,13 +145,13 @@
                 fontSize: 16
             }
         },
-        rotation: -0.5 * Math.PI
+        rotation: -0.7 * Math.PI
     }
 
 
     // Chart declaration:
     var myBarChart = new Chart(ctx, {
-        type: 'doughnut',
+        type: 'pie',
         data: data,
         options: options
     });
@@ -218,8 +167,4 @@
             }
         });
     });
-
-
-   
-    
 </script>

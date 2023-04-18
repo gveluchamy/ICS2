@@ -56,7 +56,7 @@
                     <div class="locker-unit d-flex">
                         <div class="col-lg-8 p-0">
                             <h5 class="text-left">Total Admin</h5>
-                            <h1 class="text-left">@Model.UserList.Count()</h1>
+                            <h1 class="text-left">@Model.UserList?? 0 : @Model.UserList?.Count()</h1>
                         </div>
                         <div class="col-lg-4 p-0">
                             <img src="~/images/png/employee.png" alt="" class="dashboard-icon">
@@ -65,7 +65,7 @@
                     <div class="locker-unit d-flex">
                         <div class="col-lg-8 p-0">
                             <h5 class="text-left">Total Staffs</h5>
-                            <h1 class="text-left">@Model.UserList.Count()</h1>
+                            <h1 class="text-left">@Model.UserList?? 0 : @Model.UserList?.Count()</h1>
                         </div>
                         <div class="col-lg-4 p-0">
                             <img src="~/images/png/employee.png" alt="" class="dashboard-icon">
@@ -74,7 +74,7 @@
                     <div class="locker-unit d-flex">
                         <div class="col-lg-8 p-0">
                             <h5 class="text-left">Total Users</h5>
-                            <h1 class="text-left">@Model.UserList.Count()</h1>
+                            <h1 class="text-left">@Model.UserList?? 0 : @Model.UserList?.Count()</h1>
                         </div>
                         <div class="col-lg-4 p-0">
                             <img src="~/images/png/avatar.png" alt="" class="dashboard-icon">

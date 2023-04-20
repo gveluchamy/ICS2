@@ -61,7 +61,7 @@ function fnNewUserCreation() {
         LastName: $(".create-user-form .last-name").val().trim(),
         SSN: parseInt($(".create-user-form .ssn").val()),
         PasswordEnc: "password123",
-        LockerUnit:null,   //$(".create-user-form .locker-unit").val(),
+        LockerId:null,   //$(".create-user-form .locker-unit").val(),
         DateOfBirth: $(".create-user-form #DateOnly").val(),
         CreatedOn: new Date(),
         CreatedBy: "Admin",

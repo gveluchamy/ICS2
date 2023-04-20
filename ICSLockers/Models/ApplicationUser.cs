@@ -24,12 +24,14 @@ namespace ICSLockers.Models
         public string? PasswordEnc { get; set; }
         [Required]       
         [Column(TypeName = "date")]
-        public DateTime DateOfBirth { get; set; }
-        public int LockerUnitId { get; set; }
-        public int LockerDetailId { get; set; }
+        public DateTime DateOfBirth { get; set; }        
+        public int? LocationId { get; set; }
+        public int? DivisionId { get; set; }
+        public int? LockerId { get; set; }
         public DateTime CreatedOn { get; set; }
         public string? CreatedBy { get; set; }
         public bool CheckOutStatus { get; set; }
-      
+        public List<UserEvent> Events { get; set; }
+        
     }
 }

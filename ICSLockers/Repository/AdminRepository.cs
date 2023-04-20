@@ -1,5 +1,6 @@
 ﻿using ICSLockers.Data;
 using ICSLockers.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -119,7 +120,7 @@ namespace ICSLockers.Repository.IRepository
             bool IsSuccess = false;
             string Result = string.Empty;
             if (division != null)
-            {
+            { 
                 _context.Divisions.Add(division);
                 _context.SaveChanges();
             }
@@ -173,8 +174,13 @@ namespace ICSLockers.Repository.IRepository
 
         public List<ApplicationUser> GetAllUsers()
         {
-            List<ApplicationUser> users = _context.Users.ToList();
+            List<ApplicationUser> users = _context.Users.ToList();  
             return users;
         }
+        public List<UserEvent> GetUserEventdetails()
+        {
+            List<UserEvent> logs = _context.UserEvents.Where(x => x.Id == 1).ToList();
+            return logs;
+        }        
     }
 }

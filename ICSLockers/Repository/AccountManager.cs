@@ -24,47 +24,48 @@ namespace ICSLockers.Repository
             var status = new IdentityResult();
             var userExists = await _userManager.FindByNameAsync(model.UserName);
             if (userExists != null)
-            {                
-               
+            {
+
                 return status;
             }
-           
+
             ApplicationUser user = new ApplicationUser()
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
                 PhoneNumber = model.PhoneNumber,
                 DateOfBirth = model.DateOfBirth,
-                UserName = model.UserName,
+                SSN=model.SSN,
+                UserName = model.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 EmailConfirmed = false,
-                PhoneNumberConfirmed =false,
-                PasswordEnc = AccountHelper.CreatePassword(model)
-        };
-           
+                PhoneNumberConfirmed = false,
+                PasswordEnc = AccountHelper.CreatePassword(model),
+                CheckOutStatus=false
+            };
+
             try
             {
                 var result = await _userManager.CreateAsync(user, user.PasswordEnc);
-                
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            
-            var RoleName = _roleManager.Roles.FirstOrDefault(x => x.Id == model.Role).Name;
-            if (!await _roleManager.RoleExistsAsync(RoleName))
-                await _roleManager.CreateAsync(new IdentityRole(model.Role));
 
+            var RoleName = _roleManager.Roles.FirstOrDefault(x => x.Id.Equals( model.Role)).Name;
+            //if (!await _roleManager.RoleExistsAsync(RoleName))
+            //    await _roleManager.CreateAsync(new IdentityRole(model.Role));
 
             if (await _roleManager.RoleExistsAsync(RoleName))
             {
 
-                await  _userManager.AddToRoleAsync(user, RoleName);
-            }          
+               await _userManager.AddToRoleAsync(user, RoleName);
+            }
             
-            return status;
+            return IdentityResult.Success;
             //string password = AccountHelper.CreatePassword(applicationUser);
             //applicationUser.PasswordEnc = password;
 
@@ -75,30 +76,48 @@ namespace ICSLockers.Repository
 
         public ApplicationUser? FindUserByPassword(string password)
         {
-            ApplicationUser? user = _userManager.Users?.FirstOrDefault(x=> password.Equals(x.PasswordEnc));
+            ApplicationUser? user = _userManager.Users?.FirstOrDefault(x => password.Equals(x.PasswordEnc));
             return user;
         }
 
         public ApplicationUser? FindUserByEmail(string email)
         {
-            ApplicationUser? user = _userManager.Users?.FirstOrDefault(x => email.Equals(x.Email));
-            return user;
+            try
+            {
+                ApplicationUser? user = _userManager.Users?.FirstOrDefault(x => email.Equals(x.Email));
+                return user;
+            }
+            catch( Exception ex)
+            { 
+                Console.WriteLine(ex);
+                return null;
+            }
+
         }
+           
+
         public async Task LogUserEventAsync(ApplicationUser user, bool isLogin)
         {
-
-            var loginEvent = new UserEvent
+            
+            try
             {
-                UserId = user.Id,
-                Username = user.UserName,
-                Role = null,
-                EventType = isLogin ? UserEventType.Login : UserEventType.Logout,
-                EventTime = DateTime.UtcNow
-            };
+                UserEvent loginEvent = new UserEvent
+                {
+                    UserId = user.Id,
+                    Username = user.UserName,
+                    Role = null,
+                    EventType = isLogin ? UserEventType.Login : UserEventType.Logout,
+                    EventTime = DateTime.UtcNow
+                };
 
 
-            _context.UserEvents.Add(loginEvent);
-            await _context.SaveChangesAsync();
+                _context.UserEvents.Add(loginEvent);
+                _context.SaveChanges();
+            }
+            catch ( Exception ex )
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }

@@ -172,13 +172,20 @@ namespace ICSLockers.Controllers
                 return LocalRedirect("~/Admin/AdminLogin");
             }
             List<ApplicationUser> users = _adminRepository.GetAllUsers();
+            //UserLogs();
             return View(users);
         }
         public IActionResult UserLockerRecords()
         {
-
-              
             return View();
+        }
+        [HttpGet]
+        public IActionResult UserLogs()
+        {
+            List<UserEvent> userEvents = _adminRepository.GetUserEventdetails();
+            ViewBag.User = userEvents; 
+            return View(userEvents);
+
         }
 
     }

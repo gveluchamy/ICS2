@@ -9,7 +9,7 @@ namespace ICSLockers.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
-        {
+            {
 
         }
         protected override void OnModelCreating(ModelBuilder builder)
@@ -38,8 +38,9 @@ namespace ICSLockers.Data
                 SSN = 987654311,
                 CheckOutStatus = false,
                 PasswordEnc = "IL11",
-                LockerUnitId = 0,
-                LockerDetailId = 0,
+                LocationId =0,
+                LockerId = 0,
+                DivisionId = 0,
             };
 
             PasswordHasher<ApplicationUser> passwordHasher = new PasswordHasher<ApplicationUser>();
@@ -56,7 +57,7 @@ namespace ICSLockers.Data
                 new IdentityRole { Id = "865d7c89-436d-43a3-946b-f36896d64ccf", Name = "User", ConcurrencyStamp = "3", NormalizedName = "User" }
             );
         }
-
+            
         private static void SeedUserRoles(ModelBuilder builder)
         {
             builder.Entity<IdentityUserRole<string>>().HasData(

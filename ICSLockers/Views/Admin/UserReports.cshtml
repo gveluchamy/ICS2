@@ -51,6 +51,33 @@
                              aria-labelledby="pills-home-tab">
                             <div class="col-lg-12 p-0 employee-table">
                                 <button class="add-user btn btn-primary" onclick="location.href='@Url.Action("Index", "Admin")'">Create Staff</button>
+                                <table id="StaffReportTable" class="table table-hover emp-table">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>FirstName</th>
+                                            <th>LastName</th>
+                                            <th>Locker</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            int n = 1;
+                                            @foreach (ApplicationUser user in Model)
+                                            {
+                                                <tr>
+                                                    <td>@n</td>
+                                                    <td>@user.FirstName</td>
+                                                    <td>@user.LastName</td>
+                                                    <td>@user.LockerId</td>
+                                                    <td>@user.Email</td>
+                                                </tr>
+                                                n++;
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
 
                             </div>
                         </div>
@@ -146,7 +173,7 @@
                                     </thead>
                                     <tbody>
                                         @{
-                                            int n = 1;
+                                            int i = 1;
                                             @foreach (ApplicationUser user in Model)
                                             {
                                                 <tr>
@@ -156,7 +183,7 @@
                                                     <td>@user.LockerId</td>
                                                     <td>@user.Email</td>
                                                 </tr>
-                                                n++;
+                                                i++;
                                             }
                                         }
                                     </tbody>

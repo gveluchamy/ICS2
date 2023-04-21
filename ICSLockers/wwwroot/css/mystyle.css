@@ -95,6 +95,7 @@ th {
 }
 
     .menu-landing > .container-fluid {
+
         height: 100vh;
     }
 
@@ -218,6 +219,9 @@ a {
         height: 32px;
     }
 
+.menu-landing > .container-fluid {
+    height: 100vh;
+} 
 .user-menu {
     display: flex;
     align-items: center;
@@ -1825,6 +1829,173 @@ select.filter {
     box-shadow: none;
     opacity: 1 !important;
 }
+
+/* profile */
+.users-profile {
+    width: 100%;
+    max-width: 900px;
+    background: #FFFFFF;
+    border: 2px solid rgba(0, 0, 0, 0.025);
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+    margin: 0 auto;
+}
+
+    .users-profile .user-name {
+        margin-left: 25px;
+    }
+
+        .users-profile .user-name h5 {
+            margin: 0;
+            font-size: 24px;
+            line-height: 29px;
+            color: #555555;
+        }
+
+    .users-profile .profile-number {
+        padding: 15px 12px 0px 12px;
+        border: 2px solid #004DFC;
+        border-radius: 20px;
+    }
+
+        .users-profile .profile-number h1 {
+            font-size: 36px;
+            line-height: 43px;
+            color: #004DFC;
+        }
+
+    .users-profile .profile-header {
+        border-bottom: 2px solid rgba(0, 0, 0, 0.025);
+        padding: 20px 40px;
+    }
+
+    .users-profile .user-remove-btn {
+        border: 1px solid #D12B28;
+        border-radius: 5px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #D12B28;
+        padding: 7px 20px;
+        cursor: pointer;
+    }
+
+        .users-profile .user-remove-btn:hover {
+            color: #fff;
+            background-color: #D12B28;
+        }
+
+    .users-profile .profile-body {
+        padding: 25px;
+        max-width: 550px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+        .users-profile .profile-body label {
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 29px;
+            color: #555555;
+            margin-bottom: 20px;
+        }
+
+        .users-profile .profile-body h5 {
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 29px;
+            color: #2B4889;
+            text-align: left;
+        }
+
+    .users-profile .profile-footer {
+        border-top: 2px solid rgba(0, 0, 0, 0.025);
+        padding: 20px 40px;
+    }
+
+        .users-profile .profile-footer .btn {
+            border-radius: 30px;
+            padding: 5px 45px;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 24px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+        }
+
+        .users-profile .profile-footer .add-item {
+            background: linear-gradient(180deg, #69E772 0%, #68D270 100%);
+            border: 2px solid #68D270;
+        }
+
+            .users-profile .profile-footer .add-item:active {
+                background: linear-gradient(180deg, #68D270 0%, #69E772 100%);
+            }
+
+        .users-profile .profile-footer .remove-item {
+            background: linear-gradient(180deg, #FC7C7C 0%, #F2302D 100%);
+            border: 2px solid #F2302D;
+        }
+
+            .users-profile .profile-footer .remove-item:active {
+                background: linear-gradient(180deg, #F2302D 0%, #FC7C7C 100%);
+            }
+
+        .users-profile .profile-footer .lock-locker {
+            background: linear-gradient(180deg, #587AC7 0%, #2B4889 100%);
+            border: 2px solid #2B4889;
+        }
+
+            .users-profile .profile-footer .lock-locker:active {
+                background: linear-gradient(180deg, #2B4889 0%, #587AC7 100%);
+            }
+
+.user-remove .modal-content {
+    border-radius: 15px;
+    max-width: 616px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.user-remove h5 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #2B4889;
+}
+
+.user-remove .btn-outline-primary {
+    border: 2px solid #2B4889;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #2B4889;
+    padding: 10px 80px;
+}
+
+    .user-remove .btn-outline-primary:hover {
+        color: #fff;
+        background-color: #2B4889;
+    }
+
+.user-remove .btn-outline-danger {
+    background: #F2302D;
+    border: 2px solid #D12B28;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    padding: 10px 80px;
+}   
 @media screen and (max-width: 1600px) {
     .location .location-count h5 {
         font-size: 14px;

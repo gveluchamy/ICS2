@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Admin Login";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid main">
+    <div class="title-bar">
+        <h5> Staff Login</h5>
+    </div>
+    <div class="content-wrapper">
+        <div class="passcode d-flex align-items-center text-center">
+            <div class="main-heading">
+                <h5>Staff Login</h5>
+                <p>ICS Login</p>
+            </div>
+            <div class="login-card">
+                <h5>Enter Your Staff ID</h5>
+                <input type="text" class="form-control user-passcode">
+                <h5>Enter Your password</h5>
+                <input type="password" class="form-control user-passcode">
+
+                <button type="submit" class="btn btn-danger login">Login</button>
+            </div>
+
+            <div class="note">
+                <p>* Enter your Staff ID to continue</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Staff.js"></script>

@@ -2,6 +2,7 @@
 using ICSLockers.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ICSLockers.Repository.IRepository
@@ -9,9 +10,11 @@ namespace ICSLockers.Repository.IRepository
     public class AdminRepository : IAdminRepository
     {
         private readonly ApplicationDbContext _context;
-        public AdminRepository(ApplicationDbContext context)
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public AdminRepository(ApplicationDbContext context, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
+            _roleManager = roleManager;
         }
 
         public Tuple<bool, string> AddLocation(LocationModel location)

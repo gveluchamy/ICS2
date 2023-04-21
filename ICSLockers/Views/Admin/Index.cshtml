@@ -6,8 +6,15 @@
 @model IdentityRole
 
 @{
+
     ViewData["Title"] = "Location";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }
 <div class="container-fluid main p-0">
     <div class="title-bar">

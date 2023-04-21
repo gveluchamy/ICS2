@@ -38,6 +38,13 @@
                                 Session
                             </button>
                         </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-admin-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-admin" type="button" role="tab"
+                                    aria-controls="pills-admin" aria-selected="false">
+                                Admin
+                            </button>
+                        </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
@@ -50,8 +57,42 @@
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                              aria-labelledby="pills-profile-tab">
                             <div class="col-lg-12 p-0 employee-table">
-                                <button class="add-user btn btn-primary" onclick="location.href='@Url.Action("Index", "Admin")'">Create User</button>
+                                @*<button class="add-user btn btn-primary" onclick="location.href='@Url.Action("Index", "Admin")'">Create User</button>*@
                                 <table id="UserReportTable" class="table table-hover emp-table">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>FirstName</th>
+                                            <th>LastName</th>
+                                            <th>Locker</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            int count = 1;
+                                            @foreach (ApplicationUser user in Model)
+                                            {
+
+                                                <tr>
+                                                    <td>@count</td>
+                                                    <td>@user.FirstName</td>
+                                                    <td>@user.LastName</td>
+                                                    <td>@user.LockerId</td>
+                                                    <td>@user.Email</td>
+                                                </tr>
+                                                count++;
+
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel"
+                             aria-labelledby="pills-contact-tab">
+                            <div class="col-lg-12 p-0 employee-table">
+                                <table id="sessiontable" class="table table-hover emp-table">
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
@@ -63,32 +104,69 @@
                                     </thead>
                                     <tbody>
                                         @{
-                                            int count = 1;
+
+                                            @foreach (ApplicationUser Event in Model)
+                                            {
+                                                //int Sno = 1;
+                                                //@if(Event.Events.Count>0){
+                                                //    @foreach (UserEvent Event1 in Event.Events)
+                                                //    {
+
+                                                //        <tr>
+                                                //            <td>@Sno</td>
+                                                //            <td>@Event1.Username</td>
+                                                //            <td>@Event1.Role</td>
+                                                //            <td>@Event1.EventType</td>
+                                                //            <td>@Event1.EventTime</td>
+                                                //        </tr>
+                                                //        Sno++;
+                                                //    }
+                                                //}
+
+                                            }
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show active" id="pills-admin" role="tabpanel"
+                             aria-labelledby="pills-admin-tab">
+                            <div class="col-lg-12 p-0 employee-table">
+                                <button class="add-user btn btn-primary" onclick="location.href='@Url.Action("Index", "Admin")'">Create Admin</button>
+                                <table id="AdminReportTable" class="table table-hover emp-table">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>FirstName</th>
+                                            <th>LastName</th>
+                                            <th>Locker</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            int n = 1;
                                             @foreach (ApplicationUser user in Model)
                                             {
                                                 <tr>
-                                                    <td>@count</td>
+                                                    <td>@n</td>
                                                     <td>@user.FirstName</td>
                                                     <td>@user.LastName</td>
-                                                    <td>@user.LockerUnitId</td>
-                                                    <td>@user.PasswordEnc</td>
+                                                    <td>@user.LockerId</td>
+                                                    <td>@user.Email</td>
                                                 </tr>
-                                                count++;
+                                                n++;
                                             }
                                         }
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="pills-contact" role="tabpanel"
-                             aria-labelledby="pills-contact-tab">
-                            <div class="col-lg-12 p-0 employee-table">
-                            </div>
-                        </div>
                     </div>
 
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 </div>

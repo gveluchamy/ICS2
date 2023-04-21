@@ -94,43 +94,71 @@
         font-size: 32px;
     }
     .create-user .create-user-form .submit {
-        height: 75px;
-        font-size: 24px;
+        height: auto;
+        font-size: 22px;
     }
     .lockers .locker .user-name{
         margin-left: 10px;
         font-size: 22px;
     }
     .lockers .locker-condition {
-        padding: 25px;
+        padding: 15px;
     }
     .lockers .locker .count {
-        font-size: 30px;
+        font-size: 26px;
         line-height: 42px;
-        padding: 8px 20px;
+        padding: 8px 15px;
         padding-bottom: 5px;
+        border-radius: 15px;
+    }
+    .dashboard .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .create-user .create-user-form input{
+        height: auto;
+        font-size: 18px;
+    }
+    .passcode .login-card h5{
+        font-size: 18px;
+    }
+    .admin .title-bar, .admin.title-bar {
+        padding: 15px 20px;
+    }
+    .admin-modal .modal-body {
+        padding-top: 20px;
     }
     .admin-modal .btn {
         font-size: 24px;
-        height: 80px;
-        max-width: 400px;
-        padding: 18px 70px;
+        height: 60px;
+        max-width: 350px;
+        padding: 15px 70px;
     }
     .passcode .login-card .form-control.user-email {
         font-size: 25px !important;
         padding: 15px 20px;
     }
-    .passcode .login-card h5, .admin-modal label {
-        font-size: 20px;
-    }
-    .create-user .create-user-form input {
+    .passcode .login-card h5, .admin-modal label, input.locker-unit, input.location-name, select.location-name {
         font-size: 18px;
-        height: 45px;
     }
+    input.locker-unit, input.location-name, select.location-name {
+        padding: 5px 30px 6px 30px;
+    }
+        
+        .create-user .create-user-form input {
+            font-size: 18px;
+            height: 45px;
+        }
     .main-heading h5{
         font-size: 22px;
     }
-    .dashboard .locker-unit h5{
+    .create-user .create-user-form{
+        padding: 40px 150px;
+    }
+    .admin-modal .btn:hover {
+        border-width: 2px;
+        padding: 15px 70px;
+    }
+    .dashboard .locker-unit h5 {
         font-size: 18px;
     }
     .dashboard .locker-unit h1{
@@ -141,14 +169,14 @@
         padding-top: 30px;
     }
     .admin-modal .modal-content{
-        padding-bottom: 30px;
+        padding-bottom: 20px;
     }
     .passcode .login-card .login {
         font-size: 24px;
         line-height: 36px;
     }
     .lockers .locker-detail {
-        padding: 25px 30px;
+        padding: 13px 20px;
     }
     .passcode {
         padding-top: 50px;

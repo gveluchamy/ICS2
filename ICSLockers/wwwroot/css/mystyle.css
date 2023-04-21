@@ -853,6 +853,7 @@ a {
 
 .create-user .create-user-form {
     max-width: 1047px;
+    width: 100%;
     padding: 50px 174px;
 }
 
@@ -915,8 +916,10 @@ input::-webkit-inner-spin-button {
 .form-error #error {
     display: block;
     color: red;
-    text-align: left;
-    font-size: 12px;
+    text-align: center;
+    font-size: 14px;
+    margin-left: 20px;
+    margin-top: 10px;
 }
 
 #error {

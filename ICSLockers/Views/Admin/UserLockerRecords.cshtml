@@ -23,15 +23,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var ev in Model)
+                    @if (Model != null)
                     {
-                        <tr>
-                            <td>@ev.UserId</td>
-                            <td>@ev.Username</td>
-                            <td>@ev.Role</td>
-                            <td>@ev.EventType</td>
-                            <td>@ev.EventTime</td>
-                        </tr>
+                        @foreach (var ev in Model)
+                        {
+                            <tr>
+                                <td>@ev.UserId</td>
+                                <td>@ev.Username</td>
+                                <td>@ev.Role</td>
+                                <td>@ev.EventType</td>
+                                <td>@ev.EventTime</td>
+                            </tr>
+                        }
                     }
                 </tbody>
             </table>

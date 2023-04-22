@@ -225,7 +225,16 @@ namespace ICSLockers.Repository.IRepository
 
         public List<ApplicationUser> GetAllUsers()
         {
-            List<ApplicationUser> users = _context.Users.ToList();  
+            List<ApplicationUser> users = _context.Users.Select(u => new ApplicationUser
+            {
+                Id = u.Id,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                LockerId = u.LockerId,
+                Email = u.Email,
+                CreatedOn = u.CreatedOn,
+                CreatedBy = u.CreatedBy
+            }).ToList();
             return users;
         }
 
@@ -262,6 +271,26 @@ namespace ICSLockers.Repository.IRepository
             _context.SaveChanges();
 
             return true;
+        }
+
+        public UserReportsModel UserReport()
+        {
+            UserReportsModel userReport = new()
+            {
+                Users = _context.Users.Select(u => new ApplicationUser
+                {
+                    Id = u.Id,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    LockerId = u.LockerId,
+                    Email = u.Email,
+                    CreatedOn = u.CreatedOn,
+                    CreatedBy = u.CreatedBy
+                }).ToList(),
+                UserEvents = _context.UserEvents.ToList()
+            };
+
+            return userReport;
         }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using ICSLockers.Repository.IRepository;
 using ICSLockers.Helpers;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace ICSLockers.Controllers
 {
@@ -63,7 +64,7 @@ namespace ICSLockers.Controllers
                     if (result.Succeeded)
                     {
                         _logger.LogDebug($"The user {model.Email} is about to sign in.");
-                        await _accountManager.LogUserEventAsync(user, true);
+                        await _accountManager.LogUserEventAsync(user.UserName, true);
                         return Json(new { success = true, message = $"User {user.FirstName+ " "  + user.LastName} has been signed in successfully!", redirectUrl = returnUrl });
                     }
                 }
@@ -75,8 +76,9 @@ namespace ICSLockers.Controllers
         public async Task<IActionResult> Logout()
         {
             _logger.LogDebug("The user is about to signout...");
+            var userEmail = User.FindFirstValue(ClaimTypes.Email);
+            await _accountManager.LogUserEventAsync(userEmail, false);
             await _signInManager.SignOutAsync();
-            //await _accountManager.LogUserEventAsync(user, true);
             return RedirectToAction("Index", "Home");
         }
         [HttpPost]

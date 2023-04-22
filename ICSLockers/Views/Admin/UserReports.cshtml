@@ -1,5 +1,5 @@
 ﻿@using ICSLockers.Models
-@model List<ApplicationUser>
+@model UserReportsModel
 
 @{
     ViewData["Title"] = "Locker User";
@@ -16,6 +16,13 @@
             <div class="user-table">
                 <div class="tab">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-admin-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-admin" type="button" role="tab"
+                                    aria-controls="pills-admin" aria-selected="false">
+                                Admin
+                            </button>
+                        </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="pills-home-tab"
                                     data-bs-toggle="pill" data-bs-target="#pills-home" type="button"
@@ -38,15 +45,47 @@
                                 Session
                             </button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-admin-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-admin" type="button" role="tab"
-                                    aria-controls="pills-admin" aria-selected="false">
-                                Admin
-                            </button>
-                        </li>
+                        
                     </ul>
+
                     <div class="tab-content" id="pills-tabContent">
+
+                        <div class="tab-pane fade" id="pills-admin" role="tabpanel"
+                             aria-labelledby="pills-admin-tab">
+                            <div class="col-lg-12 p-0 employee-table">
+                                <button class="add-user btn btn-primary" onclick="location.href='@Url.Action("Index", "Admin")'">Create Admin</button>
+                                <table id="AdminReportTable" class="table table-hover emp-table">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Full Name</th>
+                                            <th>Email</th>
+                                            <th>Created Date</th>
+                                            <th>Created Time</th>
+                                            <th>Created by</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            int i = 1;
+                                            @foreach (ApplicationUser user in Model.Users)
+                                            {
+                                                <tr>
+                                                    <td>@i</td>
+                                                    <td>@user.FullName</td>
+                                                    <td>@user.Email</td>
+                                                    <td>@user.CreatedOn.ToString("dd/MMM/yyyy")</td>
+                                                    <td>@user.CreatedOn.ToString("hh:mm tt")</td>
+                                                    <td>@user.CreatedBy</td>
+                                                </tr>
+                                                i++;
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                              aria-labelledby="pills-home-tab">
                             <div class="col-lg-12 p-0 employee-table">
@@ -64,7 +103,7 @@
                                     <tbody>
                                         @{
                                             int n = 1;
-                                            @foreach (ApplicationUser user in Model)
+                                            @foreach (ApplicationUser user in Model.Users)
                                             {
                                                 <tr>
                                                     <td>@n</td>
@@ -81,10 +120,10 @@
 
                             </div>
                         </div>
+
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                              aria-labelledby="pills-profile-tab">
                             <div class="col-lg-12 p-0 employee-table">
-                                @*<button class="add-user btn btn-primary" onclick="location.href='@Url.Action("Index", "Admin")'">Create User</button>*@
                                 <table id="UserReportTable" class="table table-hover emp-table">
                                     <thead>
                                         <tr>
@@ -93,13 +132,12 @@
                                             <th>LastName</th>
                                             <th>Locker</th>
                                             <th>Email</th>
-                                            <th>Events</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @{
                                             int count = 1;
-                                            @foreach (ApplicationUser user in Model)
+                                            @foreach (ApplicationUser user in Model.Users)
                                             {
 
                                                 <tr>
@@ -108,98 +146,47 @@
                                                     <td>@user.LastName</td>
                                                     <td>@user.LockerId</td>
                                                     <td>@user.Email</td>
-                                                    <td>@user.Events</td>
                                                 </tr>
                                                 count++;
-
                                             }
                                         }
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel"
                              aria-labelledby="pills-contact-tab">
                             <div class="col-lg-12 p-0 employee-table">
-                                <table id="sessiontable" class="table table-hover emp-table" >
+                                <table id="sessiontable" class="table table-hover emp-table">
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
                                             <th>FirstName</th>
                                             <th>LastName</th>
-                                            <th>Locker</th>
-                                            <th>Code</th>
+                                            <th>Event Type</th>
+                                            <th>Event Date</th>
+                                            <th>Event Time</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @{
-
-                                            @foreach (ApplicationUser Event in Model)
-                                            {
-                                                //int Sno = 1;
-                                                //@if(Event.Events.Count>0){
-                                                //    @foreach (UserEvent Event1 in Event.Events)
-                                                //    {
-
-                                                //        <tr>
-                                                //            <td>@Sno</td>
-                                                //            <td>@Event1.Username</td>
-                                                //            <td>@Event1.Role</td>
-                                                //            <td>@Event1.EventType</td>
-                                                //            <td>@Event1.EventTime</td>
-                                                //        </tr>
-                                                //        Sno++;
-                                                //    }
-                                                //}
-
-                                            }
-
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="pills-admin" role="tabpanel"
-                             aria-labelledby="pills-admin-tab">
-                            <div class="col-lg-12 p-0 employee-table">
-                                <button class="add-user btn btn-primary" onclick="location.href='@Url.Action("Index", "Admin")'">Create Admin</button>
-                                <table id="AdminReportTable" class="table table-hover emp-table" >
-                                    <thead>
-                                        <tr>
-                                            <th>S.No</th>
-                                            <th>FirstName</th>
-                                            <th>LastName</th>
-                                            <th>Locker</th>
-                                            <th>Email</th>
-                                            <th>Create Date</th>
-                                            <th>Created by</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @{
-                                            int i = 1;
-                                            @foreach (ApplicationUser user in Model)
+                                            @foreach (UserEvent Event in Model.UserEvents)
                                             {
                                                 <tr>
-                                                    <td>@i</td>
-                                                    <td>@user.FirstName</td>
-                                                    <td>@user.LastName</td>
-                                                    <td>@user.LockerId</td>
-                                                    <td>@user.Email</td>
-                                                    <td>@user.CreatedOn</td>
-                                                    <td>@user.CreatedBy</td>
-
+                                                    <td>@Event.Id</td>
+                                                    <td>@Event.Username</td>
+                                                    <td>@Event.Role</td>
+                                                    <td>@Event.EventType</td>
+                                                    <td>@Event.EventTime.ToString("dd/MMM/yyyy")</td>
+                                                    <td>@Event.EventTime.ToString("hh:mm tt")</td>
                                                 </tr>
-                                                i++;
                                             }
-
-                                        }
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>

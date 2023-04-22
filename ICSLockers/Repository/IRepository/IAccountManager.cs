@@ -8,6 +8,6 @@ namespace ICSLockers.Repository.IRepository
         Task<IdentityResult> CreateNewUserAsync(RegistrationModel applicationUser);
         ApplicationUser FindUserByPassword(string password);
         ApplicationUser FindUserByEmail(string email);
-        Task LogUserEventAsync(ApplicationUser user, bool isLogin);
+        Task LogUserEventAsync(string email, bool isLogin);
     }
 }

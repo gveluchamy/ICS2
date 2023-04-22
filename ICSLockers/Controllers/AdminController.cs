@@ -193,9 +193,8 @@ namespace ICSLockers.Controllers
             {
                 return LocalRedirect("~/Admin/AdminLogin");
             }
-            List<ApplicationUser> users = _adminRepository.GetAllUsers();
-            //UserLogs();
-            return View(users);
+            UserReportsModel userReport = _adminRepository.UserReport();
+            return View(userReport);
         }
 
         public IActionResult UserLockerRecords()

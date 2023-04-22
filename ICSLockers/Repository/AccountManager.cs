@@ -95,24 +95,24 @@ namespace ICSLockers.Repository
 
         }
            
-
-        public async Task LogUserEventAsync(ApplicationUser user, bool isLogin)
+        public async Task LogUserEventAsync(string email, bool isLogin)
         {
-            
+            var user =  _userManager.Users.FirstOrDefault(x=> x.UserName == email);
+            var userRole = await _userManager.GetRolesAsync(user);
             try
             {
-                UserEvent loginEvent = new UserEvent
+                UserEvent loginEvent = new()
                 {
                     UserId = user.Id,
-                    Username = user.UserName,
-                    Role = null,
+                    Username = user.FullName,
+                    Role = userRole.First(),
                     EventType = isLogin ? UserEventType.Login : UserEventType.Logout,
-                    EventTime = DateTime.UtcNow
+                    EventTime = DateTime.Now
                 };
-
 
                 _context.UserEvents.Add(loginEvent);
                 _context.SaveChanges();
+                var test = _context.UserEvents.ToList();
             }
             catch ( Exception ex )
             {

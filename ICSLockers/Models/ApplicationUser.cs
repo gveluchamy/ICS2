@@ -31,7 +31,5 @@ namespace ICSLockers.Models
         public DateTime CreatedOn { get; set; }
         public string? CreatedBy { get; set; }
         public bool CheckOutStatus { get; set; }
-        public List<UserEvent> Events { get; set; }
-        
     }
 }

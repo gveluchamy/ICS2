@@ -15,5 +15,6 @@ namespace ICSLockers.Repository.IRepository
         AdminDashboard GetDashBoardDetails();
         List<UserEvent> GetUserEventdetails();
         List<ApplicationUser> GetAllUsers();
+        UserReportsModel UserReport();
     }
 }

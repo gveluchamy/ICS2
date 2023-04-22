@@ -1,4 +1,5 @@
-﻿using ICSLockers.Models;
+﻿using ICSLockers.Helpers;
+using ICSLockers.Models;
 using ICSLockers.Repository;
 using ICSLockers.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
@@ -99,10 +100,31 @@ namespace ICSLockers.Controllers
         }
 
         [HttpGet]
+        public LocationModel? GetlocationDetails(int LocationId)
+        {
+            LocationModel? location = _adminRepository.GetLocationDetails(LocationId);
+            return location;
+        }
+
+        [HttpGet]
         public IActionResult Division(int LocationId)
         {
             List<DivisionModel> divisionModel = _adminRepository.GetDivisionByLocationId(LocationId);
             return View(divisionModel);
+        }
+
+        [HttpPost]
+        public bool AddDivisions([FromBody] LocationModel location)
+        {
+            try
+            {
+                _adminRepository.AddDivisionsByLocation(location);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return true;
         }
 
         public async Task<IActionResult> UpdateDivision([FromBody] DivisionModel division)
@@ -175,10 +197,12 @@ namespace ICSLockers.Controllers
             //UserLogs();
             return View(users);
         }
+
         public IActionResult UserLockerRecords()
         {
             return View();
         }
+
         [HttpGet]
         public IActionResult UserLogs()
         {

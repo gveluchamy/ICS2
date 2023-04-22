@@ -183,15 +183,76 @@ function fnCreateNewLocation () {
 }
 
 function fnAddNewDivisionPopup () {
-    $("#AddDivisionModal").modal("show");
+    var locationId = fnGetParameterByName("locationId");
+
+    $.ajax({
+        type: "GET",
+        url: "/Admin/GetlocationDetails?LocationId=" + parseInt(locationId),
+        headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+        contentType: "application/json",
+        success: function (response) {
+            if (response != undefined) {
+                $("#AddDivisionModal .locker-unit.location-name").val(response.locationName);
+                //$("#AddDivisionModal .number.division-number").text(response.totalDivision);
+                $("#AddDivisionModal").modal("show");
+            }
+            else {
+                toastr.error("Some error has occured in adding division. Please refresh the page and try again!", 'Error', { timeOut: 4000 });
+            }
+        },
+        error: function (xhr, status, error) {
+            debugger;
+            toastr.error(response.message, 'Error', { timeOut: 4000 });
+        }
+    });
 }
 
-function fnUpdatePopup() {
+function fnAddDivision () {
+
+    var locationId = fnGetParameterByName("locationId");
+
+    let locationName = $("#AddDivisionModal .locker-unit.location-name").val().trim();
+    let totalDivisions = parseInt($("#AddDivisionModal .number.division-number").text());
+    var locationData = {
+        LocationId : parseInt(locationId),
+        LocationName: locationName,
+        TotalDivision: parseInt(totalDivisions),
+        IsDeleted: false,
+        CreatedBy: null,
+        CreatedOn: new Date(),
+        ModifiedBy: null,
+        ModifiedOn: new Date()
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/Admin/AddDivisions",
+        headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+        contentType: "application/json",
+        data: JSON.stringify(locationData),
+        success: function (response) {
+            debugger;
+            if (response != null){
+                $("#AddDivisionModal").modal("hide");
+                location.reload();
+                toastr.success("Divisions has been added successfully!", 'Success', { timeOut: 4000 });
+            } else {
+                toastr.error(response.message, 'Error', { timeOut: 4000 });
+            }
+            $("#AddDivisionModal").modal("hide");
+        },
+        error: function (xhr, status, error) {
+            toastr.error(response.message, 'Error', { timeOut: 4000 });
+            $("#AddDivisionModal").modal("hide");
+        }
+    });
+}
+
+function fnUpdateDivisionPopup () {
     $("#UpdateNewDivisionPopup").modal("show");
 }
 
 function fnUpdateDivision () {
-    debugger;
     let locationName = $("#AddDivisionModal .location-name").val();
     let totalDivisions = parseInt($("#AddDivisionModal .division-number").text());
     var locationData = {

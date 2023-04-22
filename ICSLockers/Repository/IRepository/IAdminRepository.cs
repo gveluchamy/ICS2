@@ -4,8 +4,10 @@ namespace ICSLockers.Repository.IRepository
 {
     public interface IAdminRepository
     {
-        List<LocationModel> GetAllLocations();      
+        List<LocationModel> GetAllLocations();
+        LocationModel? GetLocationDetails(int locationId);
         Tuple<bool, string> AddLocation(LocationModel location);
+        bool AddDivisionsByLocation(LocationModel location);
         Tuple<bool, string> UpdateDivisionByDivisionID(DivisionModel division);
         Tuple<bool,string > UpdateLockerByDivisionId (LockerUnitModel lockerUnit);
         List<DivisionModel> GetDivisionByLocationId(int locationId);

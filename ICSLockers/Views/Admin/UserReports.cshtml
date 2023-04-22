@@ -93,6 +93,7 @@
                                             <th>LastName</th>
                                             <th>Locker</th>
                                             <th>Email</th>
+                                            <th>Events</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -107,6 +108,7 @@
                                                     <td>@user.LastName</td>
                                                     <td>@user.LockerId</td>
                                                     <td>@user.Email</td>
+                                                    <td>@user.Events</td>
                                                 </tr>
                                                 count++;
 
@@ -119,7 +121,7 @@
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel"
                              aria-labelledby="pills-contact-tab">
                             <div class="col-lg-12 p-0 employee-table">
-                                <table id="sessiontable" class="table table-hover emp-table">
+                                <table id="sessiontable" class="table table-hover emp-table" >
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
@@ -161,7 +163,7 @@
                              aria-labelledby="pills-admin-tab">
                             <div class="col-lg-12 p-0 employee-table">
                                 <button class="add-user btn btn-primary" onclick="location.href='@Url.Action("Index", "Admin")'">Create Admin</button>
-                                <table id="AdminReportTable" class="table table-hover emp-table">
+                                <table id="AdminReportTable" class="table table-hover emp-table" >
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
@@ -169,6 +171,8 @@
                                             <th>LastName</th>
                                             <th>Locker</th>
                                             <th>Email</th>
+                                            <th>Create Date</th>
+                                            <th>Created by</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -177,14 +181,18 @@
                                             @foreach (ApplicationUser user in Model)
                                             {
                                                 <tr>
-                                                    <td>@n</td>
+                                                    <td>@i</td>
                                                     <td>@user.FirstName</td>
                                                     <td>@user.LastName</td>
                                                     <td>@user.LockerId</td>
                                                     <td>@user.Email</td>
+                                                    <td>@user.CreatedOn</td>
+                                                    <td>@user.CreatedBy</td>
+
                                                 </tr>
                                                 i++;
                                             }
+
                                         }
                                     </tbody>
                                 </table>

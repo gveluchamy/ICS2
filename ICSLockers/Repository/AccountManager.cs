@@ -41,6 +41,7 @@ namespace ICSLockers.Repository
                 LastName = model.LastName,
                 EmailConfirmed = false,
                 PhoneNumberConfirmed = false,
+                CreatedOn=model.CreatedOn,
                 PasswordEnc = AccountHelper.CreatePassword(model),
                 CheckOutStatus=false
             };

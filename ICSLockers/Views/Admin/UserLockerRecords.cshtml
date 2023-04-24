@@ -1,4 +1,4 @@
-﻿@model List<UserEvent>
+﻿@model UserReportsModel
 @using ICSLockers.Models
 @{
     ViewData["Title"] = "LockerRecords";
@@ -12,7 +12,8 @@
 
     <div class="container" id="LockerRecords">
         <div class="content-wrapper">
-            <table id="UserReportTable" class="table table-bordered:1px">
+            <table id="LockerReportTable" class="table table-hover emp-table">
+                
                 <thead>
                     <tr>
                         <th>User ID</th>
@@ -25,7 +26,7 @@
                 <tbody>
                     @if (Model != null)
                     {
-                        @foreach (var ev in Model)
+                        @foreach (UserEvent ev in Model.UserEvents)
                         {
                             <tr>
                                 <td>@ev.UserId</td>
@@ -42,7 +43,7 @@
     </div>
 </div>
 
-
+<script src="~/js/UserReports.js"></script>
 
 
 

@@ -2,12 +2,14 @@
 using ICSLockers.Helpers;
 using ICSLockers.Models;
 using ICSLockers.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace ICSLockers.Repository
 {
+    [Authorize(Roles ="Admin,Staff")]
     public class AccountManager : IAccountManager
     {
         private readonly ApplicationDbContext _context;

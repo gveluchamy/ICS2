@@ -4,5 +4,6 @@
     {
         public List<UserEvent>? UserEvents { get; set; }
         public List<ApplicationUser>? Users { get; set; }
+        public List<LockerUnitModel> Lockers { get; set; } 
     }
 }

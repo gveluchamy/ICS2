@@ -30,7 +30,6 @@ namespace ICSLockers.Models
         public DateTime CreatedOn { get; set; }
         public string? ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
-        [ForeignKey("DivisionId")]
         public virtual DivisionModel? Division { get; set; }
     }
 }

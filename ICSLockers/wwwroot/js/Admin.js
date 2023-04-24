@@ -348,3 +348,16 @@ function fnUpdatelocker () {
         }
     });
 }
+
+function fnFilterLockers (ctrl) {
+    $(".locker-unit-page .locker").filter(function () {
+        var isPresent = true;
+        if (ctrl.value == "Avail") {
+            isPresent = $(this).hasClass("available");
+        }
+        else if (ctrl.value == "Not-Avail") {
+            isPresent = $(this).hasClass("not-available");
+        }
+        $(this.parentElement).toggle(isPresent);
+    });
+}

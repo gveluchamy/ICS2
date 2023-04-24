@@ -4,6 +4,7 @@ using ICSLockers.Models;
 using ICSLockers.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace ICSLockers.Repository
 {
@@ -12,11 +13,61 @@ namespace ICSLockers.Repository
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        public AccountManager(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        public AccountManager(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
+            _signInManager = signInManager;
+        }
+
+        public async Task<Tuple<bool, string>> LoginAsync(LoginViewModel model, string? page = null)
+        {
+            try
+            {
+                ApplicationUser? user = await _userManager.FindByNameAsync(model.Email);
+                if (user == null)
+                {
+                    return new Tuple<bool, string>(false, "Invalid Creadentials. Please try again!");
+                }
+
+                if (!await _userManager.CheckPasswordAsync(user, model.Password))
+                {
+                    return new Tuple<bool, string>(false, "Invalid Creadentials. Please try again!");
+                }
+                var signInResult = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
+                if (signInResult.Succeeded)
+                {
+                    var userRoles = await _userManager.GetRolesAsync(user);
+                    var authClaims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, user.UserName),
+                    };
+                    
+                    foreach (var userRole in userRoles)
+                    {
+                        authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                    }
+                    await LogUserEventAsync(user.UserName, true);
+
+                    return new Tuple<bool, string>(true, $"Welcome back {user.FullName}!. You have signed in Successfully.");
+                }
+                else
+                {
+                    return new Tuple<bool, string>(false, $"Some error has occurred in logging in. Please try again later!");
+                }
+            }
+            catch (Exception ex)
+            {
+                return new Tuple<bool, string>(false, $"Some error has occurred in logging in. Please try again later!");
+            }
+        }
+
+        public async Task SignOutAsync(string userEmail)
+        {
+            await LogUserEventAsync(userEmail, false);
+            await _signInManager.SignOutAsync();
         }
 
         public async Task<IdentityResult> CreateNewUserAsync(RegistrationModel model)
@@ -25,7 +76,6 @@ namespace ICSLockers.Repository
             var userExists = await _userManager.FindByNameAsync(model.UserName);
             if (userExists != null)
             {
-
                 return status;
             }
 
@@ -49,51 +99,26 @@ namespace ICSLockers.Repository
             try
             {
                 var result = await _userManager.CreateAsync(user, user.PasswordEnc);
-
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                return status;
             }
 
             var RoleName = _roleManager.Roles.FirstOrDefault(x => x.Id.Equals( model.Role)).Name;
-            //if (!await _roleManager.RoleExistsAsync(RoleName))
-            //    await _roleManager.CreateAsync(new IdentityRole(model.Role));
 
             if (await _roleManager.RoleExistsAsync(RoleName))
             {
-
                await _userManager.AddToRoleAsync(user, RoleName);
             }
             
             return IdentityResult.Success;
-            //string password = AccountHelper.CreatePassword(applicationUser);
-            //applicationUser.PasswordEnc = password;
-
-            //IdentityResult userResult = await _userManager.CreateAsync(applicationUser, password);
-
-            //return userResult;
         }
 
         public ApplicationUser? FindUserByPassword(string password)
         {
             ApplicationUser? user = _userManager.Users?.FirstOrDefault(x => password.Equals(x.PasswordEnc));
             return user;
-        }
-
-        public ApplicationUser? FindUserByEmail(string email)
-        {
-            try
-            {
-                ApplicationUser? user = _userManager.Users?.FirstOrDefault(x => email.Equals(x.Email));
-                return user;
-            }
-            catch( Exception ex)
-            { 
-                Console.WriteLine(ex);
-                return null;
-            }
-
         }
            
         public async Task LogUserEventAsync(string email, bool isLogin)
@@ -113,7 +138,6 @@ namespace ICSLockers.Repository
 
                 _context.UserEvents.Add(loginEvent);
                 _context.SaveChanges();
-                var test = _context.UserEvents.ToList();
             }
             catch ( Exception ex )
             {

@@ -5,9 +5,10 @@ namespace ICSLockers.Repository.IRepository
 {
     public interface IAccountManager
     {
+        Task<Tuple<bool, string>> LoginAsync(LoginViewModel model, string? page = null);
+        Task SignOutAsync(string userEmail);
         Task<IdentityResult> CreateNewUserAsync(RegistrationModel applicationUser);
         ApplicationUser FindUserByPassword(string password);
-        ApplicationUser FindUserByEmail(string email);
         Task LogUserEventAsync(string email, bool isLogin);
     }
 }

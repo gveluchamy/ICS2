@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
 namespace ICSLockers.Controllers
 {
+    [Authorize(Roles ="Admin, Staff")]
     public class AdminController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -36,14 +37,9 @@ namespace ICSLockers.Controllers
             return View("Admin");
         }
 
-        // [Authorize(Roles ="Admin")]
         [HttpGet]
         public IActionResult Dashboard()
         {
-            if (!_signInManager.IsSignedIn(User))
-            {
-                return LocalRedirect("~/Admin/AdminLogin");
-            }
             AdminDashboard dashboard = _adminRepository.GetDashBoardDetails();
             return View("AdminDashboard", dashboard);
         }
@@ -63,10 +59,6 @@ namespace ICSLockers.Controllers
         [HttpGet]
         public IActionResult Location()
         {
-            if (!_signInManager.IsSignedIn(User))
-            {
-                return LocalRedirect("~/Admin/AdminLogin");
-            }
             List<LocationModel> locationModels = _adminRepository.GetAllLocations();
             return View(locationModels);
         }
@@ -198,10 +190,6 @@ namespace ICSLockers.Controllers
 
         public IActionResult UserReports()
         {
-            if (!_signInManager.IsSignedIn(User))
-            {
-                return LocalRedirect("~/Admin/AdminLogin");
-            }
             UserReportsModel userReport = _adminRepository.UserReport();
             return View(userReport);
         }
@@ -217,7 +205,6 @@ namespace ICSLockers.Controllers
             List<UserEvent> userEvents = _adminRepository.GetUserEventdetails();
             ViewBag.User = userEvents; 
             return View(userEvents);
-
         }
 
     }

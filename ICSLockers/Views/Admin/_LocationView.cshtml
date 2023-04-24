@@ -1,6 +1,6 @@
 ﻿@using ICSLockers.Models
 
-<div class="location d-flex justify-content-between location" style="cursor: pointer" onclick="location.href='@Url.Action("Division", "Admin", new { locationId = Model.LocationId })'" data-value="@Model.LocationName">
+<div class="location justify-content-between location" style="cursor: pointer" onclick="location.href='@Url.Action("Division", "Admin", new { locationId = Model.LocationId })'" data-value="@Model.LocationName"> @*Should not use d-flex - it prevents search functionality*@
     <div class="location-count col-lg-9 p-0">
         <div class="w-100 d-flex mb-3 location-name">
             <h6>@Model.LocationId</h6>

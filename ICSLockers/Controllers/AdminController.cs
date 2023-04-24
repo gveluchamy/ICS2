@@ -133,6 +133,7 @@ namespace ICSLockers.Controllers
                 var user = await _userManager.GetUserAsync(User);
                 var location = _adminRepository.GeDivisionDetails(division.DivisionId);
                 division.LocationId = location.LocationId;
+                division.DivisionNo = location.DivisionNo;               
                 division.CreatedBy = user.Id;
                 division.ModifiedBy = user.Id;
                 var (Status, Message) = _adminRepository.UpdateDivisionByDivisionID(division);

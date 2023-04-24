@@ -16,13 +16,16 @@
         <div class="content-wrapper">
             <div class="passcode d-flex align-items-center text-center">
                 <div class="main-heading">
-                    <h5>Admin Login</h5>
+                    <h5>Admin/Staff Login</h5>
                     <p>ICS Login</p>
                 </div>
                 <div class="login-card">
-                    <h5>Enter User Email</h5>
-                    <input type="email" class="form-control user-email" minlength="50" maxlength="50">
-                    <button type="submit" class="btn btn-danger login" onclick="fnAdminLoginMethod('Email')">Next</button>
+                    <h5>Enter Your UserName</h5>
+                    <input type="text" class="form-control user-email" placeholder="example@gmail.com">
+                    <h5>Enter Your password</h5>
+                    <input type="password" class="form-control user-passcode" placeholder="******">
+
+                    <button type="submit" class="btn btn-danger login" onclick="fnAdminLoginMethod()">Login</button>
                 </div>
                 <div class="note">
                     <p>* Enter User Email to Login</p>

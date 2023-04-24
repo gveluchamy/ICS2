@@ -131,41 +131,6 @@ namespace ICSLockers.Repository.IRepository
             return divisionList;
         }
 
-        //public bool AddNewDivision(DivisionModel division)
-        //{
-        //    try
-        //    {
-        //        List<LockerUnitModel> lockersList = _context.LockerUnits.Where(x => x.DivisionId == division.DivisionId).ToList();
-
-        //        int totalLockers = lockersList.Count + division.TotalLockers;
-        //        int lockerIdStart = lockersList.Count + 1;
-
-        //        if (division.TotalLockers > 0)
-        //        {
-        //            for (int i = lockerIdStart; i <= totalLockers; i++)
-        //            {
-        //                LockerUnitModel lockerUnit = new()
-        //                {
-        //                    DivisionId = division.DivisionId,
-        //                    CreatedBy = division.CreatedBy,
-        //                    ModifiedBy = division.ModifiedBy,
-        //                    CreatedOn = DateTime.Now,
-        //                    ModifiedOn = DateTime.Now,
-        //                };
-        //                AddLocker(lockerUnit);
-
-        //            }
-
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return false;
-        //    }
-           
-        //    return true;
-        //}
-
         public Tuple<bool, string> UpdateDivisionByDivisionID(DivisionModel division)
         {
             bool IsSuccess = false;
@@ -183,20 +148,6 @@ namespace ICSLockers.Repository.IRepository
             List<LockerUnitModel> lockerUnits = _context.LockerUnits.Where(x => x.DivisionId == divisionId).ToList();
             return lockerUnits;
         }
-
-        //public bool AddLocker(LockerUnitModel lockerUnit)
-        //{
-        //    try
-        //    {
-        //        _context.LockerUnits.Add(lockerUnit);
-        //        _context.SaveChanges();
-        //        return true;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return false;
-        //    }
-        //}
 
         public Tuple<bool, string> UpdateLockerByDivisionId(LockerUnitModel lockerunit)
         {

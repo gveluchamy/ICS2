@@ -207,7 +207,7 @@ function fnAddNewDivisionPopup () {
     });
 }
 
-function fnAddDivision () {
+function fnAddDivision() {
 
     var locationId = fnGetParameterByName("locationId");
 
@@ -248,16 +248,43 @@ function fnAddDivision () {
     });
 }
 
-function fnUpdateDivisionPopup () {
+function fnUpdateDivisionPopup() {
+    var locationId = fnGetParameterByName("locationId");
+    debugger;
+
+    $.ajax({
+        type: "GET",
+        url: "/Admin/GetlocationDetails?locationId=" + parseInt(locationId),
+        headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+        contentType: "application/json",
+        success: function (response) {
+            if (response != undefined) {
+                $("#UpdateNewDivisionPopup .locker-unit.location-name").val(response.locationName);
+                $("#UpdateNewDivisionPopup .division-name").val(response.divisionId);                
+                $("#UpdateNewDivisionPopup").modal("show");
+            }
+            else {
+                toastr.error("Some error has occured in adding division. Please refresh the page and try again!", 'Error', { timeOut: 4000 });
+            }
+        },
+        error: function (xhr, status, error) {
+            debugger;
+            toastr.error(response.message, 'Error', { timeOut: 4000 });
+        }
+    });
+}
+
+function fnUpdateDivision() {    
     $("#UpdateNewDivisionPopup").modal("show");
 }
 
 function fnUpdateDivision () {
-    let locationName = $("#AddDivisionModal .location-name").val();
-    let totalDivisions = parseInt($("#AddDivisionModal .division-number").text());
+    let locationName = $("#UpdateNewDivisionPopup .location-name").val();
+    let totalDivisions = parseInt($("#UpdateNewDivisionPopup .division-name").val());
     var locationData = {
-        LocationId: locationName,
+        LocationName: locationName,
         DivisionId: totalDivisions,
+        TotalLockers: parseInt($(".locker-number").text()),
         IsDeleted: false,
         CreatedBy: "",
         CreatedOn: new Date(),
@@ -279,11 +306,11 @@ function fnUpdateDivision () {
             } else {
                 toastr.error(response.message, 'Error', { timeOut: 4000 });
             }
-            $("#AddDivisionModal").modal("hide");
+            $("#UpdateNewDivisionPopup").modal("hide");
         },
         error: function (xhr, status, error) {
             toastr.error(response.message, 'Error', { timeOut: 4000 });
-            $("#AddDivisionModal").modal("hide");
+            $("#UpdateNewDivisionPopup").modal("hide");
         }
     });
 }

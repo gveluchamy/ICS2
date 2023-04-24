@@ -35,9 +35,6 @@ namespace ICSLockers.Models
         public DateTime CreatedOn { get; set; }
         public string? ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
-
-        [ForeignKey("LocationId")]
         public virtual LocationModel? Location { get; set; }
-
     }
 }

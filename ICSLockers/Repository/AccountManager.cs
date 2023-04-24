@@ -24,34 +24,41 @@ namespace ICSLockers.Repository
 
         public async Task<Tuple<bool, string>> LoginAsync(LoginViewModel model, string? page = null)
         {
-            ApplicationUser? user = await _userManager.FindByNameAsync(model.Email);
-            if (user == null)
+            try
             {
-                return new Tuple<bool, string>(false, "Invalid Creadentials. Please try again!");
-            }
-
-            if (!await _userManager.CheckPasswordAsync(user, model.Password))
-            {
-                return new Tuple<bool, string>(false, "Invalid Creadentials. Please try again!");
-            }
-            var signInResult = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
-            if (signInResult.Succeeded)
-            {
-                var userRoles = await _userManager.GetRolesAsync(user);
-                var authClaims = new List<Claim>
+                ApplicationUser? user = await _userManager.FindByNameAsync(model.Email);
+                if (user == null)
                 {
-                    new Claim(ClaimTypes.Name, user.UserName),
-                };
-
-                foreach (var userRole in userRoles)
-                {
-                    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                    return new Tuple<bool, string>(false, "Invalid Creadentials. Please try again!");
                 }
-                await LogUserEventAsync(user.UserName, true);
 
-                return new Tuple<bool, string>(true, $"Welcome back {user.FullName}!. You have signed in Successfully.");
+                if (!await _userManager.CheckPasswordAsync(user, model.Password))
+                {
+                    return new Tuple<bool, string>(false, "Invalid Creadentials. Please try again!");
+                }
+                var signInResult = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
+                if (signInResult.Succeeded)
+                {
+                    var userRoles = await _userManager.GetRolesAsync(user);
+                    var authClaims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, user.UserName),
+                    };
+                    
+                    foreach (var userRole in userRoles)
+                    {
+                        authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                    }
+                    await LogUserEventAsync(user.UserName, true);
+
+                    return new Tuple<bool, string>(true, $"Welcome back {user.FullName}!. You have signed in Successfully.");
+                }
+                else
+                {
+                    return new Tuple<bool, string>(false, $"Some error has occurred in logging in. Please try again later!");
+                }
             }
-            else
+            catch (Exception ex)
             {
                 return new Tuple<bool, string>(false, $"Some error has occurred in logging in. Please try again later!");
             }

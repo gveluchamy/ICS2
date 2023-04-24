@@ -12,6 +12,7 @@ namespace ICSLockers.Repository.IRepository
         private readonly ApplicationDbContext _context;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly int DefaultLockersList = 5;
+
         public AdminRepository(ApplicationDbContext context, SignInManager<ApplicationUser> signInManager)
         {
             _context = context;
@@ -127,7 +128,10 @@ namespace ICSLockers.Repository.IRepository
             
         public List<DivisionModel> GetDivisionByLocationId(int locationId)
         {
-            List<DivisionModel> divisionList = _context.Divisions.Where(x => x.LocationId == locationId).ToList();
+            List<DivisionModel> divisionList = _context.Divisions
+                .Include(d => d.Location)
+                .Where(x => x.LocationId == locationId)
+                .ToList();
             return divisionList;
         }
 
@@ -145,7 +149,10 @@ namespace ICSLockers.Repository.IRepository
 
         public List<LockerUnitModel> GetLockerUnitsByDivisionId(int divisionId)
         {
-            List<LockerUnitModel> lockerUnits = _context.LockerUnits.Where(x => x.DivisionId == divisionId).ToList();
+            List<LockerUnitModel> lockerUnits = _context.LockerUnits
+                .Include(d => d.Division)
+                .ThenInclude(x=> x.Location)
+                .Where(x => x.DivisionId == divisionId).ToList();
             return lockerUnits;
         }
 
@@ -228,15 +235,15 @@ namespace ICSLockers.Repository.IRepository
         {
             UserReportsModel userReport = new()
             {
-                Users = _context.Users.Select(u => new ApplicationUser
+                Users = _context.Users.Select(user => new ApplicationUser
                 {
-                    Id = u.Id,
-                    FirstName = u.FirstName,
-                    LastName = u.LastName,
-                    LockerId = u.LockerId,
-                    Email = u.Email,
-                    CreatedOn = u.CreatedOn,
-                    CreatedBy = u.CreatedBy
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    LockerId = user.LockerId,
+                    Email = user.Email,
+                    CreatedOn = user.CreatedOn,
+                    CreatedBy = user.CreatedBy
                 }).ToList(),
                 UserEvents = _context.UserEvents.ToList()
             };

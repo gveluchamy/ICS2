@@ -1,20 +1,18 @@
 ﻿@using ICSLockers.Models
 @model LockerUnitModel
 
-<div class="col-lg-12 p-0">
+<div class="col-lg-12 p-0 locker-unit-page">
     @if (Model.IsSpaceAvailable==true)
     {
         <div class="locker available">
-            <div class="locker available">
             <div class="d-flex align-items-center locker-detail">
-                <div class="count">@Model.LockerId</div>
+                <div class="count">@Model.LockerNo</div>
                 <div class="user-name">available</div>
             </div>
             <div class="locker-condition flex-column d-flex align-items-center">
                 <img src="~/images/png/available.png" alt="" class="success">
                 <img src="~/images/png/not-available.png" alt="" class="danger">
                 <span>Available</span>
-            </div>
         </div>        
     </div>
     }

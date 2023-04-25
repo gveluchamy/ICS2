@@ -1995,7 +1995,13 @@ select.filter {
     text-align: center;
     color: #FFFFFF;
     padding: 10px 80px;
-}   
+} 
+.user-report{
+    max-width: 1700px !important;
+}
+.location-list .location{
+    display: flex;
+}
 @media screen and (max-width: 1600px) {
     .location .location-count h5 {
         font-size: 14px;

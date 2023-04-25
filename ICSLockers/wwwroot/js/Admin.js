@@ -248,9 +248,33 @@ function fnAddDivision() {
     });
 }
 
+//function fnUpdateDivisionPopup() {
+//    var locationId = fnGetParameterByName("locationId");
+//    debugger;
+
+//    $.ajax({
+//        type: "GET",
+//        url: "/Admin/GetlocationDetails?locationId=" + parseInt(locationId),
+//        headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+//        contentType: "application/json",
+//        success: function (response) {
+//            if (response != undefined) {
+//                $("#UpdateNewDivisionPopup .locker-unit.location-name").val(response.locationName);
+//                $("#UpdateNewDivisionPopup .division-name").val(response.divisionId);
+//                $("#UpdateNewDivisionPopup").modal("show");
+//            }
+//            else {
+//                toastr.error("Some error has occured in adding division. Please refresh the page and try again!", 'Error', { timeOut: 4000 });
+//            }
+//        },
+//        error: function (xhr, status, error) {
+//            debugger;
+//            toastr.error(response.message, 'Error', { timeOut: 4000 });
+//        }
+//    });
+//}
 function fnUpdateDivisionPopup() {
     var locationId = fnGetParameterByName("locationId");
-    debugger;
 
     $.ajax({
         type: "GET",
@@ -259,8 +283,26 @@ function fnUpdateDivisionPopup() {
         contentType: "application/json",
         success: function (response) {
             if (response != undefined) {
+                // Set the location name input field
                 $("#UpdateNewDivisionPopup .locker-unit.location-name").val(response.locationName);
-                $("#UpdateNewDivisionPopup .division-name").val(response.divisionId);                
+                $("#UpdateNewDivisionPopup .division-dropdown").val(response.DivisionId);
+
+                // Set up the dropdown list for divisionId
+                var divisionDropdown = $("#UpdateNewDivisionPopup .division-dropdown");
+                divisionDropdown.empty(); // Clear existing options
+                $.each(response.divisions, function (index, division) {
+                    // Add a new option for each division
+                    var option = $("<option>", {
+                        value: division.id,
+                        text: division.name
+                    });
+                    divisionDropdown.append(option);
+                });
+
+                // Set the selected division in the dropdown list
+                divisionDropdown.val(response.divisionId);
+
+                // Show the modal popup
                 $("#UpdateNewDivisionPopup").modal("show");
             }
             else {
@@ -268,7 +310,6 @@ function fnUpdateDivisionPopup() {
             }
         },
         error: function (xhr, status, error) {
-            debugger;
             toastr.error(response.message, 'Error', { timeOut: 4000 });
         }
     });
@@ -301,7 +342,9 @@ function fnUpdateDivision () {
         success: function (response) {
             debugger;
             if (response.success) {
-                $(".division-model").append(response.divisionHtml);
+                /*$('.unit.division-model').html('');*/
+                $(".grid.locker-unit-list .division-model").empty();
+                $(".grid.locker-unit-list .division-model").append(response.divisionHtml);
                 toastr.success(response.message, 'Success', { timeOut: 4000 });
             } else {
                 toastr.error(response.message, 'Error', { timeOut: 4000 });
@@ -346,5 +389,18 @@ function fnUpdatelocker () {
             toastr.error(response.message, 'Error', { timeOut: 4000 });
             $("#exampleModalCenter").modal("hide");
         }
+    });
+}
+
+function fnFilterLockers (ctrl) {
+    $(".locker-unit-page .locker").filter(function () {
+        var isPresent = true;
+        if (ctrl.value == "Avail") {
+            isPresent = $(this).hasClass("available");
+        }
+        else if (ctrl.value == "Not-Avail") {
+            isPresent = $(this).hasClass("not-available");
+        }
+        $(this.parentElement).toggle(isPresent);
     });
 }

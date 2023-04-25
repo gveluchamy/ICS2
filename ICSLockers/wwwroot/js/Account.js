@@ -147,19 +147,16 @@ function fnRemoveValidation(ctrl) {
 
 function fnAdminLoginMethod (page) {
     var email = $(".user-email").val().trim();
-    var password = '';
+    var password = $(".user-passcode").val().trim();
 
     if (email == null || email == "") {
         toastr.warning('Enter the email address!', 'Warn', { timeOut: 4000 });
         return;
     }
 
-    if (page == "Password") {
-        password = $(".user-passcode").val().trim();
-        if (password == null || password == "") {
-            toastr.warning('Enter the password!', 'Warn', { timeOut: 4000 });
-            return;
-        }
+    if (password == null || password == "") {
+        toastr.warning('Enter the password!', 'Warn', { timeOut: 4000 });
+        return;
     }
 
     var loginmodel = {};
@@ -177,25 +174,16 @@ function fnAdminLoginMethod (page) {
         success: function (response) {
             debugger;
             if (response.success) {
-                if (page == "Email") {
-                    $(".locker-admin-panel").empty();
-                    $(".locker-admin-panel").html(response.passwordHtml);
-                }
                 toastr.success(response.message, 'Success', { timeOut: 4000 });
-                if (page == "Password") {
                     setTimeout(function () {
                         window.location.href = response.redirectUrl;
                     }, 1500);
-                }
             }
             else {
-                if (page == "Email") {
-                    $(".user-email").val("");
-                    $(".user-email").focus();
-                } else {
-                    $(".user-passcode").val("");
-                    $(".user-passcode").focus();
-                }
+                $(".user-email").val("");
+                $(".user-email").focus();
+                $(".user-passcode").val("");
+                $(".user-passcode").focus();
                 toastr.error(response.message, 'Error', { timeOut: 4000 });
             }
         },

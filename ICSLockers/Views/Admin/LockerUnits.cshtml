@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb bg-white">
                 <ol class="breadcrumb bg-white p-0 m-0">
                     <li class="breadcrumb-item">
-                        <a href="/Admin/Location d-flex">
+                        <a href="/Admin/Location">
                             <h5>Location</h5>
                         </a>
                     </li>
@@ -31,10 +31,10 @@
                 <div class="col-lg-12 p-0 d-flex justify-content-end position-relative mb-4">
                     <div class="col-lg-6 p-0 d-flex justify-content-start align-items-center position-relative">
                         <label class="form-label d-flex align-items-center  m-0">Filter</label>
-                        <select class="form-control col-lg-4 location-name filter ml-2">
-                            <option>All</option>
-                            <option>Available lockers</option>
-                            <option>Not-available lockers</option>
+                        <select class="form-control col-lg-4 location-name filter ml-2" onchange="fnFilterLockers(this)">
+                            <option value="All">All</option>
+                            <option value="Avail">Available lockers</option>
+                            <option value="Not-Avail">Not-available lockers</option>
                         </select>
                     </div>
                     <div class="col-lg-6 p-0 d-flex justify-content-end position-relative">

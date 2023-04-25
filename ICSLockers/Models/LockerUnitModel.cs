@@ -10,6 +10,7 @@ namespace ICSLockers.Models
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int LockerId { get; set; }
+        public int LockerNo { get; set;}
 
         [ForeignKey("Division")]
         public int DivisionId { get; set; }
@@ -30,7 +31,6 @@ namespace ICSLockers.Models
         public DateTime CreatedOn { get; set; }
         public string? ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
-        [ForeignKey("DivisionId")]
         public virtual DivisionModel? Division { get; set; }
     }
 }

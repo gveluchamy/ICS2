@@ -20,7 +20,7 @@
             </nav>
         </div>
         
-        <div class="col-lg-6 d-flex justify-content-end p-0">
+        <div class="col-lg-6 d-flex justify-content-end p-0 location ">
             <buttton type="button" class="btn btn-outline-primary add-locker" onclick="fnAddNewDivisionPopup()">Add Division</buttton>
             <buttton type="button" class="btn btn-outline-primary update-locker" onclick="fnUpdateDivisionPopup()">Update Division</buttton>
         </div>
@@ -34,7 +34,7 @@
                 <div class="grid locker-unit-list">
                     @foreach (DivisionModel division in Model)
                     {
-                        <partial name="_DivisionView" model="division" />
+                            <partial name="_DivisionView" model="division" />
                     }
                 </div>
             </div>
@@ -54,7 +54,7 @@
                     <div class="row justify-content-center align-item-center d-flex fields">
                         <div class="col-lg-4"><label for="Locker Unit Number">Location Name</label></div>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control locker-unit location-name" value="">
+                            <input type="text" class="form-control locker-unit location-name" value="" disabled>
                         </div>  
                     </div>
                     <div class="row justify-content-center align-item-center d-flex fields">
@@ -91,7 +91,7 @@
                     <div class="row justify-content-center align-item-center d-flex fields">
                         <div class="col-lg-4 d-flex align-items-center"><label for="Locker Unit Number">Location Name</label></div>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control locker-unit location-name" value="">
+                            <input type="text" class="form-control locker-unit location-name" value="" disabled>
                         </div>
                     </div>
                     <div class="row justify-content-center align-item-center d-flex fields">
@@ -104,7 +104,7 @@
                         <div class="col-lg-4 d-flex align-items-center"><label for="Locker Unit Number">Division Number</label></div>
                         <div class="col-lg-6">                            
                             <input type="text" class="form-control locker-unit division-name" value="">
-                           @* <select class="form-control location-name form-control-sm">
+                            @*<select class="form-control location-name form-control-sm division-dropdown">
                                 <option disabled selected>--Select Division--</option>
                                 <option>Divsion 1</option>
                                 <option>Divsion 2</option>

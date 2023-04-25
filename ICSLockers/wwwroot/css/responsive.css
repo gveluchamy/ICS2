@@ -182,7 +182,7 @@
         padding-top: 50px;
     }
     .locker-unit .unit-count h6 {
-        font-size: 32px;
+        font-size: 28px;
     }
     .locker-unit .unit-count h3 {
         font-size: 32px;
@@ -202,5 +202,19 @@
     }
     .unit .location-btn{
         padding-top: 10px;
+    }
+    .location .location-count h6 {
+        padding: 5px 15px;
+    }
+    .locker-unit .unit-count h3 {
+        font-size: 28px;
+        padding: 5px 15px;
+        line-height: 35px;
+    }
+    .locker-unit .btn.available {
+        padding: 8px 15px;
+    }
+    .unit .location-detail h6{
+        font-size: 16px;
     }
 }

@@ -6,7 +6,7 @@ namespace ICSLockers.Repository.IRepository
     {
         List<LocationModel> GetAllLocations();
         LocationModel? GetLocationDetails(int locationId);
-        DivisionModel? GeDivisionDetails(int divionId);
+        DivisionModel? GetDivisionDetails(int divionId);
         Tuple<bool, string> AddLocation(LocationModel location);
         bool AddDivisionsByLocation(LocationModel location);
         Tuple<bool, string> UpdateDivisionByDivisionID(DivisionModel division);

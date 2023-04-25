@@ -97,12 +97,12 @@ namespace ICSLockers.Controllers
             LocationModel? location = _adminRepository.GetLocationDetails(LocationId);
             GetDivisionDetails(LocationId);
             return location;
-        }
+        }   
 
         [HttpGet]
         public DivisionModel? GetDivisionDetails(int  LocationId)
         {
-            DivisionModel? division = _adminRepository.GeDivisionDetails(LocationId);
+            DivisionModel? division = _adminRepository.GetDivisionDetails(LocationId);
             ViewBag.divisions=division;
             return division;
         }
@@ -131,7 +131,7 @@ namespace ICSLockers.Controllers
             if (division != null)
             {
                 var user = await _userManager.GetUserAsync(User);
-                var location = _adminRepository.GeDivisionDetails(division.DivisionId);
+                var location = _adminRepository.GetDivisionDetails(division.DivisionId);
                 division.LocationId = location.LocationId;
                 division.DivisionNo = location.DivisionNo;               
                 division.CreatedBy = user.Id;

@@ -26,11 +26,11 @@ namespace ICSLockers.Repository.IRepository
             string Result = string.Empty;
             try
             {
-                var locationName=location.LocationName;
+                var locationName = location.LocationName;
                 bool IsLocationPresent = _context.Locations.ToList().Any(x => x.LocationName.Equals(location.LocationName, StringComparison.OrdinalIgnoreCase));
                 if (!IsLocationPresent)
                 {
-                    if (!string.IsNullOrEmpty(locationName))
+                    if (!string.IsNullOrEmpty(locationName) && location.TotalDivision <= 10)
                     {
                         _context.Locations.Add(location);
                         _context.SaveChanges();
@@ -41,7 +41,7 @@ namespace ICSLockers.Repository.IRepository
                         int divisionIdStart = divisionList.Count + 1;
 
                         AddNewDivision(totalDivision, divisionIdStart, location);
-                        
+
                         IsSuccess = true;
                         Result = $"The location {location.LocationName} has been added succesfully with {location.TotalDivision} divisions!";
                     }
@@ -67,48 +67,52 @@ namespace ICSLockers.Repository.IRepository
 
         private void AddNewDivision(int totalDivision, int divisionIdStart, LocationModel location)
         {
-           
-            try { 
-                for (int i = divisionIdStart; i <= totalDivision; i++)
+            if (location.TotalDivision <= 10)
+            {
+                try
                 {
-                    DivisionModel division = new()
+                    for (int i = divisionIdStart; i <= totalDivision; i++)
                     {
-                        DivisionNo = i,
-                        TotalLockers = DefaultLockersList,
-                        LocationId = location.LocationId,
-                        CreatedBy = location.CreatedBy,
-                        ModifiedBy = location.ModifiedBy,
-                        CreatedOn = DateTime.Now,
-                        ModifiedOn = DateTime.Now,
-                    };
-                    if (division.DivisionNo <= 10)
-                    {
-                        _context.Divisions.Add(division);
-                        _context.SaveChanges();
+                        DivisionModel division = new()
+                        {
+                            DivisionNo = i,
+                            TotalLockers = DefaultLockersList,
+                            LocationId = location.LocationId,
+                            CreatedBy = location.CreatedBy,
+                            ModifiedBy = location.ModifiedBy,
+                            CreatedOn = DateTime.Now,
+                            ModifiedOn = DateTime.Now,
+                        };
+                        if (division.DivisionNo <= 10)
+                        {
+                            _context.Divisions.Add(division);
+                            _context.SaveChanges();
 
-                        List<LockerUnitModel> lockersList = _context.LockerUnits.Where(x => x.DivisionId == division.DivisionId).ToList();
+                            List<LockerUnitModel> lockersList = _context.LockerUnits.Where(x => x.DivisionId == division.DivisionId).ToList();
 
-                        int totalLockers = lockersList.Count + division.TotalLockers;
-                        int lockerIdStart = lockersList.Count + 1;
+                            int totalLockers = lockersList.Count + division.TotalLockers;
+                            int lockerIdStart = lockersList.Count + 1;
 
-                        AddNewLockers(totalLockers, lockerIdStart, division);
+                            AddNewLockers(totalLockers, lockerIdStart, division);
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
+                catch (Exception ex)
+                {
 
+                }
             }
         }
 
         private void AddNewLockers(int totalLockers, int lockerIdStart, DivisionModel division)
         {
-           try
+            try
             {
                 for (int i = lockerIdStart; i <= totalLockers; i++)
                 {
-                        LockerUnitModel lockerUnit = new()
+                    LockerUnitModel lockerUnit = new()
                     {
+                        LockerNo = i,
                         DivisionId = division.DivisionId,
                         CreatedBy = division.CreatedBy,
                         ModifiedBy = division.ModifiedBy,
@@ -119,7 +123,7 @@ namespace ICSLockers.Repository.IRepository
                     _context.SaveChanges();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -130,7 +134,7 @@ namespace ICSLockers.Repository.IRepository
             List<LocationModel> locations = _context.Locations.Where(x => !x.IsDeleted).OrderBy(x => x.LocationId).ToList();
             return locations;
         }
-            
+
         public List<DivisionModel> GetDivisionByLocationId(int locationId)
         {
             List<DivisionModel> divisionList = _context.Divisions
@@ -193,7 +197,7 @@ namespace ICSLockers.Repository.IRepository
         {
             List<LockerUnitModel> lockerUnits = _context.LockerUnits
                 .Include(d => d.Division)
-                .ThenInclude(x=> x.Location)
+                .ThenInclude(x => x.Location)
                 .Where(x => x.DivisionId == divisionId).ToList();
             return lockerUnits;
         }
@@ -249,7 +253,7 @@ namespace ICSLockers.Repository.IRepository
             LocationModel? location = _context.Locations.FirstOrDefault(x => x.LocationId == locationId);
             return location;
         }
-        public DivisionModel? GeDivisionDetails(int divisionId)
+        public DivisionModel? GetDivisionDetails(int divisionId)
         {
             DivisionModel? division = _context.Divisions.FirstOrDefault(x => x.DivisionId == divisionId);
             return division;
@@ -257,7 +261,7 @@ namespace ICSLockers.Repository.IRepository
 
         public bool AddDivisionsByLocation(LocationModel location)
         {
-            if(location == null)
+            if (location == null)
                 return false;
 
             LocationModel? existingLocation = _context.Locations.FirstOrDefault(x => x.LocationId == location.LocationId);
@@ -269,11 +273,14 @@ namespace ICSLockers.Repository.IRepository
 
             int totalDivision = existingLocation.TotalDivision + location.TotalDivision;
             int divisionIdStart = existingLocation.TotalDivision + 1;
-
+            if (existingLocation.TotalDivision >= 10 && totalDivision <= 10) return false;
             AddNewDivision(totalDivision, divisionIdStart, location);
-
-            existingLocation.TotalDivision = totalDivision;
-            _context.SaveChanges();
+            //To restrict division update till 10
+            for (int i = 0; existingLocation.TotalDivision <= 9; i++)
+            {
+                existingLocation.TotalDivision = existingLocation.TotalDivision + 1;
+                _context.SaveChanges();
+            }
 
             return true;
         }

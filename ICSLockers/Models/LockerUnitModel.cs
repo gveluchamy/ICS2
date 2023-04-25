@@ -10,6 +10,7 @@ namespace ICSLockers.Models
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int LockerId { get; set; }
+        public int LockerNo { get; set;}
 
         [ForeignKey("Division")]
         public int DivisionId { get; set; }

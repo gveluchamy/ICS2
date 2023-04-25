@@ -221,7 +221,7 @@ a {
 
 .menu-landing > .container-fluid {
     height: 100vh;
-} 
+}
 .user-menu {
     display: flex;
     align-items: center;
@@ -378,16 +378,16 @@ a {
         padding-left: 20px;
     }
 
-    .title-bar .breadcrumb-item:first-child h5::before {
-        content: '';
-        width: 3px;
-        height: 100%;
-        background: #D9D9D9;
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
+        .title-bar .breadcrumb-item:first-child h5::before {
+            content: '';
+            width: 3px;
+            height: 100%;
+            background: #D9D9D9;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
 
 .content-wrapper {
     float: left;
@@ -673,7 +673,7 @@ a {
     }
 
 .locker-unit .content-wrapper {
-/*    padding: 60px 40px;*/
+    /*    padding: 60px 40px;*/
     padding-bottom: 0;
 }
 
@@ -1174,13 +1174,13 @@ select.location-name {
 .fields{
     margin-bottom: 30px;
 }
-    input.location-search {
-        border: 2px solid rgba(85, 85, 85, 0.15);
-        border-radius: 5px;
-        width: 292px;
-        height: 40px;
-        padding-right: 40px;
-    }
+input.location-search {
+    border: 2px solid rgba(85, 85, 85, 0.15);
+    border-radius: 5px;
+    width: 292px;
+    height: 40px;
+    padding-right: 40px;
+}
     input.location-search::placeholder {
         color: rgba(0, 0, 0, 0.5);
         font-size: 18px;
@@ -1707,9 +1707,9 @@ canvas {
         background: #fff;
         color: #2B4889;
     }
-    .locker-admin-panel {
-        height: 100%;
-    }
+.locker-admin-panel {
+    height: 100%;
+}
 
     .locker-admin-panel .content-wrapper {
         display: flex;
@@ -1787,7 +1787,7 @@ canvas {
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-    color: #D12B28;   
+    color: #D12B28;
 }
 
 .location .location-count span {
@@ -1995,13 +1995,118 @@ select.filter {
     text-align: center;
     color: #FFFFFF;
     padding: 10px 80px;
-} 
-.user-report{
+}
+
+.users-profile .options {
+    position: relative;
+}
+
+    .users-profile .options img {
+        width: 25px;
+        opacity: 0.5;
+        cursor: pointer;
+    }
+
+    .users-profile .options .menus {
+        display: none;
+        position: absolute;
+        right: 0;
+        width: 170px;
+    }
+
+        .users-profile .options .menus ul li {
+            list-style-type: none;
+            float: left;
+            width: 100%;
+        }
+
+            .users-profile .options .menus ul li a {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 19px;
+                color: #2B4889;
+                padding: 10px 10px;
+                float: left;
+                width: 100%;
+                text-align: center;
+            }
+
+                .users-profile .options .menus ul li a:hover {
+                    text-decoration: none;
+                    background: rgba(217, 217, 217, 0.5);
+                }
+
+        .users-profile .options .menus ul {
+            background-color: #fff;
+            border: 2px solid rgba(0, 0, 0, 0.025);
+            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            float: left;
+            width: 100%;
+            padding: 0;
+        }
+
+        .users-profile .options .menus.show {
+            display: block;
+        }
+
+.user-report {
     max-width: 1700px !important;
 }
-.location-list .location{
+
+.location-list .location {
     display: flex;
 }
+
+.access-denied,
+.not-found {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+    .access-denied h1,
+    .not-found h1 {
+        font-size: 15rem;
+        opacity: 0.5;
+        font-weight: 700;
+        color: #2B4889;
+    }
+
+    .access-denied img,
+    .not-found img {
+        margin: 0 auto;
+        object-fit: contain;
+        float: left;
+        width: 100%;
+    }
+
+    .access-denied h2,
+    .not-found h2 {
+        font-size: 3rem;
+        color: #2B4889;
+        line-height: 50px;
+        margin-bottom: 30px;
+    }
+
+    .access-denied p,
+    .not-found p {
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+
+    .access-denied .return-home,
+    .not-found .return-home {
+        font-size: 18px;
+        font-weight: 500;
+        padding: 15px 60px;
+        background-color: #2B4889;
+        color: #fff;
+        border: none;
+        border-radius: 100px;
+        margin-top: 30px;
+    }
+
 @media screen and (max-width: 1600px) {
     .location .location-count h5 {
         font-size: 14px;

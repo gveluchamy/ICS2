@@ -107,7 +107,7 @@ namespace ICSLockers.Repository
                 return status;
             }
 
-            var RoleName = _roleManager.Roles.FirstOrDefault(x => x.Id.Equals( model.Role)).Name;
+            var RoleName = _roleManager.Roles.FirstOrDefault(x => x.Name.Equals( model.Role)).Name;
 
             if (await _roleManager.RoleExistsAsync(RoleName))
             {

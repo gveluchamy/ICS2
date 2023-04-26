@@ -659,7 +659,7 @@ a {
         border: 1px solid rgba(0, 0, 0, 0.05);
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
         border-radius: 15px;
-        padding: 15px;
+        padding:5px 20px;
         max-width: 125px;
     }
 
@@ -698,7 +698,9 @@ a {
         }
 
 .unit .location-btn {
-    padding: 20px;
+    padding: 10px;
+   /* padding-top: 0px;
+    padding-bottom: 8px;*/
 }
 
 .locker-unit .btn .lockers {
@@ -1096,8 +1098,9 @@ input::-webkit-inner-spin-button {
     text-transform: uppercase;
     color: #2B4889;
     background-color: #fff;
-    padding: 10px 30px !important;
+    padding: 5px 30px !important;
     padding-bottom: 5px !important;
+    border-radius: 10px;
 }
 
     .admin .update-locker,
@@ -1111,8 +1114,9 @@ input::-webkit-inner-spin-button {
         text-transform: uppercase;
         color: #fff;
         background: #2B4889;
-        padding: 10px 30px !important;
+        padding: 5px 30px !important;
         padding-bottom: 5px !important;
+        border-radius: 10px;
     }
 
 .update-locker {
@@ -1689,7 +1693,7 @@ canvas {
 
 .user-table .add-user {
     position: absolute;
-    right: 40%;
+    right: 30%;
     width: 130px;
     height: 30px;
     background: #2B4889;
@@ -1921,6 +1925,7 @@ select.filter {
             line-height: 24px;
             text-transform: uppercase;
             color: #FFFFFF;
+
         }
 
         .users-profile .profile-footer .add-item {
@@ -2106,7 +2111,317 @@ select.filter {
         border-radius: 100px;
         margin-top: 30px;
     }
+/*------------User product----------*/
+.user-product-add {
+    display: flex;
+}
 
+    .user-product-add .users-profile.user-product {
+        margin-left: 20px;
+    }
+
+    .user-product-add .locker-status {
+        display: flex;
+        align-items: center;
+    }
+
+        .user-product-add .locker-status h5 {
+            margin: 0;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+            color: #69E772;
+        }
+
+        .user-product-add .locker-status img {
+            width: 40px;
+            margin-left: 15px;
+        }
+
+    .user-product-add .users-profile.user-product .profile-header .user-name h5 {
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 29px;
+        color: #004DFC !important;
+    }
+
+    .user-product-add .users-profile.user-product {
+        background: #F5F5F5;
+        border: 2px solid rgba(0, 0, 0, 0.025);
+        box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05);
+        border-radius: 25px;
+    }
+
+        .user-product-add .users-profile.user-product .profile-body {
+            max-width: 100%;
+            padding: 25px;
+        }
+
+            .user-product-add .users-profile.user-product .profile-body table {
+                table-layout: fixed;
+                background-color: #fff;
+            }
+
+                .user-product-add .users-profile.user-product .profile-body table th {
+                    padding: 20px 20px;
+                }
+
+                .user-product-add .users-profile.user-product .profile-body table td {
+                    padding: 5px 20px;
+                }
+
+                .user-product-add .users-profile.user-product .profile-body table thead,
+                .user-product-add .users-profile.user-product .profile-body table tbody tr {
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                }
+
+                    .user-product-add .users-profile.user-product .profile-body table thead th {
+                        font-weight: 400;
+                        font-size: 20px;
+                        line-height: 24px;
+                        color: #555555;
+                    }
+
+                .user-product-add .users-profile.user-product .profile-body table tbody td {
+                    font-weight: 400;
+                    font-size: 18px;
+                    line-height: 60px;
+                    color: #2B4889;
+                }
+
+                    .user-product-add .users-profile.user-product .profile-body table tbody td h4 {
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 19px;
+                        color: #000000;
+                        opacity: 0.5;
+                        margin: 0;
+                        cursor: pointer;
+                    }
+
+                    .user-product-add .users-profile.user-product .profile-body table tbody td img {
+                        width: 12px;
+                        height: 12px;
+                        margin-right: 15px;
+                        cursor: pointer;
+                    }
+
+                    .user-product-add .users-profile.user-product .profile-body table tbody td a {
+                        cursor: pointer;
+                        text-decoration: none;
+                    }
+
+        .user-product-add .users-profile.user-product .profile-footer .remove-all {
+            border: 2px solid #D12B28;
+            border-radius: 30px;
+            padding: 18px 30px;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 18px;
+            text-transform: uppercase;
+            color: #D12B28;
+        }
+
+            .user-product-add .users-profile.user-product .profile-footer .remove-all:hover {
+                background-color: #D12B28;
+                color: #fff;
+            }
+
+        .user-product-add .users-profile.user-product .profile-footer .update-locker {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 18px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            background: linear-gradient(180deg, #69E772 0%, #68D270 100%);
+            border: 2px solid #68D270;
+            border-radius: 30px;
+        }
+
+            .user-product-add .users-profile.user-product .profile-footer .update-locker:hover {
+                background: transparent;
+                color: #68D270;
+            }
+   /* Nominee*/
+
+.nominee h1 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #555555;
+    margin-bottom: 30px;
+}
+
+.nominee .nominee-form {
+    margin: 0 auto;
+    max-width: 1047px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.025);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 30px;
+    padding: 50px 120px
+}
+
+    .nominee .nominee-form input[type='text'] {
+        background: #FFFFFF;
+        border: 2px solid rgba(0, 0, 0, 0.05);
+        box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 25px;
+        height: 50px;
+        width: 100%;
+        padding-left: 25px;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        display: flex;
+        align-items: center;
+        color: rgba(0, 0, 0, 0.25);
+    }
+
+    .nominee .nominee-form h5 {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 29px;
+        text-align: center;
+        color: #2B4889;
+        margin-bottom: 15px;
+    }
+
+    .nominee .nominee-form [type="radio"]:checked,
+    .nominee .nominee-form [type="radio"]:not(:checked) {
+        position: absolute;
+        left: -9999px;
+    }
+
+        .nominee .nominee-form [type="radio"]:checked + label,
+        .nominee .nominee-form [type="radio"]:not(:checked) + label {
+            position: relative;
+            padding: 10px 20px;
+            cursor: pointer;
+            line-height: 18px;
+            display: inline-block;
+            color: #666;
+            z-index: 1;
+            width: 100%;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 29px;
+            text-align: center;
+        }
+
+            .nominee .nominee-form [type="radio"]:checked + label:before,
+            .nominee .nominee-form [type="radio"]:not(:checked) + label:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                border: 2px solid rgba(0, 0, 0, 0.1);
+                border-radius: 50px;
+                background: #ffffff00;
+            }
+
+            .nominee .nominee-form [type="radio"]:not(:checked) + label:after {
+                opacity: 0;
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+        .nominee .nominee-form [type="radio"]:checked + label {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+            color: #fff;
+        }
+
+            .nominee .nominee-form [type="radio"]:checked + label.patient:before,
+            .nominee .nominee-form [type="radio"]:not(:checked) + label.patient:before {
+                border-color: #FC7C7C;
+            }
+
+        .nominee .nominee-form [type="radio"]:not(:checked) + label.patient {
+            color: #FC7C7C;
+        }
+
+        .nominee .nominee-form [type="radio"]:checked + label.patient {
+            background-color: rgb(252, 124, 124, 0.8);
+        }
+
+        .nominee .nominee-form [type="radio"]:checked + label.nurse:before,
+        .nominee .nominee-form [type="radio"]:not(:checked) + label.nurse:before {
+            border-color: rgb(105, 231, 114);
+        }
+
+        .nominee .nominee-form [type="radio"]:not(:checked) + label.nurse {
+            color: #69E772;
+        }
+
+        .nominee .nominee-form [type="radio"]:checked + label.nurse {
+            background-color: rgb(105, 231, 114, 0.7);
+        }
+
+        .nominee .nominee-form [type="radio"]:checked + label.kin:before,
+        .nominee .nominee-form [type="radio"]:not(:checked) + label.kin:before {
+            border-color: rgba(0, 77, 252, 0.5);
+        }
+
+        .nominee .nominee-form [type="radio"]:not(:checked) + label.kin {
+            color: rgba(0, 77, 252, 0.5);
+        }
+
+        .nominee .nominee-form [type="radio"]:checked + label.kin {
+            background-color: #72BDF5;
+        }
+
+
+        .nominee .nominee-form [type="radio"]:checked + label.others:before,
+        .nominee .nominee-form [type="radio"]:not(:checked) + label.others:before {
+            border-color: rgba(0, 0, 0, 0.25);
+        }
+
+        .nominee .nominee-form [type="radio"]:not(:checked) + label.others {
+            color: rgba(0, 0, 0, 0.25);
+        }
+
+        .nominee .nominee-form [type="radio"]:checked + label.others {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        .nominee .nominee-form [type="radio"]:checked + label.others {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+    .nominee .nominee-form .other-relation {
+        display: none !important;
+    }
+
+        .nominee .nominee-form .other-relation.show {
+            display: flex !important;
+        }
+
+    .nominee .nominee-form .btn {
+        max-width: 440px;
+        width: 100%;
+        height: 90px;
+        background: #F2302D;
+        border: 4px solid #D12B28;
+        box-shadow: inset 0px 1px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 45px;
+        padding: 28px 71px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 34px;
+        text-align: center;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        margin: 0 auto;
+    }
 @media screen and (max-width: 1600px) {
     .location .location-count h5 {
         font-size: 14px;

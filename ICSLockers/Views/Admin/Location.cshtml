@@ -1,4 +1,7 @@
-﻿@using ICSLockers.Models
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@using ICSLockers.Models
 
 @{
     ViewData["Title"] = "Location";
@@ -10,9 +13,12 @@
         <div class ="col-lg-6 d-flex align-items-center p-0">
           <h5>Location</h5>       
         </div>
-        <div class="col-lg-6 d-flex justify-content-end p-0">
-            <buttton type="button" class="btn btn-outline-primary add-locker" onclick="fnAddNewLockerPopup()">Add Location</buttton>
+        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+        {
+            <div class="col-lg-6 d-flex justify-content-end p-0">
+                <buttton type="button" class="btn btn-outline-primary add-locker" onclick="fnAddNewLockerPopup()">Add Location</buttton>
         </div>
+        }
     </div>
     <div class="content-wrapper view-location">
         <div class="passcode d-flex align-items-center text-center">

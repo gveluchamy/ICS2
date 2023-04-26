@@ -1,4 +1,7 @@
-﻿@using ICSLockers.Models
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@using ICSLockers.Models
 @model AdminDashboard
 
 @{
@@ -52,16 +55,19 @@
                         <div class="col-lg-4 p-0">
                             <img src="~/images/png/secure.png" alt="" class="dashboard-icon">
                         </div>
-                    </div>                    
-                    <div class="locker-unit d-flex">
-                        <div class="col-lg-8 p-0">
-                            <h5 class="text-left">Total Admin</h5>
-                            <h1 class="text-left">@Model.UserList?.Count()</h1>
+                    </div>       
+                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+                        <div class="locker-unit d-flex">                            
+                            <div class="col-lg-8 p-0">
+                                <h5 class="text-left">Total Admin</h5>
+                                <h1 class="text-left">@Model.UserList?.Count()</h1>
+                            </div>
+                            <div class="col-lg-4 p-0">
+                                <img src="~/images/png/employee.png" alt="" class="dashboard-icon">
+                            </div>
                         </div>
-                        <div class="col-lg-4 p-0">
-                            <img src="~/images/png/employee.png" alt="" class="dashboard-icon">
-                        </div>
-                    </div>
+                    }
                     <div class="locker-unit d-flex">
                         <div class="col-lg-8 p-0">
                             <h5 class="text-left">Total Staffs</h5>

@@ -1,4 +1,7 @@
-﻿@model List<DivisionModel>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@model List<DivisionModel>
 @using ICSLockers.Models
 
 @{
@@ -19,11 +22,13 @@
                 </ol>
             </nav>
         </div>
-        
-        <div class="col-lg-6 d-flex justify-content-end p-0 location ">
-            <buttton type="button" class="btn btn-outline-primary add-locker" onclick="fnAddNewDivisionPopup()">Add Division</buttton>
+        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+        {
+            <div class="col-lg-6 d-flex justify-content-end p-0 location ">
+                <buttton type="button" class="btn btn-outline-primary add-locker" onclick="fnAddNewDivisionPopup()">Add Division</buttton>
             <buttton type="button" class="btn btn-outline-primary update-locker" onclick="fnUpdateDivisionPopup()">Update Division</buttton>
         </div>
+        }
     </div>
     <div class="content-wrapper">
         <div class="passcode d-flex align-items-center text-center">

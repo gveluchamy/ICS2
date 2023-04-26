@@ -24,8 +24,8 @@
             "oPaginate": {
                 "sNext": '<i class="fa-solid fa-angle-right"></i>',
                 "sPrevious": '<i class="fa-solid fa-angle-left"></i>',
-                //"sFirst": '<i class="fa-solid fa-angle-left"></i>',
-                //"sssLast": '<i class="fa-solid fa-angle-right"></i>'
+                "sFirst": '<i class="fa-solid fa-angle-left"></i>',
+                "sLast": '<i class="fa-solid fa-angle-right"></i>'
             }
         },
 
@@ -59,8 +59,8 @@ $(document).ready(function () {
             "oPaginate": {
                 "sNext": '<i class="fa-solid fa-angle-right"></i>',
                 "sPrevious": '<i class="fa-solid fa-angle-left"></i>',
-                //"sFirst": '<i class="fa-solid fa-angle-left"></i>',
-                //"sssLast": '<i class="fa-solid fa-angle-right"></i>'
+                "sFirst": '<i class="fa-solid fa-angle-left"></i>',
+                "sLast": '<i class="fa-solid fa-angle-right"></i>'
             }
         },
 
@@ -94,8 +94,8 @@ $(document).ready(function () {
             "oPaginate": {
                 "sNext": '<i class="fa-solid fa-angle-right"></i>',
                 "sPrevious": '<i class="fa-solid fa-angle-left"></i>',
-                //"sFirst": '<i class="fa-solid fa-angle-left"></i>',
-                //"sssLast": '<i class="fa-solid fa-angle-right"></i>'
+                "sFirst": '<i class="fa-solid fa-angle-left"></i>',
+                "sLast": '<i class="fa-solid fa-angle-right"></i>'
             }
         },
 
@@ -130,8 +130,8 @@ $(document).ready(function () {
             "oPaginate": {
                 "sNext": '<i class="fa-solid fa-angle-right"></i>',
                 "sPrevious": '<i class="fa-solid fa-angle-left"></i>',
-                //"sFirst": '<i class="fa-solid fa-angle-left"></i>',
-                //"sssLast": '<i class="fa-solid fa-angle-right"></i>'
+                "sFirst": '<i class="fa-solid fa-angle-left"></i>',
+                "sLast": '<i class="fa-solid fa-angle-right"></i>'
             }
         },
 
@@ -164,8 +164,8 @@ $(document).ready(function () {
             "oPaginate": {
                 "sNext": '<i class="fa-solid fa-angle-right"></i>',
                 "sPrevious": '<i class="fa-solid fa-angle-left"></i>',
-                //"sFirst": '<i class="fa-solid fa-angle-left"></i>',
-                //"sssLast": '<i class="fa-solid fa-angle-right"></i>'
+                "sFirst": '<i class="fa-solid fa-angle-left"></i>',
+                "sLast": '<i class="fa-solid fa-angle-right"></i>'
             }
         },
 

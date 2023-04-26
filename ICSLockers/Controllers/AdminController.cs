@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data;
 using System.Security.Claims;
 namespace ICSLockers.Controllers
 {
@@ -43,16 +44,29 @@ namespace ICSLockers.Controllers
             AdminDashboard dashboard = _adminRepository.GetDashBoardDetails();
             return View("AdminDashboard", dashboard);
         }
-
+      
         public IActionResult Index()
         {
-            List<IdentityRole> model = new();
-            model = _roleManager.Roles.Select(r => new IdentityRole
+            var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+            List<IdentityRole> model = new List<IdentityRole>();
+
+            if (userRole == "Admin")
             {
-                Name = r.Name,
-                Id = r.Id,
-            }).ToList();
-            ViewBag.ListRole = new SelectList(model, "Id", "Name");
+                model.Add(new IdentityRole { Name = "Admin" });
+                model.Add(new IdentityRole { Name = "Staff" });
+            }
+            else if (userRole == "Staff")
+            {
+                model.Add(new IdentityRole { Name = "User" });
+            }
+            ViewBag.ListRole=model;          
+
+            //model = _roleManager.Roles.Select(r => new IdentityRole
+            //{
+            //    Name = r.Name,
+            //    Id = r.Id,
+            //}).ToList();
+            //ViewBag.ListRole = new SelectList(model, "Id", "Name");
             return View();
         }
 
@@ -107,7 +121,7 @@ namespace ICSLockers.Controllers
             return division;
         }
         public IActionResult Division(int LocationId)
-        {
+            {
             List<DivisionModel> divisionModel = _adminRepository.GetDivisionByLocationId(LocationId);
             return View(divisionModel);
         }
@@ -192,6 +206,12 @@ namespace ICSLockers.Controllers
         public IActionResult UserReports()
         {
             UserReportsModel userReport = _adminRepository.UserReport();
+            var adminUsers = _userManager.GetUsersInRoleAsync("Admin").Result.ToList();
+            var StaffUsers = _userManager.GetUsersInRoleAsync("Staff").Result.ToList();
+            var Users = _userManager.GetUsersInRoleAsync("User").Result.ToList();
+            ViewBag.AdminReports = adminUsers;
+            ViewBag.StaffReports = StaffUsers;
+            ViewBag.UserReports = Users;
             return View(userReport);
         }
 
@@ -207,6 +227,14 @@ namespace ICSLockers.Controllers
             ViewBag.User = userEvents; 
             return View(userEvents);
         }
-
+        [HttpGet]
+        public IActionResult UserProfile()
+        {
+            return View();
+        }
+        public IActionResult Guardian()
+        {
+            return View();
+        }
     }
 }

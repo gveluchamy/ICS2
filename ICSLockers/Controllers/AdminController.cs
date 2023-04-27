@@ -1,4 +1,5 @@
-﻿using ICSLockers.Helpers;
+﻿using ICSLockers.Data;
+using ICSLockers.Helpers;
 using ICSLockers.Models;
 using ICSLockers.Repository;
 using ICSLockers.Repository.IRepository;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Security.Claims;
 namespace ICSLockers.Controllers
@@ -13,18 +15,20 @@ namespace ICSLockers.Controllers
     [Authorize(Roles ="Admin, Staff")]
     public class AdminController : Controller
     {
+        private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IAdminRepository _adminRepository;
         private readonly ILogger<AccountController> _logger;
-        public AdminController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager, IAdminRepository adminRepository, ILogger<AccountController> logger)
+        public AdminController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager, IAdminRepository adminRepository, ILogger<AccountController> logger, ApplicationDbContext context)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
             _adminRepository = adminRepository;
             _logger = logger;
+            _context = context;
         }
 
         [AllowAnonymous]
@@ -44,29 +48,17 @@ namespace ICSLockers.Controllers
             AdminDashboard dashboard = _adminRepository.GetDashBoardDetails();
             return View("AdminDashboard", dashboard);
         }
-      
-        public IActionResult Index()
+        public ActionResult Index(string role)
         {
             var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
             List<IdentityRole> model = new List<IdentityRole>();
-
-            if (userRole == "Admin")
-            {
-                model.Add(new IdentityRole { Name = "Admin" });
-                model.Add(new IdentityRole { Name = "Staff" });
-            }
-            else if (userRole == "Staff")
+           
+            if (userRole == "Staff")
             {
                 model.Add(new IdentityRole { Name = "User" });
             }
-            ViewBag.ListRole=model;          
-
-            //model = _roleManager.Roles.Select(r => new IdentityRole
-            //{
-            //    Name = r.Name,
-            //    Id = r.Id,
-            //}).ToList();
-            //ViewBag.ListRole = new SelectList(model, "Id", "Name");
+            ViewBag.ListRole = model.ToList();
+            ViewBag.Role=role;
             return View();
         }
 
@@ -228,11 +220,69 @@ namespace ICSLockers.Controllers
             return View(userEvents);
         }
         [HttpGet]
-        public IActionResult UserProfile()
+        public IActionResult UserProfile(int LockerId, int DivisionId, int LocationId)
+            {
+            // Fetch the locker details based on the provided ids
+            var locker = _context.LockerUnits
+                .Include(l => l.Division)
+                    .ThenInclude(d => d.Location)
+                .SingleOrDefault(l => l.LockerId == LockerId && l.DivisionId == DivisionId && l.Division.LocationId == LocationId);
+
+            var locationName = _context.Locations.FirstOrDefault(l=>l.LocationId==LocationId).LocationName;
+
+            if (locker == null)
+            {
+               return NotFound();
+            }
+
+            // Fetch the user details using the locker's UserId property
+            var user = _context.Users.SingleOrDefault(u => u.LockerId.Equals(LockerId));
+
+
+            if (user == null)
+            {                
+                return NotFound();
+            }
+
+            // Pass the locker and user details to the view
+            var model = new 
+            {
+                Locker = locker,
+                User = user,
+                LocationName = locationName,
+            };
+
+            return View(model);
+        }
+        [HttpGet]
+        public IActionResult Guardian(int LockerId)
+        {  
+            var user = _context.Users.SingleOrDefault(u => u.LockerId.Equals(LockerId));
+            if (user == null)
+            {
+                return BadRequest();
+            }
+            var model = user;
+           
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult Guardian( [FromBody] ApplicationUser model)
         {
+            var user = _context.Users.Where(x=>x.UserName == model.UserName).FirstOrDefault();
+            if (user != null)
+            {
+                user.RelationShip=model.RelationShip;
+                _context.Update(user);
+                _context.SaveChanges();
+            }
+            //if (ModelState.IsValid)
+            //{
+
+            //}
             return View();
         }
-        public IActionResult Guardian()
+        public IActionResult LockerDetails()
         {
             return View();
         }

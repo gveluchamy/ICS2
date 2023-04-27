@@ -1,0 +1,181 @@
+﻿@using ICSLockers.Models
+@{
+    ViewData["Title"] = "User Profile";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid main">
+    <div class="title-bar">
+        <h5>Locate User Locker</h5>
+    </div>
+    <div class="content-wrapper">
+        <div class="user-product-add">
+            <div class="users-profile">
+                <div class="d-flex align-items-center justify-content-between profile-header">
+                    <div class="d-flex align-items-center">
+                        <div class="profile-number">
+                            <h1>11</h1>
+                        </div>
+                        <div class="user-name">
+                            <h5>Robert</h5>
+                        </div>
+                    </div>
+                    <div class="locker-status">
+                        <h5>Locker in use</h5>
+                        <img src="~/images/png/available.png" alt="">
+                    </div>
+                </div>
+                <div class="profile-body">
+                    <div class="d-flex justify-content-between">
+                        <label for="" class="col-lg-6">User Name</label>
+                        <h5 class="col-lg-6">Jacqulin Fernandaz</h5>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <label for="" class="col-lg-6">User Code</label>
+                        <h5 class="col-lg-6">9971</h5>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <label for="" class="col-lg-6">Locker Location</label>
+                        <h5 class="col-lg-6">Location-1</h5>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <label for="" class="col-lg-6">Locker Division</label>
+                        <h5 class="col-lg-6">#5</h5>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <label for="" class="col-lg-6">Locker Number</label>
+                        <h5 class="col-lg-6">#2</h5>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <label for="" class="col-lg-6">Barcode Number</label>
+                        <h5 class="col-lg-6">987654321</h5>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <label for="" class="col-lg-6">Items</label>
+                        <div class="col-lg-6">
+                            <h5>Water Bottle</h5>
+                            <h5>Plastic Bag</h5>
+                            <h5>Mobile Charger</h5>
+                            <h5>Dresses</h5>
+                            <h5>Plastic Bag</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="users-profile user-product">
+                <div class="d-flex align-items-center justify-content-between profile-header">
+                    <div class="d-flex align-items-center">
+                        <div class="profile-number">
+                            <h1>11</h1>
+                        </div>
+                        <div class="user-name">
+                            <h5>Remove Items Procedure</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-body">
+                    <table id="example" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Items</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Bag</td>
+                                <td>
+                                    <a href="#">
+                                        <div class="d-flex align-items-center">
+                                            <img src="~/images/png/cancel.png" alt="">
+                                            <h4>Remove</h4>
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Bag</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="~/images/png/cancel.png" alt="">
+                                        <h4>Remove</h4>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Bag</td>
+                                <td>
+                                    <a href="#">
+                                        <div class="d-flex align-items-center">
+                                            <img src="~/images/png/cancel.png" alt="">
+                                            <h4>Remove</h4>
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Bag</td>
+                                <td>
+                                    <a href="#">
+                                        <div class="d-flex align-items-center">
+                                            <img src="~/images/png/cancel.png" alt="">
+                                            <h4>Remove</h4>
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Bag</td>
+                                <td>
+                                    <a href="#">
+                                        <div class="d-flex align-items-center">
+                                            <img src="~/images/png/cancel.png" alt="">
+                                            <h4>Remove</h4>
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="profile-footer">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn remove-all">Remove All Products</button>
+                        <button class="btn update-locker">Update Locker</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="modal fade user-remove" id="exampleModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered locker-add-modal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center w-100" id="exampleModalLongTitle">
+                    Are you sure remove the items
+                    and remove user from the locker?
+                </h5>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex justify-content-around">
+                    <button class="btn-outline-primary">Yes</button>
+                    <button class="btn-outline-danger">No</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Staff.js"></script>
+
+                <script src="~/js/Staff.js"></script>

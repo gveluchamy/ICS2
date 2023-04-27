@@ -22,7 +22,7 @@
             <div class="count">@Model.LockerId</div>
             <div class="user-name">Stephen Edwards</div>
         </div>
-            <div class="locker-condition flex-column d-flex align-items-center" onclick="location.href='@Url.Action("UserProfile", "Admin" @*new { locationId = Model.LocationId })'" data-value="@Model.LocationName"*@)'">
+            <div class="locker-condition flex-column d-flex align-items-center" onclick="location.href='@Url.Action("UserProfile", "Admin",new { divisionId = Model.DivisionId,lockerId=Model.LockerId,locationId= Model.Division.LocationId})'" data-value= "@Model.LockerNo">
             <img src="~/images/png/available.png" alt="" class="success">
             <img src="~/images/png/not-available.png" alt="" class="danger">
             <span>Locker in use</span>

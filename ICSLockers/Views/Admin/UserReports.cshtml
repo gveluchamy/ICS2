@@ -1,4 +1,7 @@
-﻿@using ICSLockers.Models
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@using ICSLockers.Models
 @model UserReportsModel
 
 @{
@@ -16,15 +19,18 @@
             <div class="user-table">
                 <div class="tab">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active  role" id="pills-home-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-home" type="button" role="tab"
+                                        aria-controls="pills-home" aria-selected="false">
+                                    Admin
+                                </button>
+                            </li>
+                        }
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-home" type="button" role="tab"
-                                    aria-controls="pills-home" aria-selected="false">
-                                Admin
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-staff-tab"
+                            <button class="nav-link  role" id="pills-staff-tab "
                                     data-bs-toggle="pill" data-bs-target="#pills-staff" type="button"
                                     role="tab" aria-controls="pills-staff"
                                     aria-selected="true">
@@ -32,28 +38,33 @@
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                            <button class="nav-link  role" id="pills-profile-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-profile" type="button" role="tab"
                                     aria-controls="pills-profile" aria-selected="false">
                                 User
                             </button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-contact" type="button" role="tab"
-                                    aria-controls="pills-contact" aria-selected="false">
-                                Session
-                            </button>
-                        </li>
-                        
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link  role" id="pills-contact-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-contact" type="button" role="tab"
+                                        aria-controls="pills-contact" aria-selected="false">
+                                    Session
+                                </button>
+                            </li>
+                        }
                     </ul>
 
                     <div class="tab-content" id="pills-tabContent">
-
+                        
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                              aria-labelledby="pills-home-tab">
                             <div class="col-lg-12 p-0 employee-table">
-                                <button class="add-user btn btn-primary" onclick="location.href='@Url.Action("Index", "Admin")'">Create Admin</button>
+                                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                                {
+                                    <button id="getvalue" class="add-user btn btn-primary" @*onclick="location.href='@Url.Action("Index", "Admin",new { param1 = "value1" })'"*@>Create Account</button>
+                                }
                                 <table id="AdminReportTable" class="table table-hover emp-table">
                                     <thead>
                                         <tr>
@@ -68,7 +79,8 @@
                                     <tbody>
                                         @{
                                             int i = 1;
-                                            @foreach (ApplicationUser user in Model.Users)
+                                            //@foreach(ApplicationUser user in Model.Users)
+                                            @foreach (var user in ViewBag.AdminReports)
                                             {
                                                 <tr>
                                                     <td>@i</td>
@@ -86,30 +98,40 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade " id="pills-staff" role="tabpanel"
+
+
+                        <div class="tab-pane fade" id="pills-staff" role="tabpanel"
                              aria-labelledby="pills-staff-tab">
                             <div class="col-lg-12 p-0 employee-table">
-                                <button class="add-user btn btn-primary" onclick="location.href='@Url.Action("Index", "Admin")'">Create Staff</button>
+                                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                                {
+                                    <button id="getvalues" class="add-user btn btn-primary" @*onclick="location.href='@Url.Action("Index", "Admin")'"*@>Create Account</button>
+                                }
+                                else
+                                {
+                                    <button class="add-user btn btn-primary" onclick="location.href='@Url.Action("Index", "Admin")'">Create User</button>
+                                }
                                 <table id="StaffReportTable" class="table table-hover emp-table">
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
                                             <th>FirstName</th>
                                             <th>LastName</th>
-                                            <th>Locker</th>
+                                            <th>Created by</th>
                                             <th>Email</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @{
                                             int n = 1;
-                                            @foreach (ApplicationUser user in Model.Users)
+                                            //@foreach(ApplicationUser user in Model.Users)
+                                            @foreach (var user in ViewBag.StaffReports)
                                             {
                                                 <tr>
                                                     <td>@n</td>
                                                     <td>@user.FirstName</td>
                                                     <td>@user.LastName</td>
-                                                    <td>@user.LockerId</td>
+                                                    <td>@user.CreatedBy</td>
                                                     <td>@user.Email</td>
                                                 </tr>
                                                 n++;
@@ -137,7 +159,8 @@
                                     <tbody>
                                         @{
                                             int count = 1;
-                                            @foreach (ApplicationUser user in Model.Users)
+                                            @foreach (var user in ViewBag.UserReports)
+                                            //@foreach (ApplicationUser user in Model.Users)
                                             {
 
                                                 <tr>
@@ -170,17 +193,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                            @foreach (UserEvent Event in Model.UserEvents)
-                                            {
-                                                <tr>
-                                                    <td>@Event.Id</td>
-                                                    <td>@Event.Username</td>
-                                                    <td>@Event.Role</td>
-                                                    <td>@Event.EventType</td>
-                                                    <td>@Event.EventTime.ToString("dd/MMM/yyyy")</td>
-                                                    <td>@Event.EventTime.ToString("hh:mm tt")</td>
-                                                </tr>
-                                            }
+                                        @foreach (UserEvent Event in Model.UserEvents)
+                                        {
+                                            <tr>
+                                                <td>@Event.Id</td>
+                                                <td>@Event.Username</td>
+                                                <td>@Event.Role</td>
+                                                <td>@Event.EventType</td>
+                                                <td>@Event.EventTime.ToString("dd/MMM/yyyy")</td>
+                                                <td>@Event.EventTime.ToString("hh:mm tt")</td>
+                                            </tr>
+                                        }
                                     </tbody>
                                 </table>
                             </div>
@@ -193,5 +216,104 @@
     </div>
 </div>
 
+@*<script>
+$("#getvalue").click(function(){
+    //var role = $(".role.active").text().trim();
+    //debugger;
+    //    $.ajax({
+    //        url: '/Admin/Index',
+    //        headers: {
+    //            "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val()
+    //        },
+    //        type: "POST",
+    //        async: false,
+    //        datatype: 'application/json',
+    //        contentType: 'application/json',
+    //        data: JSON.stringify(updatewidget),
+    //        success: function (data) {
+    //            var d = data;
+    //        },
+    //        error: function (err) {
+    //            var e = err;
+    //        },
+    //    });
+   
+    debugger;
+
+       
+        var role = $(".role.active").text().trim();
+
+        $.ajax(
+            {
+                type: 'Post',
+                datatype: 'JSON',
+                url: '/Admin/Index',
+                data: { role: role },
+                success: function (response) {
+
+
+                    },
+                error:
+                    function (response) {
+                       debugger;
+                    }
+            });
+
+
+
+
+
+
+
+
+
+    });
+
+</script>*@
+@*<script>
+    
+    @*onclick="location.href='@Url.Action("Index", "Admin",new { param1 = "value1" })'"
+
+        //$("#getvalue").click(function(){
+        //    var role = $(".role.active").text().trim();
+
+        //    //alert("my clisk")
+        //});
+
+    $("#getvalue").click(function () {
+        var role = $(".role.active").text().trim();
+        debugger;
+        //$.ajax({
+        //    url: '@Url.Action("Index", "Admin")',
+        //    data: { role: role },
+        //    type: 'POST',
+        //    dataType: 'json',
+        //    success: function (result) {
+        //        // Do something with the result
+        //    },
+        //    error: function (xhr) {
+        //        // Handle error
+        //    }
+        //});
+            $.ajax
+                ({
+                    url: '/Admin/Index',
+                    type: "get",
+                    //datatype: "json",
+                    //cache: false,
+                    //async: true,
+                    //contentType: 'application/json; charset=utf-8',
+                    data: {roles:role}
+                    success: function (d) {
+
+                    },
+                    error: function (er) {
+
+                    },
+                });
+    });
+
+
+</script>*@
 
 <script src="~/js/UserReports.js" defer></script>

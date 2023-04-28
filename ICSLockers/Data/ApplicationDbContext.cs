@@ -71,6 +71,7 @@ namespace ICSLockers.Data
         public DbSet<DivisionModel> Divisions { get; set; }
         public DbSet<LockerUnitModel>LockerUnits { get; set; }
         public DbSet<UserEvent>UserEvents { get; set; }
+        public DbSet<GuardianModel>Guardians { get; set; }
         #endregion
     }
 }

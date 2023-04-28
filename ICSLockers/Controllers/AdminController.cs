@@ -220,8 +220,8 @@ namespace ICSLockers.Controllers
             return View(userEvents);
         }
         [HttpGet]
-        public IActionResult UserProfile(int LockerId, int DivisionId, int LocationId)
-            {
+        public IActionResult UserProfile(int LockerId, int DivisionId, int LocationId)            
+        {
             // Fetch the locker details based on the provided ids
             var locker = _context.LockerUnits
                 .Include(l => l.Division)
@@ -236,7 +236,7 @@ namespace ICSLockers.Controllers
             }
 
             // Fetch the user details using the locker's UserId property
-            var user = _context.Users.SingleOrDefault(u => u.LockerId.Equals(LockerId));
+            var user = _context.Users.FirstOrDefault(u => u.LockerId.Equals(LockerId));
 
 
             if (user == null)
@@ -245,7 +245,7 @@ namespace ICSLockers.Controllers
             }
 
             // Pass the locker and user details to the view
-            var model = new 
+            var model = new     
             {
                 Locker = locker,
                 User = user,
@@ -257,7 +257,7 @@ namespace ICSLockers.Controllers
         [HttpGet]
         public IActionResult Guardian(int LockerId)
         {  
-            var user = _context.Users.SingleOrDefault(u => u.LockerId.Equals(LockerId));
+            var user = _context.Users.FirstOrDefault(u => u.LockerId.Equals(LockerId));
             if (user == null)
             {
                 return BadRequest();
@@ -267,24 +267,92 @@ namespace ICSLockers.Controllers
             return View(model);
         }
         [HttpPost]
-        public IActionResult Guardian( [FromBody] ApplicationUser model)
+        public IActionResult Guardian( [FromBody] GuardianModel model )
         {
-            var user = _context.Users.Where(x=>x.UserName == model.UserName).FirstOrDefault();
-            if (user != null)
+            var role = User.FindFirst(ClaimTypes.Role)?.Value;
+            var user = _context.Users.FirstOrDefault(x=>x.LockerId.Equals(model.LockerId)).Id;
+            var locker = _context.Guardians.Any(x=>x.LockerId == model.LockerId);
+            if (model != null&&locker==false)
             {
-                user.RelationShip=model.RelationShip;
-                _context.Update(user);
+                model.UserId = user;
+                model.CreatedBy = role;
+                model.UpdatedBy = role;
+                //user.RelationShip=model.RelationShip;
+                _context.Guardians.Add(model);
                 _context.SaveChanges();
-            }
-            //if (ModelState.IsValid)
-            //{
-
-            //}
-            return View();
+            }            
+            return View(model);
         }
-        public IActionResult LockerDetails()
+        [HttpGet]
+        public IActionResult LockerDetails(int LockerId )
         {
-            return View();
+            var locker = _context.LockerUnits.
+                Include(l => l.Division)
+                .ThenInclude(l=>l.Location)
+                .SingleOrDefault(x => x.LockerId == LockerId);            
+            var user = _context.Users.FirstOrDefault(u => u.LockerId.Equals(LockerId));
+            var relation =_context.Guardians.FirstOrDefault(g=>g.LockerId.Equals(LockerId)).RelationShip;
+            var location = _context.Locations.SingleOrDefault(l => l.LocationId == locker.DivisionId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            if(locker == null)
+            {
+                return BadRequest();
+            }
+            var model = new
+            {
+                Locker=locker,
+                User=user,
+                Location=location,
+                RelationShip = relation
+
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult RemoveAllItems(int LockerId)
+        {
+            // Find the locker units with the specified locker ID
+            var lockerUnits = _context.LockerUnits.FirstOrDefault(l => l.LockerId == LockerId);
+
+            // If the locker units exist, remove all items
+            if (lockerUnits != null)
+            {
+                lockerUnits.Item1 = string.Empty;
+                lockerUnits.Item2 = string.Empty;
+                lockerUnits.Item3 = string.Empty;
+                lockerUnits.Item4 = string.Empty;
+                lockerUnits.Item5 = string.Empty;
+
+                // Update the locker units and save changes to the database
+                _context.Update(lockerUnits);
+                _context.SaveChanges();
+
+                return Ok("All items have been removed from the locker.");
+            }
+
+            return NotFound();
+
+        }
+        [HttpGet]
+        public IActionResult UpdateLocker( int LockerId,int DivisionId, int LocationId)
+        {
+            var locker = _context.LockerUnits
+                .Include(l=>l.Division)
+                .ThenInclude(l=>l.Location).FirstOrDefault(l=>l.LockerId==LockerId&& l.DivisionId==DivisionId&&l.Division.LocationId== LocationId);
+            var locationName = _context.Locations.FirstOrDefault(l => l.LocationId == LocationId).LocationName;
+            if (locker == null)
+            {
+                return NotFound();
+            }
+            var user = _context.Users.FirstOrDefault(x=>x.LockerId==LockerId);
+            if (user == null)
+            {
+                return BadRequest();
+            }
+              return View();
         }
     }
 }

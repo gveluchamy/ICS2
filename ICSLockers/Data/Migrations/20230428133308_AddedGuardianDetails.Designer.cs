@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ICSLockers.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230427131650_UpdateRelationShip")]
-    partial class UpdateRelationShip
+    [Migration("20230428133308_AddedGuardianDetails")]
+    partial class AddedGuardianDetails
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -100,9 +100,6 @@ namespace ICSLockers.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("RelationShip")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("SSN")
                         .HasColumnType("int");
 
@@ -134,9 +131,9 @@ namespace ICSLockers.Data.Migrations
                             Id = "b74ddd14-6340-4840-95c2-db12554843e5",
                             AccessFailedCount = 0,
                             CheckOutStatus = false,
-                            ConcurrencyStamp = "36cdacd0-bdf9-4410-8dcc-6fba82e85526",
+                            ConcurrencyStamp = "0288be88-5e3f-4a93-8049-49bb81767ab1",
                             CreatedBy = "Admin",
-                            CreatedOn = new DateTime(2023, 4, 27, 18, 46, 50, 94, DateTimeKind.Local).AddTicks(6925),
+                            CreatedOn = new DateTime(2023, 4, 28, 19, 3, 8, 747, DateTimeKind.Local).AddTicks(3405),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DivisionId = 0,
                             Email = "icslocker@hotmail.com",
@@ -149,11 +146,11 @@ namespace ICSLockers.Data.Migrations
                             NormalizedEmail = "icslocker@hotmail.com",
                             NormalizedUserName = "icslocker@hotmail.com",
                             PasswordEnc = "IL11",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEfnZEv5ibNNd+exVrNUp3uiPt2wA9n39Bptok9J49y0BRnMLqT0XWvxgtgSAsZH8A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEALUJX+0UrjiXOshTVncYhPsIiAajcBcn8BKRjh+SL544+pBJ5YlV7WjpCpbcQYhYA==",
                             PhoneNumber = "9876543210",
                             PhoneNumberConfirmed = false,
                             SSN = 987654311,
-                            SecurityStamp = "6ef6a61f-1db6-43b5-a365-7e1680e72600",
+                            SecurityStamp = "025f6f48-e69a-419c-aa7e-bef8abffcab3",
                             TwoFactorEnabled = false,
                             UserName = "icslocker@hotmail.com"
                         });
@@ -199,6 +196,48 @@ namespace ICSLockers.Data.Migrations
                     b.HasIndex("LocationId");
 
                     b.ToTable("Division");
+                });
+
+            modelBuilder.Entity("ICSLockers.Models.GuardianModel", b =>
+                {
+                    b.Property<int>("RelationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RelationId"));
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GuardianName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LockerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RelationShip")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("RelationId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Guardians");
                 });
 
             modelBuilder.Entity("ICSLockers.Models.LocationModel", b =>
@@ -490,6 +529,17 @@ namespace ICSLockers.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("ICSLockers.Models.GuardianModel", b =>
+                {
+                    b.HasOne("ICSLockers.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ICSLockers.Models.LockerUnitModel", b =>

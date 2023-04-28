@@ -2422,6 +2422,115 @@ select.filter {
         color: #FFFFFF;
         margin: 0px auto;
     }
+
+.user-product-add .add-product {
+    height: 100%;
+    background-color: #fff;
+    padding: 20px 15px;
+}
+
+.user-product-add .users-profile.user-product .profile-footer .update-locker {
+    padding: 18px 35px;
+}
+
+.user-product-add .add-product label {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #2B4889;
+}
+
+.user-product-add .add-product input {
+    background: #FFFFFF;
+    border: 2px solid rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 0.25);
+    padding: 10px 30px;
+}
+
+.user-move .modal-content {
+    border-radius: 15px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.user-move .select2-container--default .select2-selection--single {
+    background: #FFFFFF;
+    border: 2px solid rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.1);
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .user-move .select2-container--default .select2-selection--single .select2-selection__rendered {
+        padding: 11px 10px;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 18px;
+        color: rgba(0, 0, 0, 0.25);
+    }
+
+.user-move .select2-container--open .select2-dropdown--below {
+    box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.1);
+    background: #FFFFFF;
+    border: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+.user-move .select2-container--default .select2-selection--single .select2-selection__arrow {
+    position: static;
+}
+
+.user-move .select2-container--default .select2-search--dropdown .select2-search__field {
+    background: #FFFFFF;
+    border: 2px solid rgba(0, 0, 0, 0.20);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 18px;
+    color: rgba(0, 0, 0, 0.25);
+}
+
+.user-move .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    left: auto;
+}
+
+.user-move .inform {
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 20px;
+}
+
+.user-move .modal-body {
+    padding: 35px 15px;
+}
+
+.user-move .modal-footer .btn-primary {
+    background: linear-gradient(180deg, #69E772 0%, #68D270 100%);
+    border: 2px solid #68D270;
+    border-radius: 15px;
+    padding: 18px 40px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+    .user-move .modal-footer .btn-primary:active {
+        background: linear-gradient(180deg, #68D270 0%, #69E772 100%);
+    }
+
+    .user-move .modal-footer .btn-primary:focus,
+    .user-move .modal-footer .btn-primary:active {
+        box-shadow: none !important;
+    }
 @media screen and (max-width: 1600px) {
     .location .location-count h5 {
         font-size: 14px;

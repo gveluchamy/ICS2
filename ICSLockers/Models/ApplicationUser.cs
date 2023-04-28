@@ -31,6 +31,5 @@ namespace ICSLockers.Models
         public DateTime CreatedOn { get; set; }
         public string? CreatedBy { get; set; }
         public bool CheckOutStatus { get; set; }
-        public string? RelationShip { get; set; }
     }
 }

@@ -46,8 +46,15 @@
                     <img src="~/images/png/options.png" alt="" class="options">
                     <div class="menus" id="menus">
                         <ul>
-                            <li><a href="#">Move Locker</a></li>
-                            <li><a href="#">Remove User</a></li>
+                            <li>
+                                <a href="#" data-toggle="modal" data-target="#movelocker" onclick="fnMoveLocker()">Move Locker</a>
+                            </li>
+                            <li>
+                                <a href="#" data-toggle="modal" data-target="#exampleModalCenter" onclick="fnRemoveUser()">
+                                    Remove
+                                    User
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -103,12 +110,15 @@
     </div>
 </div>
 
-<div class="modal fade user-remove" id="RemoveUserModal" tabindex="-1" role="dialog"
+<div class="modal fade user-remove" id="removeUserModel" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered locker-add-modal" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center w-100" id="exampleModalLongTitle">Are you sure remove the items and remove user from the locker?</h5>
+                <h5 class="modal-title text-center w-100" id="exampleModalLongTitle">
+                    Are you sure remove the items
+                    and remove user from the locker?
+                </h5>
             </div>
             <div class="modal-body">
                 <div class="d-flex justify-content-around">
@@ -116,9 +126,69 @@
                     <button class="btn-outline-danger">No</button>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
+<div class="modal fade user-move " id="movelocker" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered locker-add-modal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center w-100" id="exampleModalLongTitle">Select the locker location</h5>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="w-100">Location</label>
+                            <select style="width: 100%;" id="mySelect2" class="form-control">
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="w-100">Division</label>
+                            <select style="width: 100%;" id="mySelect3" class="form-control">
+                                <option value="Division-1">Division-1</option>
+                                <option value="Division-2">Division-2</option>
+                                <option value="Division-3">Division-3</option>
+                                <option value="Division-4">Division-4</option>
+                                <option value="Division-5">Division-5</option>
+                                <option value="Division-6">Division-6</option>
+                                <option value="Division-7">Division-7</option>
+                                <option value="Division-8">Division-8</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="w-100">Locker</label>
+                            <select style="width: 100%;" id="mySelect4" class="form-control">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="AK">6</option>
+                                <option value="AL">7</option>
+                                <option value="AK">8</option>
+                                <option value="AL">9</option>
+                                <option value="AK">10</option>
+                                <option value="AL">11</option>
+                                <option value="AK">12</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center inform">* Showing only avalilable lockers only</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary">Move Locker</button>
+            </div>
+        </div>
+    </div>
+</div>
      <script src="~/js/Staff.js"></script>

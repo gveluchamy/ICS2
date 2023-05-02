@@ -127,6 +127,7 @@ namespace ICSLockers.Controllers
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return false;
             }
             return true;
@@ -228,7 +229,7 @@ namespace ICSLockers.Controllers
                     .ThenInclude(d => d.Location)
                 .SingleOrDefault(l => l.LockerId == LockerId && l.DivisionId == DivisionId && l.Division.LocationId == LocationId);
 
-            var locationName = _context.Locations.FirstOrDefault(l=>l.LocationId==LocationId).LocationName;
+            var location = _context.Locations.FirstOrDefault(l=>l.LocationId==LocationId);
 
             if (locker == null)
             {
@@ -249,7 +250,7 @@ namespace ICSLockers.Controllers
             {
                 Locker = locker,
                 User = user,
-                LocationName = locationName,
+                Location = location,
             };
 
             return View(model);
@@ -272,7 +273,7 @@ namespace ICSLockers.Controllers
             var role = User.FindFirst(ClaimTypes.Role)?.Value;
             var user = _context.Users.FirstOrDefault(x=>x.LockerId.Equals(model.LockerId)).Id;
             var locker = _context.Guardians.Any(x=>x.LockerId == model.LockerId);
-            if (model != null&&locker==false)
+            if (model != null&&model.GuardianName!=null)
             {
                 model.UserId = user;
                 model.CreatedBy = role;
@@ -281,7 +282,7 @@ namespace ICSLockers.Controllers
                 _context.Guardians.Add(model);
                 _context.SaveChanges();
             }            
-            return View(model);
+            return Json(model);
         }
         [HttpGet]
         public IActionResult LockerDetails(int LockerId )
@@ -289,7 +290,7 @@ namespace ICSLockers.Controllers
             var locker = _context.LockerUnits.
                 Include(l => l.Division)
                 .ThenInclude(l=>l.Location)
-                .SingleOrDefault(x => x.LockerId == LockerId);            
+                .SingleOrDefault(x => x.LockerId == LockerId);
             var user = _context.Users.FirstOrDefault(u => u.LockerId.Equals(LockerId));
             var relation =_context.Guardians.FirstOrDefault(g=>g.LockerId.Equals(LockerId)).RelationShip;
             var location = _context.Locations.SingleOrDefault(l => l.LocationId == locker.DivisionId);
@@ -342,7 +343,7 @@ namespace ICSLockers.Controllers
             var locker = _context.LockerUnits
                 .Include(l=>l.Division)
                 .ThenInclude(l=>l.Location).FirstOrDefault(l=>l.LockerId==LockerId&& l.DivisionId==DivisionId&&l.Division.LocationId== LocationId);
-            var locationName = _context.Locations.FirstOrDefault(l => l.LocationId == LocationId).LocationName;
+             var locationName = _context.Locations.FirstOrDefault(l => l.LocationId == LocationId).LocationName;
             if (locker == null)
             {
                 return NotFound();
@@ -352,7 +353,29 @@ namespace ICSLockers.Controllers
             {
                 return BadRequest();
             }
-              return View();
+            var model = new
+            {
+                Locker = locker,
+                LocationName = locationName,
+                User = user,
+            };
+              return View(model);
+        }
+        [HttpPost]
+        public IActionResult UpdateItems([FromBody]LockerUnitModel items)
+        {
+            var locker = _context.LockerUnits.FirstOrDefault(x=>x.LockerId== items.LockerId);
+            if (locker != null&&items!=null)
+            {
+                locker.Item1 = items.Item1;
+                locker.Item2 = items.Item2;
+                locker.Item3 = items.Item3;
+                locker.Item4 = items.Item4;
+                locker.Item5 = items.Item5;
+                _context.Update(locker);
+                _context.SaveChanges();
+            }
+            return View(items);
         }
     }
 }

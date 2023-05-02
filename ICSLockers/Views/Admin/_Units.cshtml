@@ -19,7 +19,7 @@
     else{
     <div class="locker not-available">
         <div class="d-flex align-items-center locker-detail">
-            <div class="count">@Model.LockerId</div>
+            <div class="count">@Model.LockerNo</div>
             <div class="user-name">Stephen Edwards</div>
         </div>
             <div class="locker-condition flex-column d-flex align-items-center" onclick="location.href='@Url.Action("UserProfile", "Admin",new { divisionId = Model.DivisionId,lockerId=Model.LockerId,locationId= Model.Division.LocationId})'" data-value= "@Model.LockerNo">

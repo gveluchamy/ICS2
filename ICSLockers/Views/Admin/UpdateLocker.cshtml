@@ -1,0 +1,131 @@
+﻿@using ICSLockers.Models
+@{
+    ViewData["Title"] = "User Profile";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid main">
+    <div class="title-bar">
+        <h5>Locate User Locker</h5>
+    </div>
+    <div class="content-wrapper">
+        <div class="user-product-add">
+            <div class="users-profile">
+                <div class="d-flex align-items-center justify-content-between profile-header">
+                    <div class="d-flex align-items-center">
+                        <div class="profile-number">
+                            <h1>@Model.Locker.LockerNo</h1>
+                        </div>
+                        <div class="user-name">
+                            <h5>@Model.User.FullName</h5>
+                        </div>
+                    </div>
+                    <div class="locker-status">
+                        <h5>Locker in use</h5>
+                        <img src="~/images/png/available.png" alt="">
+                    </div>
+                </div>
+                <div class="profile-body">
+                    <div class="d-flex justify-content-between">
+                        <label for="" class="col-lg-6">User Name</label>
+                        <h5 class="col-lg-6">@Model.User.UserName</h5>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <label for="" class="col-lg-6">User Code</label>
+                        <h5 class="col-lg-6">@Model.User.PasswordEnc</h5>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <label for="" class="col-lg-6">Locker Location</label>
+                        <h5 class="col-lg-6">@Model.LocationName</h5>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <label for="" class="col-lg-6">Locker Division</label>
+                        <h5 class="col-lg-6">@Model.Locker.Division.DivisionNo</h5>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <label for="" class="col-lg-6">Locker Number</label>
+                        <h5 class="col-lg-6">@Model.Locker.LockerNo</h5>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <label for="" class="col-lg-6">Barcode Number</label>
+                        <h5 class="col-lg-6">987654321</h5>
+                    </div>
+                    <div class="d-flex justify-content-between" id="items">
+                        <label for="" class="col-lg-6">Items</label>
+                        <div class="col-lg-6" id="items">
+                            <h5 class="item1">@Model.Locker.Item1</h5>
+                            <h5>@Model.Locker.Item2</h5>
+                            <h5>@Model.Locker.Item3</h5>
+                            <h5>@Model.Locker.Item4</h5>
+                            <h5>@Model.Locker.Item5</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="users-profile user-product">
+                <div class="d-flex align-items-center justify-content-between profile-header">
+                    <div class="d-flex align-items-center">
+                        <div class="profile-number">
+                            <h1>@Model.Locker.LockerNo</h1>
+                        </div>
+                        <div class="user-name">
+                            <h5>Add Items Procedure</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-body">
+                    <div class="add-product">
+                        <div class="d-flex justify-content-between">
+                            <label for="" class="col-lg-4">Items</label>
+                            <div class="col-lg-8">
+                                <div id="products">
+                                    <div class="col-lg-12 mb-3 d-flex align-items-center item">
+                                        <input type="text" name="product" id="product" class="form-control product">
+                                        <img src="~/images/png/remove.png" class="ml-4" alt="remove-product"
+                                             id="remove-product" style="visibility: hidden">
+                                    </div>
+                                </div>
+                                <div class="d-flex col-lg-12 align-items-center mt-3">
+                                    <a href="#" id="add-product">
+                                        <img src="~/images/png/add.png" alt="add-product" class="mr-3"><span>
+                                            Add more
+                                            item
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-footer">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn update-locker" onclick="fnUpdateItems()">Update Locker</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade user-remove" id="" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered locker-add-modal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center w-100" id="exampleModalLongTitle">
+                    Are you sure remove the items
+                    and remove user from the locker?
+                </h5>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex justify-content-around">
+                    <button class="btn-outline-primary">Yes</button>
+                    <button class="btn-outline-danger">No</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/js/Staff.js"></script>

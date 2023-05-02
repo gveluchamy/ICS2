@@ -74,7 +74,7 @@
                 </div>
                 <div class="d-flex justify-content-between">
                     <label for="" class="col-lg-6">Locker Location</label>
-                    <h5 class="col-lg-6">@Model.LocationName</h5>
+                    <h5 class="col-lg-6">@Model.Location.LocationName</h5>
                 </div>
                 <div class="d-flex justify-content-between">
                     <label for="" class="col-lg-6">Locker Division</label>
@@ -101,7 +101,7 @@
             </div>
             <div class="profile-footer">
                 <div class="d-flex justify-content-between">
-                    <button class="btn add-item" onclick="location.href='@Url.Action("LockerDetails", "Admin")'"><img src="~/images/png/add-item.png"> Add Item</button>
+                    <button id="additem" class="btn add-item" onclick="location.href='@Url.Action("Guardian", "Admin",new { lockerId=Model.Locker.LockerId,divisionId=@Model.Locker.Division.DivisionId,locationId=Model.Location.LocationId } )'" data-value="@Model.Locker.LockerNo"><img src="~/images/png/add-item.png"> Add Item</button>
                     <button class="btn remove-item" onclick="location.href='@Url.Action("Guardian", "Admin",new { lockerId=Model.Locker.LockerId } )'" data-value="@Model.Locker.LockerNo"><img src="~/images/png/remove-item.png"> Remove Item</button>
                     <button class="btn lock-locker"><img src="~/images/png/lock-locker.png"> Lock Locker</button>
                 </div>

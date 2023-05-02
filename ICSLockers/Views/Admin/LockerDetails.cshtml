@@ -150,8 +150,8 @@
                 </div>
                 <div class="profile-footer">
                     <div class="d-flex justify-content-end">
-                        <button class="btn remove-all" onclick="fnremoveAllItems()">Remove All Products</button>
-                        <button class="btn update-locker" onclick="location.href='@Url.Action("UpdateLocker", "Admin",new { divisionId = Model.Locker.Division.DivisionId,lockerId=Model.Locker.LockerId,locationId= Model.Locker.Division.LocationId})'" data-value="@Model.Locker.LockerNo">Update Locker</button>
+                        <button class="btn remove-all" onclick="fnRemoveItem()">Remove All Products</button>
+                        <button class="btn update-locker">Update Locker</button>
                     </div>
                 </div>
             </div>
@@ -159,20 +159,19 @@
 
     </div>
 </div>
-<div class="modal fade user-remove" id="exampleModalCenter" tabindex="-1" role="dialog"
+<div class="modal fade user-remove remove-modal" id="removePopup" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered locker-add-modal" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title text-center w-100" id="exampleModalLongTitle">
-                    Are you sure remove the items
-                    and remove user from the locker?
+                    Are you sure to remove the items from the locker?
                 </h5>
             </div>
             <div class="modal-body">
                 <div class="d-flex justify-content-around">
-                    <button class="btn-outline-primary">Yes</button>
-                    <button class="btn-outline-danger">No</button>
+                    <button class="btn-outline-primary" id="yes" onclick="fnremoveAllItems()">Yes</button>
+                    <button class="btn-outline-danger" id="no" aria-label="Close" onclick="fnRemoveCancel()">No</button>
                 </div>
             </div>
 

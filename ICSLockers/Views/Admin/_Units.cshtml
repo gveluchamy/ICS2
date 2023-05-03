@@ -9,7 +9,7 @@
                 <div class="count">@Model.LockerNo</div>
                 <div class="user-name">available</div>
             </div>
-            <div class="locker-condition flex-column d-flex align-items-center">
+            <div class="locker-condition flex-column d-flex align-items-center" onclick="location.href='@Url.Action("Index", "Admin",new { divisionId = Model.DivisionId,lockerId=Model.LockerId,locationId= Model.Division.LocationId})'" data-value="@Model.LockerNo">
                 <img src="~/images/png/available.png" alt="" class="success">
                 <img src="~/images/png/not-available.png" alt="" class="danger">
                 <span>Available</span>

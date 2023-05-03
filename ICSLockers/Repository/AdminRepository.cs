@@ -45,7 +45,7 @@ namespace ICSLockers.Repository.IRepository
                         IsSuccess = true;
                         Result = $"The location {location.LocationName} has been added succesfully with {location.TotalDivision} divisions!";
                     }
-                    else
+                    else 
                     {
                         IsSuccess = false;
                         Result = $"Please Enter the Location Name!";
@@ -276,12 +276,19 @@ namespace ICSLockers.Repository.IRepository
             if (existingLocation.TotalDivision >= 10 && totalDivision <= 10) return false;
             AddNewDivision(totalDivision, divisionIdStart, location);
             //To restrict division update till 10
-            for (int i = 0; existingLocation.TotalDivision <= 9; i++)
+            if (existingLocation.TotalDivision <= 5 && location.TotalDivision >= 5)
             {
-                existingLocation.TotalDivision = existingLocation.TotalDivision + 1;
+                for (int i = 0; existingLocation.TotalDivision <= 9; i++)
+                {
+                    existingLocation.TotalDivision = existingLocation.TotalDivision + 1;
+                    _context.SaveChanges();
+                }
+            }
+            else if(location.TotalDivision <= 5&&existingLocation.TotalDivision<10)
+            {
+                existingLocation.TotalDivision = existingLocation.TotalDivision + location.TotalDivision;
                 _context.SaveChanges();
             }
-
             return true;
         }
 

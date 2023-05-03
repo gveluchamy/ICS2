@@ -39,16 +39,19 @@ namespace ICSLockers.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateNewUser([FromBody] RegistrationModel model)
         {
+
             IdentityResult userCreationStatus = await _accountManager.CreateNewUserAsync(model);
+            string message = "Success";
             if (userCreationStatus.Succeeded)
             {
+                
                 _logger.LogDebug($"User {model.UserName} has been created successfully");
             }
             else
             {
                 _logger.LogDebug($"User {model.UserName} has not been created.");
             }
-            return RedirectToAction("Dashboard", "Admin");
+            return Json(new { success = userCreationStatus.Succeeded, Message = message });
         }
     }
 }

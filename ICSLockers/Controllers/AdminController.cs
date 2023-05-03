@@ -48,7 +48,7 @@ namespace ICSLockers.Controllers
             AdminDashboard dashboard = _adminRepository.GetDashBoardDetails();
             return View("AdminDashboard", dashboard);
         }
-        public ActionResult Index(string role)
+        public ActionResult Index(string role,int LockerId)
         {
             var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
             List<IdentityRole> model = new List<IdentityRole>();
@@ -59,6 +59,7 @@ namespace ICSLockers.Controllers
             }
             ViewBag.ListRole = model.ToList();
             ViewBag.Role=role;
+            ViewBag.Locker=LockerId;
             return View();
         }
 
@@ -230,7 +231,17 @@ namespace ICSLockers.Controllers
                 .SingleOrDefault(l => l.LockerId == LockerId && l.DivisionId == DivisionId && l.Division.LocationId == LocationId);
 
             var location = _context.Locations.FirstOrDefault(l=>l.LocationId==LocationId);
-
+            var locations= _context.Locations.ToList();
+            var locationItems = new List<SelectListItem>();
+            if (locations != null)
+            {
+                 locationItems = locations.Select(l => new SelectListItem
+                {
+                    Text = l.LocationName,
+                    Value = l.LocationId.ToString()
+                }).ToList();
+                ViewBag.list=locationItems;
+            }
             if (locker == null)
             {
                return NotFound();
@@ -250,7 +261,7 @@ namespace ICSLockers.Controllers
             {
                 Locker = locker,
                 User = user,
-                Location = location,
+                Location = location               
             };
 
             return View(model);
@@ -293,7 +304,7 @@ namespace ICSLockers.Controllers
                 .SingleOrDefault(x => x.LockerId == LockerId);
             var user = _context.Users.FirstOrDefault(u => u.LockerId.Equals(LockerId));
             var relation =_context.Guardians.FirstOrDefault(g=>g.LockerId.Equals(LockerId)).RelationShip;
-            var location = _context.Locations.SingleOrDefault(l => l.LocationId == locker.DivisionId);
+            var location = _context.Locations.FirstOrDefault(l => l.LocationId == user.LocationId);
             if (user == null)
             {
                 return NotFound();
@@ -365,6 +376,7 @@ namespace ICSLockers.Controllers
         public IActionResult UpdateItems([FromBody]LockerUnitModel items)
         {
             var locker = _context.LockerUnits.FirstOrDefault(x=>x.LockerId== items.LockerId);
+            var message = "Success";
             if (locker != null&&items!=null)
             {
                 locker.Item1 = items.Item1;
@@ -374,8 +386,14 @@ namespace ICSLockers.Controllers
                 locker.Item5 = items.Item5;
                 _context.Update(locker);
                 _context.SaveChanges();
+                var division = _context.Divisions.FirstOrDefault(x=>x.DivisionId==items.DivisionId);
+                if(division != null&&division.IsLockersAvailable)
+                {
+                    division.UsedLockers = division.UsedLockers + 1;
+                }
             }
-            return View(items);
+
+            return Json(new { success = locker, Message = message });
         }
     }
 }

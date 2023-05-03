@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿/// <reference path="site.js" />
+$(document).ready(function () {
     $('.user-menu a').click(function () {
         $('.user-menu a.active').removeClass('active');
         $(this).toggleClass('active');
@@ -110,7 +111,7 @@ $('#mySelect2, #mySelect3, #mySelect4').select2({
 function fnUpdateRelation() {
     if (document.URL.includes("locationId")) {
         var lockerId = fnGetParameterByName("lockerId");
-        var locatioId = fnGetParameterByName("locationId")
+        var locationId = fnGetParameterByName("locationId")
         var divisionId = fnGetParameterByName("divisionId")
         var relationShipModel = {
             GuardianName: $(".raltion-model .user-name").val().trim(),
@@ -127,7 +128,7 @@ function fnUpdateRelation() {
             contentType: "application/json",
             data: JSON.stringify(relationShipModel),
             success: function (response) {
-                window.location.href = "/Admin/UpdateLocker?lockerId=" + parseInt(lockerId)+ "&divisionId=" + parseInt(divisionId) + "&locationId=" + parseInt(locatioId);
+                window.location.href = "/Admin/UpdateLocker?lockerId=" + parseInt(lockerId)+ "&divisionId=" + parseInt(divisionId) + "&locationId=" + parseInt(locationId);
                 
             },
             error: function (xhr, status, error) {
@@ -211,24 +212,39 @@ $(document).ready(function () {
 });
 $(document).ready(function () {
     //var numItems = $('.item').length;
-
+    var Item1 = $(".item1").text();
+    var Item2 = $(".item2").text();
+    var Item3 = $(".item3").text();
+    var Item4 = $(".item4").text();
+    var Item5 = $(".item5").text();
     $("#add-product").click(function () {
         var numItems = $('.item').length;
         var n = numItems + 1
         if (numItems < 5) {
             $("#products").append('<div class="col-lg-12 mb-3 d-flex align-items-center item"><input type="text" name="product" id= "product-' + n + '"class="form-control"><img src="/images/png/remove.png" class="ml-4 product" alt="remove-product" id="product-' + n + '"  onclick="fnRemoveCurrentItem(this)"></div>');
             n++
+            
         }         
-        else if (numItems == 5) {
+        if (numItems == 4) {
+            debugger;
             $('#add-product').hide();
-        }           
+        }
+        $("#product").val(Item1);
+        $("#product-2").val(Item2);
+        $("#product-3").val(Item3);
+        $("#product-4").val(Item4);
+        $("#product-5").val(Item5);
         //else {
         //    $('#add-product').show();
         //}
     });
 });
+
 function fnUpdateItems() {
+    debugger;
     var lockerId = fnGetParameterByName("lockerId");
+    var locationId = fnGetParameterByName("locationId");
+    var divisionId = fnGetParameterByName("divisionId");
     
     var itemupdatemodel = {
         LockerId:lockerId,
@@ -248,19 +264,32 @@ function fnUpdateItems() {
         contentType: "application/json",
         data: JSON.stringify(itemupdatemodel),
         success: function (response) {
-            if (response != null) {
-                window.location.herf = "/Admin/UpdateItems?lockerId" + parseInt(lockerId)
-            }
+            debugger;
+            if (response.success) {
 
+               // $(".grid.location-list").append(response.locationHtml);
+                window.location.href = "/Admin/UpdateLocker?lockerId=" + parseInt(lockerId) + "&divisionId=" + parseInt(divisionId) + "&locationId=" + parseInt(locationId);
+                toastr.success(response.message, 'Success', { timeOut: 4000 });
+            } else {
+                toastr.error(response.message, 'Error', { timeOut: 4000 });
+            }
         },
         error: function (xhr, status, error) {
             console.log(error);
         }
     });
 }
+$(document).ready(function () {
 
+    var Item1 = $(".item1").text();
 
+    $("#product").val(Item1);
+
+    });
 
 function fnRemoveCurrentItem(ctrl) {
-    $(ctrl.parentElement).remove();
+
+    $(ctrl.parentElement).remove();    
+    $('#add-product').show();
+    
 }

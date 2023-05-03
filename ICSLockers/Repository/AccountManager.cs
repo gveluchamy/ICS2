@@ -95,7 +95,10 @@ namespace ICSLockers.Repository
                 PhoneNumberConfirmed = false,
                 CreatedOn=model.CreatedOn,
                 PasswordEnc = AccountHelper.CreatePassword(model),
-                CheckOutStatus=false
+                CheckOutStatus=false,
+                LockerId=model.LockerId,
+                DivisionId=model.DivisionId,
+                LocationId=model.LocationId,
             };
 
             try

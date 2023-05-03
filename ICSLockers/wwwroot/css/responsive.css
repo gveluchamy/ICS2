@@ -90,7 +90,7 @@
     }
 
     .passcode .login-card .form-control.user-passcode, .passcode .login-card .form-control.user-email {
-        height: 64px;
+        height: 55px;
         font-size: 32px;
     }
     .create-user .create-user-form .submit {
@@ -185,7 +185,8 @@
     }
     .passcode .login-card .login {
         font-size: 24px;
-        line-height: 36px;
+        line-height: 28px;
+        height: auto;
     }
     .lockers .locker-detail {
         padding: 13px 20px;
@@ -197,7 +198,7 @@
         margin-bottom: 10px;
     }
     .passcode {
-        padding-top: 50px;
+        padding-top: 100px;
     }
     .locker-unit .unit-count h6 {
         font-size: 28px;

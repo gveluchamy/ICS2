@@ -143,9 +143,17 @@
                         <div class="form-group">
                             <label class="w-100">Location</label>
                             <select style="width: 100%;" id="mySelect2" class="form-control">
+                                @foreach (var role in ViewBag.list)
+                                    {
+                                        <option value="@role.Text">@role.Text</option>
+                                    }
+
+                            </select>                           
+                            @*@Html.DropDownListFor(Model.Locations.LocationId, (IEnumerable<SelectListItem>)ViewBag.list, "Select location", new { @class = "form-control" })*@
+                           @* <select style="width: 100%;" id="mySelect2" class="form-control">
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
-                            </select>
+                            </select>*@
                         </div>
                     </div>
                     <div class="col-lg-4">

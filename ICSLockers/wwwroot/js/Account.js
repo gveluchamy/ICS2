@@ -54,6 +54,9 @@ function fnLogoutMethod() {
 
 function fnNewUserCreation() {
     debugger;
+    var divisionId = fnGetParameterByName("divisionId");
+    var locationId = fnGetParameterByName("locationId");
+    var lockerId = fnGetParameterByName("lockerId");
     var userCreationModel = {
         UserName: $(".create-user-form .first-name").val().trim() + "-" + $(".create-user-form .last-name").val().trim(),
         Email: $(".create-user-form .email-id").val(),
@@ -61,13 +64,15 @@ function fnNewUserCreation() {
         LastName: $(".create-user-form .last-name").val().trim(),
         SSN: parseInt($(".create-user-form .ssn").val()),
         PasswordEnc: "password123",
-        LockerId:null,   //$(".create-user-form .locker-unit").val(),
+        LockerId: parseInt($("#lockerUnit").val()),   //$(".create-user-form .locker-unit").val(),
         DateOfBirth: $(".create-user-form #DateOnly").val(),
         CreatedOn: new Date(),
         CreatedBy: "Admin",
         Role: $(".Role").val(),
         CheckOutStatus: false,
-        PhoneNumber: $(".create-user-form .mobile-no").val()
+        PhoneNumber: $(".create-user-form .mobile-no").val(),
+        LocationId:locationId,
+        DivisionId:divisionId
     };
 
     var isValidated = ValidateUserCreation(JSON.stringify(userCreationModel));
@@ -82,8 +87,10 @@ function fnNewUserCreation() {
             contentType: "application/json",
             data: JSON.stringify(userCreationModel),
             success: function (response) {
+                debugger;   
                 if (response.success) {
-                    window.location.href = response.redirectUrl;
+                    debugger;
+                     window.location.href = "/Admin/Guardian?lockerId=" + parseInt(lockerId) + "&divisionId=" + parseInt(divisionId) + "&locationId=" + parseInt(locationId);
                 } else {
                     alert(response.message);
                 }

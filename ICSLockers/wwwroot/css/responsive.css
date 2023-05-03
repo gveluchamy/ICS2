@@ -57,7 +57,7 @@
     }
 
     .passcode .main-heading, .passcode .login-card h5 {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
  
     .profile h5 {
@@ -96,23 +96,24 @@
     .create-user .create-user-form .submit {
         height: auto;
         font-size: 22px;
+        max-width: 300px;
     }
     .lockers .locker .user-name{
         margin-left: 10px;
-        font-size: 22px;
+        font-size: 20px;
     }
     .lockers .locker-condition {
-        padding: 15px;
+        padding: 10px;
     }
     .lockers .locker .count {
         font-size: 24px;
         line-height: 35px;
-        padding: 5px 10px;
-        padding-bottom: 5px;
-        border-radius: 15px;
+        padding: 5px 15px;
+        padding-bottom: 2px;
+        border-radius: 12px;
     }
     .dashboard .grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
     .create-user .create-user-form input{
         height: auto;
@@ -126,12 +127,17 @@
     }
     .admin-modal .modal-body {
         padding-top: 20px;
+        padding-bottom: 0;
     }
     .admin-modal .btn {
-        font-size: 22px;
+        font-size: 20px;
         height: auto;
-        max-width: 350px;
+        max-width: 300px;
         padding: 10px 70px;
+        border-width: 2px;
+    }
+    .admin-modal .fields{
+        margin-bottom: 20px;
     }
     .passcode .login-card .form-control.user-email {
         font-size: 25px !important;
@@ -151,24 +157,30 @@
     .main-heading h5{
         font-size: 22px;
     }
-    .create-user .create-user-form{
-        padding: 40px 150px;
+    .create-user .create-user-form {
+        padding: 40px 100px;
+        max-width: 890px;
+        margin: 0 auto;
     }
     .admin-modal .btn:hover {
         border-width: 2px;
-        padding: 15px 70px;
+        padding: 10px 70px;
     }
     .dashboard .locker-unit h5 {
         font-size: 18px;
     }
-    .dashboard .locker-unit h1{
+    .dashboard .locker-unit h1 {
         font-size: 56px;
+        line-height: 50px;
     }
     .locker-add-modal .modal-header {
-        padding-bottom: 25px;
-        padding-top: 30px;
+        padding-bottom: 20px;
+        padding-top: 25px;
     }
-    .admin-modal .modal-content{
+    .admin-modal .modal-header h5{
+        font-size: 22px;
+    }
+    .admin-modal .modal-content {
         padding-bottom: 20px;
     }
     .passcode .login-card .login {
@@ -177,6 +189,12 @@
     }
     .lockers .locker-detail {
         padding: 13px 20px;
+        padding-bottom: 20px;
+    }
+    .lockers .locker.not-available .locker-condition img{
+        width: 32px;
+        height: 32px;
+        margin-bottom: 10px;
     }
     .passcode {
         padding-top: 50px;
@@ -204,17 +222,70 @@
         padding-top: 10px;
     }
     .location .location-count h6 {
-        padding: 5px 15px;
+        padding: 10px 15px;
+        line-height: 28px;
+        padding-bottom: 6px;
     }
     .locker-unit .unit-count h3 {
         font-size: 28px;
-        padding: 5px 15px;
-        line-height: 35px;
+        padding: 12px 15px;
+        line-height: 27px;
+        padding-bottom: 6px;
     }
     .locker-unit .btn.available {
-        padding: 8px 15px;
+        padding: 10px 15px;
     }
     .unit .location-detail h6{
         font-size: 16px;
+    }
+    .users-profile .profile-body label, .users-profile .profile-body h5 {
+        font-size: 20px;
+        line-height: 27px;
+    }
+    .users-profile .profile-footer .btn {
+        font-size: 18px;
+        line-height: 18px;
+    }
+    .users-profile .profile-footer .btn img{
+        width: 35px;
+        margin-right: 5px;
+    }
+        .users-profile .profile-footer .btn.remove-item img, .users-profile .profile-footer .btn.lock-locker img {
+            width: 28px;
+        }
+        .users-profile .profile-footer .btn {
+            padding: 8px 40px;
+            display: flex;
+            align-items: center;
+        }
+    .users-profile .user-name h5 {
+        font-size: 22px;
+        line-height: 24px;
+    }
+    .users-profile .profile-number h1 {
+        font-size: 28px;
+        line-height: 35px;
+    }
+    .users-profile .profile-number{
+        border-radius: 15px;
+    }
+    .emp-table th, .emp-table td {
+        font-size: 18px;
+    }
+    .dashboard .locker-unit {
+        padding: 20px 25px;
+    }
+    .locker-add-modal {
+        max-width: 700px !important;
+        width: 100%;
+    }
+    .quantity-field{
+        height: auto;
+    }
+    .user-table .tab .nav-item .nav-link {
+        font-size: 16px;
+    }
+    .lockers .locker.available .locker-condition img.success {
+        margin-bottom: 0px;
     }
 }

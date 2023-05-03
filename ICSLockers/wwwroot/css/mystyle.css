@@ -461,28 +461,26 @@ a {
     line-height: 29px;
     text-align: center;
     color: #2B4889;
-    margin-bottom: 34px;
+    margin-bottom: 15px;
 }
 
-.passcode .login-card .form-control.user-passcode,
-.passcode .login-card .form-control.user-email {
+
+.passcode .login-card .form-control.user-passcode, .passcode .login-card .form-control.user-email {
     background: #FAFDFF;
     border: 2px solid rgba(0, 0, 0, 0.05);
     box-shadow: inset 0px 1px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 45px;
-    height: 90px;
+    border-radius: 15px;
+    height: 60px;
     font-style: normal;
     font-weight: 400;
-    font-size: 64px;
+    font-size: 32px;
     line-height: 77px;
     text-align: center;
     color: rgba(0, 0, 0, 0.25);
     padding: 13px 0;
     overflow: hidden;
-    margin-bottom: 40px;
-    -webkit-inner-spin-button
+    margin-bottom: 20px;
 }
-
 .passcode .login-card .login {
     background: #F2302D;
     border: 4px solid #D12B28;
@@ -496,7 +494,8 @@ a {
     text-transform: uppercase;
     color: #FFFFFF;
     width: 100%;
-    padding: 28px;
+    padding: 20px;
+    margin-top: 20px;
 }
 
 .passcode .note p {
@@ -659,7 +658,7 @@ a {
         border: 1px solid rgba(0, 0, 0, 0.05);
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
         border-radius: 15px;
-        padding:5px 20px;
+        padding: 15px 20px;
         max-width: 125px;
     }
 
@@ -728,7 +727,7 @@ a {
     color: #2B4889;
     border: 2px solid #2B4889;
     border-radius: 10px;
-    padding: 10px 15px 5px 15px;
+    padding: 5px 15px 0px 15px;
 }
 
 .locker-unit .unit {
@@ -1163,18 +1162,21 @@ input.locker-unit, input.location-name, select.location-name {
     display: flex;
     align-items: center;
     color: rgba(0, 0, 0, 0.25);
-    opacity: 0.5 !important;
+    opacity: 1;
     padding: 12px 30px 6px 30px;
     text-align: center;
 }
-select.location-name {
-    background: #fff;
-    height: 50px !important;
-    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #fff;
-    -webkit-appearance: none;
-    padding-left: 50px;
-    background-position-x: 340px;
-}
+ input.location-name.locker-unit{
+        opacity: 0.5 !important;
+    }
+    select.location-name {
+        background: #fff;
+        height: 50px !important;
+        background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #fff;
+        -webkit-appearance: none;
+        padding-left: 50px;
+        background-position-x: 340px;
+    }
 .fields{
     margin-bottom: 30px;
 }
@@ -1190,6 +1192,16 @@ input.location-search {
         font-size: 18px;
         line-height: 22px;
     }
+
+.passcode .login-card .form-control.user-passcode::placeholder, .passcode .login-card .form-control.user-email::placeholder {
+    color: rgba(0, 0, 0, 0.25);
+    font-size: 64px;
+    align-content: center;
+    line-height: 2px;
+}
+.passcode .login-card .form-control.user-email::placeholder {
+    font-size: 40px;
+}
 .search-btn {
     position: absolute;
     right: 10px;
@@ -1209,13 +1221,14 @@ input.location-search {
     border: 2px solid rgba(0, 0, 0, 0.05);
     box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.1);
     border-radius: 25px;
+    overflow: hidden;
 }
 
     .quantity-field .value-button {
         border: none;
         margin: 0px;
         width: 40px;
-        height: 100%;
+        height: auto;
         padding: 0;
         background: #eee;
         outline: none;
@@ -1694,7 +1707,6 @@ canvas {
 .user-table .add-user {
     position: absolute;
     right: 30%;
-    width: 130px;
     height: 30px;
     background: #2B4889;
     border: 1px solid #2B4889;
@@ -1857,7 +1869,7 @@ select.filter {
         }
 
     .users-profile .profile-number {
-        padding: 15px 12px 0px 12px;
+        padding: 8px 20px 3px 20px;
         border: 2px solid #004DFC;
         border-radius: 20px;
     }
@@ -1866,6 +1878,7 @@ select.filter {
             font-size: 36px;
             line-height: 43px;
             color: #004DFC;
+            margin: 0;
         }
 
     .users-profile .profile-header {
@@ -2017,6 +2030,7 @@ select.filter {
         position: absolute;
         right: 0;
         width: 170px;
+        z-index: 9;
     }
 
         .users-profile .options .menus ul li {
@@ -2180,6 +2194,7 @@ select.filter {
                         font-size: 20px;
                         line-height: 24px;
                         color: #555555;
+                        border: none;
                     }
 
                 .user-product-add .users-profile.user-product .profile-body table tbody td {
@@ -2187,6 +2202,7 @@ select.filter {
                     font-size: 18px;
                     line-height: 60px;
                     color: #2B4889;
+                    border: none;
                 }
 
                     .user-product-add .users-profile.user-product .profile-body table tbody td h4 {
@@ -2531,6 +2547,10 @@ select.filter {
     .user-move .modal-footer .btn-primary:active {
         box-shadow: none !important;
     }
+.needs-validation{
+    width: 100%;
+}
+
 @media screen and (max-width: 1600px) {
     .location .location-count h5 {
         font-size: 14px;

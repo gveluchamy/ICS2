@@ -319,13 +319,14 @@ function fnUpdateDivision() {
     $("#UpdateNewDivisionPopup").modal("show");
 }
 
-function fnUpdateDivision () {
+function fnUpdateDivision() {
+    debugger
     let locationName = $("#UpdateNewDivisionPopup .location-name").val();
     let totalDivisions = parseInt($("#UpdateNewDivisionPopup .division-name").val());
     var locationData = {
         LocationName: locationName,
         DivisionId: totalDivisions,
-        TotalLockers: parseInt($(".locker-number").text()),
+        TotalLockers: $(".locker-number").val(),
         IsDeleted: false,
         CreatedBy: "",
         CreatedOn: new Date(),

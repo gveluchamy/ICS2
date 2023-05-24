@@ -1,4 +1,5 @@
-﻿using ICSLockers.Data;
+﻿using Humanizer;
+using ICSLockers.Data;
 using ICSLockers.Helpers;
 using ICSLockers.Models;
 using ICSLockers.Repository;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Runtime.Serialization;
 using System.Security.Claims;
 namespace ICSLockers.Controllers
 {
@@ -232,16 +234,37 @@ namespace ICSLockers.Controllers
 
             var location = _context.Locations.FirstOrDefault(l=>l.LocationId==LocationId);
             var locations= _context.Locations.ToList();
-            var locationItems = new List<SelectListItem>();
             if (locations != null)
             {
-                 locationItems = locations.Select(l => new SelectListItem
+                 var locationItems = locations.Select(l => new SelectListItem
                 {
                     Text = l.LocationName,
                     Value = l.LocationId.ToString()
                 }).ToList();
                 ViewBag.list=locationItems;
             }
+            var division= _context.Divisions.ToList();
+            if(division != null)
+            {
+                var divisionId = division.Select(l => new SelectListItem
+                {                    
+                    Value = l.DivisionId.ToString()
+                }).ToList();
+                ViewBag.divisionlist = divisionId;
+            }
+            var lockers = _context.LockerUnits.ToList().Where(l=>l.IsSpaceAvailable);
+            //List<LockerUnitModel> units = new List<LockerUnitModel>();
+
+            if (lockers != null)
+            {
+                var lockerId = lockers.Select(l => new SelectListItem
+                {
+                    Text =l.LockerNo.ToString(),
+                    Value = l.LockerId.ToString()
+                }).ToList();
+                ViewBag.lockerslist = lockerId;
+            }
+
             if (locker == null)
             {
                return NotFound();

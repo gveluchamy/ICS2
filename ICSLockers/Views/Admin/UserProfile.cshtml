@@ -147,7 +147,6 @@
                                     {
                                         <option value="@role.Text">@role.Text</option>
                                     }
-
                             </select>                           
                             @*@Html.DropDownListFor(Model.Locations.LocationId, (IEnumerable<SelectListItem>)ViewBag.list, "Select location", new { @class = "form-control" })*@
                            @* <select style="width: 100%;" id="mySelect2" class="form-control">
@@ -160,23 +159,30 @@
                         <div class="form-group">
                             <label class="w-100">Division</label>
                             <select style="width: 100%;" id="mySelect3" class="form-control">
-                                <option value="Division-1">Division-1</option>
-                                <option value="Division-2">Division-2</option>
+                                @foreach (var division in ViewBag.divisionlist)
+                                    {
+                                    <option value="@division.Value">@division.Value</option>
+                                    }
+                                @*<option value="Division-2">Division-2</option>    
                                 <option value="Division-3">Division-3</option>
                                 <option value="Division-4">Division-4</option>
                                 <option value="Division-5">Division-5</option>
                                 <option value="Division-6">Division-6</option>
                                 <option value="Division-7">Division-7</option>
-                                <option value="Division-8">Division-8</option>
+                                <option value="Division-8">Division-8</option>*@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4">  
                         <div class="form-group">
                             <label class="w-100">Locker</label>
                             <select style="width: 100%;" id="mySelect4" class="form-control">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
+
+                                @foreach (var Lockers in ViewBag.lockerslist)
+                                {
+                                    <option value="@Lockers.value">@Lockers.Text</option>
+                                }
+                                @*<option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
@@ -186,7 +192,7 @@
                                 <option value="AL">9</option>
                                 <option value="AK">10</option>
                                 <option value="AL">11</option>
-                                <option value="AK">12</option>
+                                <option value="AK">12</option>*@
                             </select>
                         </div>
                     </div>
